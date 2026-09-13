@@ -146,9 +146,9 @@ class ArchiveTests(unittest.TestCase):
     def test_source_change_mid_archive_never_gets_complete_receipt(self):
         original = archive.stream_archive
 
-        def mutate(root, entries, writer, compress=False):
+        def mutate(root, entries, writer, compress=False, recheck_content=False):
             (root / "new-file").write_bytes(b"new")
-            return original(root, entries, writer, compress)
+            return original(root, entries, writer, compress, recheck_content)
 
         with mock.patch.object(archive, "stream_archive", mutate):
             with self.assertRaises(archive.ArchiveError):
@@ -276,6 +276,67 @@ class ArchiveTests(unittest.TestCase):
         with self.assertRaises(archive.ArchiveError):
             archive.reassemble(self.output, target)
         self.assertFalse(target.exists())
+
+    def test_content_recheck_accepts_external_hardlink_metadata_churn(self):
+        scan = archive.scan
+        calls = 0
+
+        def changing_scan(root):
+            nonlocal calls
+            rows = scan(root)
+            calls += 1
+            if calls == 1:
+                os.link(self.root / "ignored/key.p12", self.base / "outside-snapshot-link")
+            return rows
+
+        with mock.patch.object(archive, "scan", side_effect=changing_scan):
+            archive.create(self.root, self.output, chunk_size=8192,
+                           compress=True, recheck_content=True)
+        manifest = json.loads((self.output / "archive-manifest.json").read_text())
+        self.assertTrue(manifest["source_content_second_pass"])
+        self.assertEqual(archive.verify(self.output)["status"], "verified_all_chunks_and_inventory")
+
+    def test_strict_default_still_rejects_ctime_change(self):
+        scan = archive.scan
+
+        def changing_scan(root):
+            rows = scan(root)
+            os.link(self.root / "ignored/key.p12", self.base / "outside-snapshot-link")
+            return rows
+
+        with mock.patch.object(archive, "scan", side_effect=changing_scan):
+            with self.assertRaises(archive.ArchiveError):
+                self.create()
+        self.assertFalse((self.output / "archive-manifest.json").exists())
+
+    def test_content_recheck_rejects_changed_bytes_with_restored_mtime(self):
+        scan = archive.scan
+        calls = 0
+
+        def changing_scan(root):
+            nonlocal calls
+            calls += 1
+            if calls == 2:
+                path = self.root / "ignored/key.p12"
+                old = path.stat()
+                path.write_bytes(b"X" * old.st_size)
+                os.utime(path, ns=(old.st_atime_ns, old.st_mtime_ns))
+            return scan(root)
+
+        with mock.patch.object(archive, "scan", side_effect=changing_scan):
+            with self.assertRaisesRegex(archive.ArchiveError, "contents changed"):
+                archive.create(self.root, self.output, chunk_size=8192, recheck_content=True)
+        self.assertFalse((self.output / "archive-manifest.json").exists())
+
+    def test_resume_recheck_mode_is_bound_and_accepts_ctime_only_change(self):
+        archive.create(self.root, self.output, chunk_size=8192,
+                       compress=True, recheck_content=True)
+        os.link(self.root / "ignored/key.p12", self.base / "outside-snapshot-link")
+        with self.assertRaises(archive.ArchiveError):
+            archive.create(self.root, self.output, chunk_size=8192, resume=True, compress=True)
+        result = archive.create(self.root, self.output, chunk_size=8192, resume=True,
+                                compress=True, recheck_content=True)
+        self.assertEqual(result["status"], "verified_all_chunks_and_inventory")
 
 
 if __name__ == "__main__":

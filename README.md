@@ -46,7 +46,7 @@ host's existing Python, JDK and Xcode installations.
 | --- | ---: |
 | Android unit tests | 57 |
 | Mac mandatory checks | 162 |
-| Host tools (including archive checks) | 133 |
+| Host tools (including archive checks) | 137 |
 | Portable protocol/prototype tests | 19 |
 
 One host private-input test and 21 historical prototype cases skip by default.

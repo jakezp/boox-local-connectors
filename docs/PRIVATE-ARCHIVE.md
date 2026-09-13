@@ -206,6 +206,17 @@ also binds the zlib runtime version; a changed codec/runtime requires a new
 snapshot. Omit `--gzip` consistently for uncompressed parts. Verification and
 reassembly support both formats automatically.
 
+During the real collection capture, background metadata activity changed only
+`ctime` on copied files, causing the strict default to stop. For this case, add
+`--recheck-content` to creation and repeat it on resume. This mode compares every
+other metadata field as before, then reads **every regular source file again**
+and requires its SHA-256 to match the archived bytes before completing. It also
+checks the tree again after that pass. Changed bytes are rejected even if a writer
+restores the original size and modification time. The strict default is unchanged.
+Four additional regressions cover this mode, bringing the archive suite to 22.
+The mode is recorded in the manifest as `source_content_second_pass` and is bound
+to saved resume state. Start a new output when changing modes; do not edit state.
+
 A source addition/removal/content-or-metadata change aborts the snapshot or
 resume. The tool checks metadata before each read, file descriptors after each
 read, and the entire tree again before completion. That detects ordinary concurrent

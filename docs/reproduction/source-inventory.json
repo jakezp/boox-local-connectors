@@ -45,8 +45,8 @@
     {
       "path": "HANDOVER.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 59109,
-      "sha256": "33ef3f5d9c89d24c912dbecc44bac1138ba3e9f5e91641bcd32aaa9ec67ade9f",
+      "bytes": 59177,
+      "sha256": "54e4c57ac2e14beaa987388b879f5befb0a02f5fe6b603b2dcf3a1353ee09130",
       "publication_review_required": true
     },
     {
@@ -60,7 +60,7 @@
       "path": "README.md",
       "group": "legacy_documentation_review_required",
       "bytes": 7058,
-      "sha256": "a17520f2c15367ff0e7c2d8739dad6e5bcf66821261665ff7103644bf64c21bd",
+      "sha256": "a70e60e8ab89789bfc77e2ffa2920118e993c1dcc7cb4dd39679981c12206165",
       "publication_review_required": true
     },
     {
@@ -73,8 +73,8 @@
     {
       "path": "docs/PRIVATE-ARCHIVE.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 18414,
-      "sha256": "39c6ba7941771659ff192f6896de0b6e5a5d2e5aa4c61d01fc156f83922a7848",
+      "bytes": 19223,
+      "sha256": "05cb6b15593da2dd58b573bb2d44498cee62f55482fa21280e218e08b79337f8",
       "publication_review_required": true
     },
     {
@@ -94,8 +94,8 @@
     {
       "path": "docs/VALIDATION.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 5437,
-      "sha256": "afef2e01152f1deffd952b7f36ba473cab03ef70747b86f17095f105a75b0787",
+      "bytes": 5615,
+      "sha256": "85da960fe0c285b95624accf89274e06daa196628975d3eb45eb707ae3954ee2",
       "publication_review_required": true
     },
     {
@@ -1333,8 +1333,8 @@
     {
       "path": "tools/archive_private_workspace.py",
       "group": "host_tools",
-      "bytes": 25748,
-      "sha256": "eca44f321d2eb1fea001b784293e763afe694eab261c948d8bf64d4c4d46126c",
+      "bytes": 28300,
+      "sha256": "131518f52c627740c73f03f803ce67b0693a642a6d6a581e9fb879960a9e9240",
       "publication_review_required": true
     },
     {
@@ -1410,8 +1410,8 @@
     {
       "path": "tools/test_archive_private_workspace.py",
       "group": "host_tools",
-      "bytes": 13382,
-      "sha256": "322acffae443e0ad7b920af35ebabcb36219682d14207364e8c67c1913ee8220",
+      "bytes": 16245,
+      "sha256": "eda45595c2e6e8a856564318e17c05ad475c9f862a6b9d66bac75488d047962c",
       "publication_review_required": true
     },
     {

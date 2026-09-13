@@ -49,6 +49,20 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def same_metadata(first, second, recheck_content=False):
+    """ctime can change for hard links/xattrs without changing archived data."""
+    if not recheck_content:
+        return first == second
+    if len(first) != len(second):
+        return False
+    for left, right in zip(first, second):
+        left = {k: v for k, v in left.items() if k != "ctime_ns"}
+        right = {k: v for k, v in right.items() if k != "ctime_ns"}
+        if left != right:
+            return False
+    return True
+
+
 def metadata(path, root):
     s = path.lstat()
     if stat.S_ISREG(s.st_mode):
@@ -268,7 +282,7 @@ class SplitWriter:
 
 
 @contextmanager
-def source_file(root, entry):
+def source_file(root, entry, recheck_content=False):
     """Open through pinned directory descriptors; no symlink substitution."""
     parts = entry["path"].split("/")
     fd = os.open(root, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
@@ -283,14 +297,15 @@ def source_file(root, entry):
         current = os.fstat(stream.fileno())
         if (not stat.S_ISREG(current.st_mode)
                 or (current.st_dev, current.st_ino, current.st_size,
-                    current.st_mtime_ns, current.st_ctime_ns)
+                    current.st_mtime_ns)
                 != (entry["device"], entry["inode"], entry["size"],
-                    entry["mtime_ns"], entry["ctime_ns"])):
+                    entry["mtime_ns"])
+                or (not recheck_content and current.st_ctime_ns != entry["ctime_ns"])):
             raise ArchiveError("Source changed before read")
         yield stream
         after = os.fstat(stream.fileno())
-        if (current.st_size, current.st_mtime_ns, current.st_ctime_ns) != (
-                after.st_size, after.st_mtime_ns, after.st_ctime_ns):
+        if ((current.st_size, current.st_mtime_ns) != (after.st_size, after.st_mtime_ns)
+                or (not recheck_content and current.st_ctime_ns != after.st_ctime_ns)):
             raise ArchiveError("Source changed during read")
     finally:
         if stream:
@@ -332,7 +347,7 @@ def abort_before_tar_cleanup(writer):
         raise
 
 
-def stream_archive(root, entries, writer, compress=False):
+def stream_archive(root, entries, writer, compress=False, recheck_content=False):
     completed, inodes = [], {}
     transport = (gzip.GzipFile(fileobj=writer, mode="wb", filename="", mtime=0, compresslevel=6)
                  if compress else nullcontext(writer))
@@ -340,7 +355,7 @@ def stream_archive(root, entries, writer, compress=False):
             tarfile.open(fileobj=target, mode="w|", format=tarfile.PAX_FORMAT) as archive, \
             abort_before_tar_cleanup(writer):
         for entry in entries:
-            if metadata(root / entry["path"], root) != entry:
+            if not same_metadata([metadata(root / entry["path"], root)], [entry], recheck_content):
                 raise ArchiveError("Source metadata changed")
             info, record = tar_info(entry), dict(entry)
             if entry["kind"] == "file":
@@ -353,7 +368,7 @@ def stream_archive(root, entries, writer, compress=False):
                     record["sha256"] = first["sha256"]
                     archive.addfile(info)
                 else:
-                    with source_file(root, entry) as source:
+                    with source_file(root, entry, recheck_content) as source:
                         reader = HashReader(source)
                         archive.addfile(info, reader)
                         record["sha256"] = reader.hash.hexdigest()
@@ -361,8 +376,22 @@ def stream_archive(root, entries, writer, compress=False):
             else:
                 archive.addfile(info)
             completed.append(record)
-        if scan(root) != entries:
+        if not same_metadata(scan(root), entries, recheck_content):
             raise ArchiveError("Workspace changed; no complete receipt will be issued")
+        if recheck_content:
+            # A complete second read proves that metadata-only churn did not hide
+            # changed bytes, including edits whose size and mtime were restored.
+            for record in completed:
+                if record["kind"] != "file":
+                    continue
+                with source_file(root, record, recheck_content=True) as source:
+                    actual = hashlib.sha256()
+                    while block := source.read(BLOCK):
+                        actual.update(block)
+                if actual.hexdigest() != record["sha256"]:
+                    raise ArchiveError("Source contents changed during archive creation")
+            if not same_metadata(scan(root), entries, recheck_content=True):
+                raise ArchiveError("Workspace changed during content verification")
         inventory = encoded({"schema": 1, "summary": summary(entries),
                              "entries": completed, "exclusions": []})
         info = tarfile.TarInfo("__archive__/inventory.json")
@@ -372,7 +401,8 @@ def stream_archive(root, entries, writer, compress=False):
     return digest(inventory)
 
 
-def create(root, directory, chunk_size=DEFAULT_CHUNK, resume=False, compress=False):
+def create(root, directory, chunk_size=DEFAULT_CHUNK, resume=False, compress=False,
+           recheck_content=False):
     root, directory = Path(root).absolute(), Path(directory).absolute()
     if directory.resolve().is_relative_to(root.resolve()) or root.resolve().is_relative_to(directory.resolve()):
         raise ArchiveError("Archive output must be outside source and cannot contain it")
@@ -395,27 +425,35 @@ def create(root, directory, chunk_size=DEFAULT_CHUNK, resume=False, compress=Fal
                         "zlib_runtime": zlib.ZLIB_RUNTIME_VERSION} if compress else None)
         if resume:
             state = json.loads(control_bytes(directory / "state.json"))
-            if (state["index_sha256"] != digest(index)
+            saved_index = control_bytes(directory / "source-index.json")
+            saved_entries = json.loads(saved_index)["entries"]
+            if (state["index_sha256"] != digest(saved_index)
                     or state["chunk_bytes"] != chunk_size
                     or state.get("compression") != compression
-                    or control_bytes(directory / "source-index.json") != index):
+                    or state.get("recheck_content", False) != recheck_content
+                    or not same_metadata(entries, saved_entries, recheck_content)):
                 raise ArchiveError("Resume source/index/options differ; start a new snapshot")
+            # Retain the original index so replay and embedded metadata stay
+            # deterministic; every source byte is checked again in this mode.
+            entries = saved_entries
             validate_chunks(directory, state["chunks"])
-            if state["status"] == "complete":
+            if state["status"] == "complete" and not recheck_content:
                 return verify(directory)
         else:
             write_new(directory / "source-index.json", index)
             state = {"schema": 1, "status": "in_progress", "index_sha256": digest(index),
-                     "chunk_bytes": chunk_size, "compression": compression, "chunks": []}
+                     "chunk_bytes": chunk_size, "compression": compression,
+                     "recheck_content": recheck_content, "chunks": []}
             replace_state(directory, state)
         writer = SplitWriter(directory, state, chunk_size)
-        inventory_hash = stream_archive(root, entries, writer, compress)
+        inventory_hash = stream_archive(root, entries, writer, compress, recheck_content)
         manifest = {
             "schema": 1, "status": "complete_unencrypted_local_archive",
             "format": "split-gzip-pax-tar" if compress else "split-pax-tar",
             "compression": compression, "chunk_bytes": chunk_size,
             "archive_bytes": writer.total, "archive_sha256": writer.whole.hexdigest(),
             "inventory_sha256": inventory_hash, "chunks": state["chunks"],
+            "source_content_second_pass": recheck_content,
             "summary": summary(entries), "exclusions": [],
         }
         target = directory / "archive-manifest.json"
@@ -426,6 +464,8 @@ def create(root, directory, chunk_size=DEFAULT_CHUNK, resume=False, compress=Fal
             write_new(target, encoded(manifest))
         state["status"] = "complete"
         replace_state(directory, state)
+        if resume and recheck_content:
+            return verify(directory)
         return {"status": manifest["status"], "summary": manifest["summary"],
                 "chunks": len(state["chunks"]), "archive_bytes": writer.total,
                 "archive_sha256": manifest["archive_sha256"]}
@@ -575,12 +615,16 @@ def main(argv=None):
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--gzip", action="store_true",
                         help="Stream deterministic gzip level 6 before chunking; repeat on resume")
+    parser.add_argument("--recheck-content", action="store_true",
+                        help="Rehash every source file after writing; tolerate ctime-only churn")
     parser.add_argument("--chunk-mib", type=int, default=1024)
     args = parser.parse_args(argv)
     if args.resume and not args.create:
         parser.error("--resume requires --create")
     if args.gzip and not args.create:
         parser.error("--gzip requires --create; verification auto-detects compression")
+    if args.recheck_content and not args.create:
+        parser.error("--recheck-content requires --create")
     if bool(args.reassemble) != bool(args.tar_output):
         parser.error("--reassemble and --tar-output must be used together")
     if not 1 <= args.chunk_mib <= 1024:
@@ -591,7 +635,8 @@ def main(argv=None):
         elif args.reassemble:
             result = reassemble(args.reassemble, args.tar_output)
         elif args.create:
-            result = create(args.root, args.create, args.chunk_mib * MIB, args.resume, args.gzip)
+            result = create(args.root, args.create, args.chunk_mib * MIB,
+                            args.resume, args.gzip, args.recheck_content)
         else:
             result = {"status": "metadata_only_no_payloads_read", **summary(scan(args.root))}
         sys.stdout.write(encoded(result).decode())

@@ -15,8 +15,10 @@ A separate Git clone of source commit `113c0fe` built:
 - Host suite:115 passed, one explicitly optional private-input case skipped.
 - Protocol/prototype suite:19 passed,21 historical private-capture cases skipped.
 
-The final publication candidate also passed all 133 host checks (134 discovered,
-one optional private-input case skipped), including 18 complete-archive tests.
+The final publication candidate also passed all 137 host checks (138 discovered,
+one optional private-input case skipped), including 22 complete-archive tests. The extra archive checks cover timestamp-only
+metadata churn with a mandatory second content pass; Android/Mac runtime code
+is unchanged from the successful remote-clone builds.
 
 No private `.note` file, OAuth config or signing key was copied to that clone.
 It generated fresh signing identities. Android SDK/Gradle came from freshly

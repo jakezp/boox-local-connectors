@@ -26,8 +26,8 @@ Live evidence: `notes-drive/research/incoming/mac-v06-nested-ui/`.
 User explicitly requested TWO repositories: public reproducible source/setup,
 and a private complete project archive including firmware, keys and credentials.
 Public staging remains `../boox-local-connectors`; final publication host checks
-passed (133 checks plus one optional skip). Private archival tooling has 18
-passing tests. The GitHub source and private archive repositories are created;
+passed (137 checks plus one optional skip). Private archival tooling has 22
+passing tests, including a full second content pass for metadata-only ctime churn. The GitHub source and private archive repositories are created;
 publication receipts are maintained in the private archive index. No new root or firmware flash is required.
 The Keychain block in earlier sections is resolved. Read `docs/VALIDATION.md`
 for current evidence; earlier sections retain chronological investigation notes.
