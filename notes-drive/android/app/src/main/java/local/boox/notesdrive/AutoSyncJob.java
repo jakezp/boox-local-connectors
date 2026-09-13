@@ -12,7 +12,8 @@ public final class AutoSyncJob extends JobService {
     private static final int IMMEDIATE = 7101, PERIODIC = 7102;
     static void schedule(Context context, boolean periodic) {
         JobScheduler scheduler = context.getSystemService(JobScheduler.class);
-        if (!context.getSharedPreferences("drive", 0).getBoolean("automatic", false)) {
+        if (!context.getSharedPreferences("drive", 0).getBoolean("automatic", false) &&
+            !context.getSharedPreferences("drive", 0).getBoolean("readerAutomatic", false)) {
             scheduler.cancel(IMMEDIATE);
             scheduler.cancel(PERIODIC);
             return;

@@ -86,6 +86,10 @@ public final class NativeNotesHook implements IXposedHookLoadPackage {
             NativeLauncherSettings.install(info.classLoader);
             return;
         }
+        if ("com.onyx.kreader".equals(info.packageName) && ("com.onyx.kreader".equals(info.processName) || info.processName.startsWith("com.onyx.kreader:reader_tab_"))) {
+            NativeReaderSync.install(info.classLoader);
+            return;
+        }
         if (!NOTES.equals(info.packageName) || !NOTES.equals(info.processName)) return;
         loader = info.classLoader;
         XposedBridge.hookAllMethods(Application.class, "attach", new XC_MethodHook() {

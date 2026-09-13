@@ -4,6 +4,68 @@ Checkpoint: 2026-09-13. Private notebook captures and device credentials remain 
 the original workspace; the source repository contains the reproducible tests,
 synthetic fixture generators and validation scripts.
 
+## Reader Drive and Android styling — 2026-09-13
+
+The Reader storage/apply implementation passed on NeoReader38701 with hook
+`ddf8963994a48c9b` (APK SHA-256
+`f0840a5b993d55e1e491f337f642e1ebf017890422ea13e9994bc20a89943adf`).
+The subsequent native-switch UI fix is recorded separately from this storage
+checkpoint; changing a hook build identifier does not rerun prior device tests.
+
+- A generated PDF was published to the real managed Drive directory and restored
+  as a fresh native book identity, with matching complete manifest readback.
+- A native bookmark, highlight/text note and pen stroke were saved. The pen was
+  entered through the inspected device digitizer input path; this was automated
+  native input, not a physical stylus trial.
+- A changed annotation was published through Drive and applied to the same book.
+  NeoReader visibly displayed “Returned through Google Drive” with the retained
+  highlight and orange pen stroke. The saved page reopened at 2/4.
+- The annotated incoming bundle retained two annotation rows, one bookmark, one
+  ReaderNote shape and 24 reading-statistics rows, including repeated annotation
+  UUIDs used for distinct native history events.
+- Interruption after file writes, after database writes and after commit recovered
+  matching bundle hashes and every native row/ID. These checks were repeated with
+  the annotated fixture after fixing event-row identity handling.
+- Two concurrent reading heads remained separate. The normal settings dialog
+  selected a version; the verified result retained both original heads as parents.
+- A second fresh-identity restore passed without the earlier fixture repair path.
+  It restored the ebook and twelve reading-statistics rows through normal sync.
+- Reader held synchronization while a book was open; saved document close and
+  subsequent automatic checks published changes. Switching between the two
+  disposable books completed without a lock deadlock.
+
+Tests exposed and corrected deterministic row ordering, preservation of device-local
+paths, native per-book database caching after rollback, and repeated statistics
+UUIDs. Failed attempts and their recovery evidence are retained privately. The
+explicit instrumented checks are shipped as source and use the companion's own
+normal Google authorization; they do not borrow a token from another app.
+
+The source suites pass **66 Android tests** and **140 host tests**, with one
+optional host case skipped (141 discovered). The OpenAI styling APK installed
+successfully with every saved preference file unchanged. Its existing ChatGPT
+session and selected model remained visible. No new paid API request was required
+for the styling change; the setup window retains its secure-screen flag.
+
+The final installed settings build is `f8f7839abd047ae1` (APK SHA-256
+`44d88f6505afb22ce91bb10361e91154219f09c2b5a4f6c31177583830ba2adf`).
+Its native Library switch passed OFF/ON, info navigation and refreshed state on
+return. The native Notes section also displayed the persisted enabled state.
+The final fixes change settings state handling; Reader storage/apply code is
+unchanged from the data checkpoint above.
+
+The before/after device backup comparison retained all 236 pre-existing shared
+assets. All 24 native Notes databases either matched byte for byte or, for the
+configuration database, contained identical rows. The original ebook bytes,
+annotations, bookmarks, reading position and prior statistics were retained.
+Opening that book normally during validation changed access/document timestamps
+and added three reading-history events; it was not used for incoming-write tests.
+
+These are real Drive/native tests on one BOOX using disposable books. A physical
+second-BOOX full-library restore, multi-day unattended operation and large-library
+scale remain separate acceptance work. Library shelves, native file deletion
+propagation and provider-encrypted books are outside the current per-book sync
+contract. See [Reader setup and boundaries](READER-DRIVE.md).
+
 ## Native Settings update — 2026-09-13
 
 The Notes Drive editor hook and settings-only launcher hook are verified on

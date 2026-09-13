@@ -26,7 +26,7 @@ PACKAGES = (
 )
 SCOPES = {
     "local.boox.openai": ("com.onyx.aiassistant/0", "com.onyx.kreader/0"),
-    "local.boox.notesdrive": ("com.onyx.android.note/0", "com.onyx/0"),
+    "local.boox.notesdrive": ("com.onyx.android.note/0", "com.onyx/0", "com.onyx.kreader/0"),
 }
 PROPERTIES = {
     "model": ("ro.product.model", r"[A-Za-z0-9 ._-]{1,60}"),

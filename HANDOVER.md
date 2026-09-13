@@ -26,6 +26,22 @@ configuration. Root/unlock and fresh-device installer boundaries remain explicit
 in the linked guides. Do not reinterpret historical fixture hashes as the
 current head of a user's notebook.
 
+## Reader Drive and native settings
+
+The Android Drive companion also synchronizes ebooks, reading records and
+handwritten book notes using a separate immutable Reader namespace. Its native
+Library Settings switch and the existing Notes Settings section open the shared
+setup app. Notes and reading sync have separate controls. The Android companions
+use matching monochrome settings styling.
+
+Reader support requires NeoReader38701, launcher56737 and Notes45326; the Drive
+module now needs all three scopes. Read [Reader setup](docs/READER-DRIVE.md) for
+new-device linking, conflict review and per-book recovery. Fresh native book
+restore, changed annotation/pen readback, three interruption checkpoints and
+explicit conflict selection passed through real Drive on the supported BOOX.
+Physical second-device acceptance, shelves and book deletion propagation are
+separate boundaries. Both repositories now use `mainline` as their default branch.
+
 ## Continuing development
 
 Work from the user's actual current device/library state. Preserve signing

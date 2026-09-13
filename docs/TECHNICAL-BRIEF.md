@@ -186,3 +186,19 @@ They do not establish a universal rooting procedure, a fresh-device combined
 installation, unlimited library size, full BOOX rendering parity, or unattended
 multi-day token/OTA behavior. The [acceptance boundaries](reproduction/GAPS.md)
 separate those open areas from working functionality.
+
+## NeoReader Drive integration
+
+The shared Drive companion now includes a separate Reader protocol namespace for
+ebooks and per-book native data. Library Settings uses the same BOOX settings
+models as the ONYX section; its information icon opens the companion and its
+switch controls reading sync independently of notebook sync. Both custom Android
+apps use white backgrounds, black outlines, native-sized rows and ON/OFF controls.
+
+Reader bundles include the ebook, native reading metadata, bookmarks, annotations,
+statistics and per-book handwriting records/assets. Immutable chunked manifests
+reduce repeat uploads. Incoming changes require a cross-process editor lock, a
+durable per-book preimage, exact native readback and a committed receipt. Three
+fault checkpoints exercise recovery without replacing the whole library.
+See [Reader setup and architecture](READER-DRIVE.md) for limits, version guards,
+new-device linking and conflict selection.

@@ -61,7 +61,7 @@ public final class DriveSession extends Application {
 
     void requestAutomaticSync() {
         main.post(() -> {
-            if (!automaticEnabled() || activeSyncScheduled) return;
+            if (!anyAutomaticEnabled() || activeSyncScheduled) return;
             activeSyncScheduled = true;
             main.postDelayed(() -> {
                 activeSyncScheduled = false;
@@ -72,6 +72,29 @@ public final class DriveSession extends Application {
         });
     }
 
+    boolean readerEnabled() { return preferences().getBoolean("readerAutomatic", false); }
+    boolean anyAutomaticEnabled() { return automaticEnabled() || readerEnabled(); }
+    String readerStatus() { return preferences().getString("readerStatus", "Sync books, reading position, bookmarks and book notes after closing NeoReader."); }
+    void setReader(boolean enabled) {
+        if (enabled && (!connected() || folderId.isEmpty())) return;
+        preferences().edit().putBoolean("readerAutomatic", enabled).commit();
+        AutoSyncJob.schedule(this, true); AutoSyncJob.schedule(this, false);
+        if (enabled) requestAutomaticSync();
+        changed();
+    }
+    android.os.Bundle nativeReaderSettings(android.os.Bundle request) throws Exception {
+        java.util.concurrent.FutureTask<android.os.Bundle> task = new java.util.concurrent.FutureTask<>(() -> {
+            android.os.Bundle result = new android.os.Bundle();
+            if (request != null && request.containsKey("enabled")) {
+                if (request.getBoolean("enabled") && (!connected() || folderId.isEmpty())) result.putBoolean("setupRequired", true);
+                else setReader(request.getBoolean("enabled"));
+            }
+            result.putBoolean("enabled", readerEnabled()); return result;
+        });
+        if (Looper.myLooper() == Looper.getMainLooper()) task.run(); else main.post(task);
+        try { return task.get(3, java.util.concurrent.TimeUnit.SECONDS); }
+        catch (java.util.concurrent.TimeoutException error) { task.cancel(false); throw new IOException("Open Drive setup to check reading sync.", error); }
+    }
     boolean automaticEnabled() { return preferences().getBoolean("automatic", false); }
     boolean incomingEnabled() { return preferences().getBoolean("automaticIncoming", false); }
     android.os.Bundle nativeSyncSettings(android.os.Bundle request) throws Exception {
@@ -134,7 +157,7 @@ public final class DriveSession extends Application {
 
     interface Completion { void finished(boolean retry); }
     void automaticSync(Completion completion) {
-        if (!automaticEnabled()) { completion.finished(false); return; }
+        if (!anyAutomaticEnabled()) { completion.finished(false); return; }
         if (busy || deferredConflict != null) { completion.finished(true); return; }
         busy = true;
         preferences().edit().putString("autoStatus", "Checking Google access for automatic sync…").apply();
@@ -155,7 +178,7 @@ public final class DriveSession extends Application {
                     DriveClient client = new DriveClient(accessToken);
                     JSONObject user = requireAccount(client, expectedAccount);
                     DriveClient.Folder folder = client.checkFolder(selectedFolder);
-                    DriveClient.require(automaticEnabled() && generation.equals(
+                    DriveClient.require(anyAutomaticEnabled() && generation.equals(
                         preferences().getString("autoGeneration", "")), "Automatic publishing settings changed");
                     String device = preferences().getString("device", "");
                     if (device.isEmpty()) {
@@ -163,6 +186,9 @@ public final class DriveSession extends Application {
                         DriveClient.require(preferences().edit().putString("device", device).commit(),
                             "Cannot persist sync device identity");
                     }
+                    int uploaded = 0, more = 0;
+                    RevisionCatalog resultCatalog = catalog;
+                    if (automaticEnabled()) {
                     RevisionQueue outgoing = queue();
                     LibraryQueue library = new LibraryQueue(new java.io.File(getFilesDir(), "library"));
                     // Finish uncertain publications before assigning further local descendants.
@@ -173,12 +199,22 @@ public final class DriveSession extends Application {
                         main.post(this::changed);
                         store.publish(revision, bytes);
                     };
-                    int uploaded = outgoing.retry(expectedAccount, selectedFolder, publisher);
+                    uploaded = outgoing.retry(expectedAccount, selectedFolder, publisher);
                     library.stage(expectedAccount, selectedFolder, device, outgoing);
                     uploaded += outgoing.retry(expectedAccount, selectedFolder, publisher);
-                    RevisionCatalog resultCatalog = store.load();
+                    resultCatalog = store.load();
                     saveCatalog(resultCatalog, expectedAccount, selectedFolder);
-                    int more = library.stage(expectedAccount, selectedFolder, device, outgoing);
+                    more = library.stage(expectedAccount, selectedFolder, device, outgoing);
+                    }
+                    if (readerEnabled()) {
+                        try { preferences().edit().putString("readerStatus", new ReaderSync(this, expectedAccount, selectedFolder).run(client, device)).apply(); }
+                        catch (Exception readerError) {
+                            preferences().edit().putString("readerStatus", "Reading sync will retry: " +
+                                (readerError instanceof IOException ? readerError.getMessage() : readerError.getClass().getSimpleName())).apply();
+                        }
+                    }
+                    final RevisionCatalog completedCatalog = resultCatalog;
+                    final int remaining = more;
                     int count = uploaded;
                     main.post(() -> {
                         token = accessToken;
@@ -187,10 +223,10 @@ public final class DriveSession extends Application {
                         folderId = selectedFolder;
                         if (folders.isEmpty()) folders.add(folder);
                         status = "Connected. Automatic notebook publishing is enabled.";
-                        catalog = resultCatalog;
-                        revisionStatus = catalogSummary(resultCatalog, more);
+                        catalog = completedCatalog;
+                        if (completedCatalog != null) revisionStatus = catalogSummary(completedCatalog, remaining);
                         finishAutomatic("Last automatic check: " + java.text.DateFormat.getTimeInstance().format(new java.util.Date()) +
-                            " · " + count + " revision(s) uploaded. Incoming revisions are staged.", more > 0, completion);
+                            " · " + count + " revision(s) uploaded. Incoming revisions are staged.", remaining > 0, completion);
                     });
                 } catch (Exception error) {
                     if (error instanceof DriveClient.Unauthorized)
@@ -311,8 +347,8 @@ public final class DriveSession extends Application {
 
     void selectFolder(String id) {
         if (busy || !connected() || id.equals(folderId)) return;
-        if (automaticEnabled()) {
-            status = "Pause automatic publishing before changing the sync directory.";
+        if (anyAutomaticEnabled()) {
+            status = "Pause notebook and reading sync before changing the sync directory.";
             changed();
             return;
         }
@@ -388,6 +424,35 @@ public final class DriveSession extends Application {
     }
 
     String boundAccount() { return accountId; }
+
+    void reviewReaderConflicts(java.util.function.Consumer<org.json.JSONArray> show) {
+        if(busy||!connected()||folderId.isEmpty()||!readerEnabled()) {
+            status="Enable reading sync and wait for the current check, then review versions.";changed();return;
+        }
+        String account=accountId,folder=folderId;DriveClient client=new DriveClient(token);
+        busy=true;status="Checking conflicting reading versions…";changed();
+        worker.execute(()->{
+            try {
+                requireAccount(client,account);
+                org.json.JSONArray versions=new ReaderSync(this,account,folder).review(client,preferences().getString("device",""));
+                main.post(()->{busy=false;status="Reading versions checked.";changed();show.accept(versions);});
+            }catch(Exception error){main.post(()->failed(error));}
+        });
+    }
+
+    void resolveReaderConflict(String account,String folder,String book,List<String> heads,String selected) {
+        if(busy||!account.equals(accountId)||!folder.equals(folderId)) {
+            status="The connection or sync state changed. Review reading versions again.";changed();return;
+        }
+        DriveClient client=new DriveClient(token);busy=true;status="Applying the selected reading version…";changed();
+        worker.execute(()->{
+            try {
+                requireAccount(client,account);
+                String result=new ReaderSync(this,account,folder).resolve(client,preferences().getString("device",""),book,heads,selected);
+                main.post(()->{busy=false;preferences().edit().putString("readerStatus",result).apply();status="Reading version choice saved.";changed();});
+            }catch(Exception error){main.post(()->failed(error));}
+        });
+    }
 
     void resolveConflict(String reviewedAccount, String reviewedFolder, String notebook,
             List<String> heads, String selected) {

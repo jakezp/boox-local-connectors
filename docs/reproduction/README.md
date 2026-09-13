@@ -259,7 +259,7 @@ The intended scopes are fixed:
 | Companion | Native scope |
 | --- | --- |
 | `local.boox.openai` | `com.onyx.aiassistant/0`, `com.onyx.kreader/0` |
-| `local.boox.notesdrive` | `com.onyx.android.note/0`, `com.onyx/0` |
+| `local.boox.notesdrive` | `com.onyx.android.note/0`, `com.onyx/0`, `com.onyx.kreader/0` |
 
 For existing editor-only installations, first follow the explicit
 [launcher settings scope migration](../NOTES-SETTINGS.md#firmware-and-installation-details).

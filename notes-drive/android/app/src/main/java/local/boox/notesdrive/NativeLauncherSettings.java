@@ -27,6 +27,17 @@ final class NativeLauncherSettings {
                             return response;
                         }
                     });
+                    NativeDriveSettings.installLibrary(loader, new NativeDriveSettings.Host() {
+                        public Context context() { return context; }
+                        public Bundle syncSettings(Boolean enabled) throws Exception {
+                            Bundle request = new Bundle();
+                            if (enabled != null) request.putBoolean("enabled", enabled);
+                            Bundle response = context.getContentResolver().call(NotesBridge.URI,
+                                "readerSettings", null, request);
+                            if (response == null) throw new java.io.IOException("Drive setup is unavailable.");
+                            return response;
+                        }
+                    });
                     android.util.Log.i("BooxNotesDrive", "Launcher Notes Settings build " +
                         BuildConfig.HOOK_BUILD + " ready for launcher 56737");
                 } catch (Exception error) {

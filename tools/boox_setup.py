@@ -322,6 +322,8 @@ def preflight(device, plan, backups, directory):
     if any(item["component"] == "notesdrive" for item in plan["artifacts"]):
         launcher = doctor.parse_package(device.shell("Notes Settings host", "dumpsys", "package", "com.onyx"))
         require(launcher["version_code"] == 56737, "Only launcher56737 is supported for Notes Settings")
+        reader = doctor.parse_package(device.shell("Reader version", "dumpsys", "package", "com.onyx.kreader"))
+        require(reader["version_code"] == 38701, "Only NeoReader38701 is supported for reading sync")
     vector = doctor.parse_module_version(device.shell(
         "Vector version", "grep", "-E", "^version(Code)?=",
         "/data/adb/modules/zygisk_vector/module.prop", root=True))
@@ -407,7 +409,7 @@ def apply_plan(device, plan, staging, event):
             helper_report = staging / "helper-result.json"
             device.commands.call("Notes installer", [
                 sys.executable, "-E", staging / HELPER, "--serial", device.serial,
-                "--notes-closed", "--report", helper_report,
+                "--notes-closed", "--readers-closed", "--report", helper_report,
             ], timeout=180)
             result = load_json(helper_report)
             marker = "Native sync adapter v0.4 build " + item["hook_build"] + " ready for Notes 45326"
@@ -418,6 +420,9 @@ def apply_plan(device, plan, staging, event):
             require(result.get("launcher_version") == 56737 and result.get("launcher_marker") ==
                     "Launcher Notes Settings build " + item["hook_build"] + " ready for launcher 56737",
                     "Delegated launcher Settings hook receipt differs")
+            require(result.get("reader_version") == 38701 and result.get("reader_marker") ==
+                    "Native Reader build " + item["hook_build"] + " ready for NeoReader 38701",
+                    "Delegated Reader hook receipt differs")
             event("notesdrive:delegate-verified-installer", "completed")
         elif item["mode"] == "update":
             event("openai:install-update", "started")

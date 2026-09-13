@@ -24,7 +24,8 @@ public final class SetupActivity extends Activity {
     private static final int AUTHORIZE = 81;
     private DriveSession session;
     private TextView status, account, revisions, automaticStatus;
-    private android.widget.Switch automatic, incoming;
+    private android.widget.Switch automatic, incoming, reader;
+    private TextView readingStatus;
     private Spinner folders;
     private Button connect, create, test, refresh, publish, retry, conflicts;
     private boolean rendering;
@@ -44,21 +45,19 @@ public final class SetupActivity extends Activity {
         body.setPadding(dp(24), dp(28), dp(24), dp(36));
         body.setBackgroundColor(Color.WHITE);
         scroll.addView(body);
-        text(body, "BOOX Notes Drive", 28);
-        text(body, "Automatic library sync · v0.4", 17);
-        text(body, "Keep your notebooks and folders in sync across linked BOOX devices. " +
-            "Use the same Google account and sync directory on each device. " +
-            "Saved notebooks upload automatically; incoming edits apply after the editor closes. " +
-            "Conflicting versions are retained. " +
-            "Synced deletions move items to the Notes Recycle Bin.", 18);
+        SettingsStyle.screen(this, scroll, body, "Google Drive Settings");
+        SettingsStyle.section(body, "Google account");
+        text(body, "Books, reading data and notebooks on your linked BOOX devices.", 16);
         account = text(body, "", 18);
         status = text(body, "", 20);
         connect = button(body, "Connect Google Drive", v -> session.connect());
+        SettingsStyle.section(body, "Notebook sync");
         automatic = new android.widget.Switch(this);
         automatic.setText("Automatically publish saved notebooks");
         automatic.setTextSize(18);
         automatic.setPadding(0, dp(12), 0, dp(12));
         body.addView(automatic);
+        SettingsStyle.control(automatic);
         automatic.setOnCheckedChangeListener((view, checked) -> {
             if (!rendering) session.setAutomatic(checked);
         });
@@ -67,6 +66,7 @@ public final class SetupActivity extends Activity {
         incoming.setTextSize(18);
         incoming.setPadding(0, dp(12), 0, dp(12));
         body.addView(incoming);
+        SettingsStyle.control(incoming);
         incoming.setOnCheckedChangeListener((view, checked) -> {
             if (!rendering) session.setIncoming(checked);
         });
@@ -76,9 +76,19 @@ public final class SetupActivity extends Activity {
         text(body, "Open Notes after enabling. Unlocked local notebooks up to 4 MiB are supported. " +
             "Android may defer background work during sleep. Notes sync controls use Google Drive " +
             "while the replacement is configured.", 16);
-        text(body, "Sync directory", 19);
+        SettingsStyle.section(body, "Books and reading data");
+        reader = new android.widget.Switch(this);
+        reader.setText("Automatically sync books and reading data"); body.addView(reader); SettingsStyle.control(reader);
+        reader.setOnCheckedChangeListener((view, checked) -> { if (!rendering) session.setReader(checked); });
+        readingStatus = text(body, "", 16);
+        button(body, "Sync books now", v -> session.requestAutomaticSync());
+        button(body, "Review conflicting reading versions", v -> ReaderConflictReview.show(this, session));
+        text(body, "Close NeoReader to publish or receive reading progress, bookmarks, annotations and handwritten book notes. " +
+            "Use this same directory on every linked BOOX. Encrypted books require their original provider.", 16);
+        SettingsStyle.section(body, "Sync directory");
         folders = new Spinner(this);
         body.addView(folders, new LinearLayout.LayoutParams(-1, dp(64)));
+        SettingsStyle.control(folders);
         folders.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onNothingSelected(AdapterView<?> parent) {}
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -90,7 +100,7 @@ public final class SetupActivity extends Activity {
         test = button(body, "Test Drive round trip", v -> session.testRoundTrip());
         text(body, "The test uploads only a bundled disposable notebook, verifies the download, " +
             "then moves that test file to Drive Trash.", 16);
-        text(body, "Library sync status", 22);
+        SettingsStyle.section(body, "Library sync status");
         revisions = text(body, "", 17);
         refresh = button(body, "Refresh verified revisions", v -> session.refreshRevisions());
         retry = button(body, "Retry pending revision uploads", v -> session.retryRevisions());
@@ -131,6 +141,9 @@ public final class SetupActivity extends Activity {
         automatic.setEnabled(!session.busy && (session.automaticEnabled() ||
             (session.connected() && !session.folderId.isEmpty())));
         automaticStatus.setText(session.automaticStatus());
+        reader.setChecked(session.readerEnabled());
+        reader.setEnabled(session.readerEnabled() || (session.connected() && !session.folderId.isEmpty()));
+        readingStatus.setText(session.readerStatus());
         incoming.setChecked(session.incomingEnabled());
         incoming.setEnabled(!session.busy && session.automaticEnabled());
         connect.setEnabled(!session.busy);
@@ -183,6 +196,7 @@ public final class SetupActivity extends Activity {
         view.setTextColor(Color.BLACK);
         view.setPadding(0, dp(8), 0, dp(12));
         body.addView(view, new LinearLayout.LayoutParams(-1, -2));
+        SettingsStyle.text(view, Math.min(size, 18));
         return view;
     }
     private Button button(LinearLayout body, String label, View.OnClickListener listener) {
@@ -193,6 +207,7 @@ public final class SetupActivity extends Activity {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(-1, -2);
         params.topMargin = dp(10);
         body.addView(button, params);
+        SettingsStyle.control(button);
         return button;
     }
 }

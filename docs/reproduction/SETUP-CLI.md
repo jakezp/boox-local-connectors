@@ -72,7 +72,7 @@ python3 tools/boox_setup.py --install notesdrive \
   --backups /PRIVATE/BACKUP/receipt.json
 ```
 
-`--preflight` checks current model/firmware/slot/root/framework/Notes versions,
+`--preflight` checks current model/firmware/slot/root/framework and native app versions,
 enabled modules and strict Vector scope rows. It checks each installed base APK's
 signature and hash by pulling **code only** into its private temporary staging
 area; no app data, grants or private keys are pulled. Installed APK hashes must
@@ -143,7 +143,7 @@ then verifies registration. Expected scopes:
 | Package | Scope |
 | --- | --- |
 | `local.boox.openai` | `com.onyx.aiassistant/0`, `com.onyx.kreader/0` |
-| `local.boox.notesdrive` | `com.onyx.android.note/0`, `com.onyx/0` |
+| `local.boox.notesdrive` | `com.onyx.android.note/0`, `com.onyx/0`, `com.onyx.kreader/0` |
 
 A first Notes install additionally requires `--registration-confirmed` for a
 live phase: the operator confirms that the local package/certificate is registered
@@ -179,7 +179,7 @@ The receipt must:
 | Role | Required for | Expected checkpoint contents, prepared separately |
 | --- | --- | --- |
 | `vector_state` | Every plan | Current module/scopes configuration and corresponding recovery state |
-| `notes_native` | Notes first install/update | Consistent native Notes databases/sidecars, documents/points and native apply journals/backups |
+| `notes_native` | Drive first install/update | Consistent native Notes and NeoReader databases/sidecars, ebooks, shared documents/points and native apply journals/backups |
 | `ai_native` | OpenAI first install/update | Relevant original Assistant/NeoReader state/history |
 | `notesdrive_state` | Notes update | Companion private state/queues sufficient for reviewed recovery |
 | `notesdrive_apk` | Notes update | Exact currently installed companion APK |

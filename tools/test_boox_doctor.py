@@ -41,7 +41,7 @@ class DoctorTests(unittest.TestCase):
 
     def test_scope_missing_or_excess_does_not_pass(self):
         expected = doctor.SCOPES["local.boox.notesdrive"]
-        self.assertTrue(doctor.parse_scope("com.onyx.android.note/0\ncom.onyx/0", expected)["matches_expected"])
+        self.assertTrue(doctor.parse_scope("com.onyx.android.note/0\ncom.onyx/0\ncom.onyx.kreader/0", expected)["matches_expected"])
         self.assertFalse(doctor.parse_scope("com.onyx.android.note/0", expected)["matches_expected"])
         self.assertFalse(doctor.parse_scope("error private@example.invalid", expected)["matches_expected"])
         extra = doctor.parse_scope("com.onyx.android.note/0\nandroid/0\nother.app/0", expected)
@@ -54,7 +54,7 @@ class DoctorTests(unittest.TestCase):
     def test_actual_vector_scope_table(self):
         result = doctor.parse_scope(
             "APP_PACKAGE            USER_ID\n------------------------------\n"
-            "com.onyx.android.note  0      \ncom.onyx 0\n",
+            "com.onyx.android.note  0      \ncom.onyx 0\ncom.onyx.kreader 0\n",
             doctor.SCOPES["local.boox.notesdrive"])
         self.assertTrue(result["matches_expected"])
         self.assertTrue(result["parse_valid"])

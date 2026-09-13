@@ -4,12 +4,14 @@ plugins {
 
 android {
     namespace 'local.boox.notesdrive'
+    testBuildType 'release'
     compileSdk 35
     buildFeatures {
         buildConfig true
     }
     defaultConfig {
         applicationId 'local.boox.notesdrive'
+        testInstrumentationRunner 'local.boox.notesdrive.ReaderDeviceChecks'
         minSdk 28
         targetSdk 35
         versionCode 4

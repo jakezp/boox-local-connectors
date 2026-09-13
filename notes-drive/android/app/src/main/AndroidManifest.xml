@@ -6,6 +6,7 @@
     <queries>
         <package android:name="com.onyx.android.note"/>
         <package android:name="com.onyx"/>
+        <package android:name="com.onyx.kreader"/>
     </queries>
     <application android:name=".DriveSession" android:label="BOOX Notes Drive"
         android:allowBackup="false" android:usesCleartextTraffic="false"

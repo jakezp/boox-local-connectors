@@ -17,7 +17,7 @@ After preparing the pinned Android tools and JDK 17:
 python3 notes-drive/android/build.py
 ```
 
-Run from the repository root. The builder runs the 58 mandatory unit tests,
+Run from the repository root. The builder runs the mandatory unit tests,
 generates synthetic fixtures, signs the APK and writes `registration.json` in
 this directory. Output: `app/build/outputs/apk/release/app-release.apk`.
 
@@ -63,3 +63,11 @@ to clear an unexplained error. Preserve the report and current notebook state.
 See the [technical brief](../../docs/TECHNICAL-BRIEF.md),
 [protocol](../PROTOCOL.md), [native incoming checks](../INCOMING-VALIDATION.md),
 and [validation record](../../docs/VALIDATION.md) for implementation details.
+
+## Books and reading data
+
+The same companion also synchronizes ebooks, reading progress, bookmarks, text
+annotations, reading statistics and handwritten book notes. Open **Library Settings
+→ Google Drive Sync → ⓘ** to configure its separate switch. Follow the
+[Reader Drive setup guide](../../docs/READER-DRIVE.md), including its NeoReader38701
+requirement and three Vector scopes.

@@ -53,13 +53,15 @@ public final class SetupActivity extends Activity {
         layout.setPadding(padding, padding, padding, padding);
         ScrollView scroll = new ScrollView(this);
         scroll.setFillViewport(true); scroll.addView(layout); setContentView(scroll);
-        label(layout, "BOOX OpenAI Setup", 26);
+        SettingsStyle.screen(this, scroll, layout, "OpenAI Settings");
+        SettingsStyle.section(layout, "Connection");
         activeLabel = label(layout, "", 17);
         label(layout, "Choose a connection to configure", 18);
         mode = new Spinner(this);
         mode.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
             new String[]{"OpenAI API", "ChatGPT subscription"}));
         layout.addView(mode); controls.add(mode);
+        SettingsStyle.control(mode);
         apiPanel = column(); layout.addView(apiPanel);
         label(apiPanel, "API key", 17);
         apiKey = edit(apiPanel, apiVault.hasKey() ? "Saved — leave blank to keep" : "Enter your API key");
@@ -97,6 +99,7 @@ public final class SetupActivity extends Activity {
         chatModel.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
             new String[]{"Sign in to load available models"}));
         chatPanel.addView(chatModel); controls.add(chatModel);
+        SettingsStyle.control(chatModel);
         chatModel.setEnabled(false);
         chatModel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -111,6 +114,7 @@ public final class SetupActivity extends Activity {
             message("Signed out of ChatGPT. Your saved API key and conversation history are unchanged.");
         });
         label(chatPanel, "ChatGPT mode never switches automatically to paid API usage.", 15);
+        SettingsStyle.section(layout, "Activate connection");
         button(layout, "Test selected connection", this::testConnection);
         button(layout, "Use selected connection", () -> {
             String selected = selectedMode();
@@ -268,15 +272,16 @@ public final class SetupActivity extends Activity {
     }
     private EditText edit(LinearLayout layout, String hint) {
         EditText view = new EditText(this); view.setSingleLine(true); view.setHint(hint);
-        layout.addView(view); controls.add(view); return view;
+        layout.addView(view); SettingsStyle.control(view); controls.add(view); return view;
     }
     private TextView label(LinearLayout layout, String value, int size) {
         TextView text = new TextView(this); text.setText(value); text.setTextSize(size);
-        text.setPadding(0, 10, 0, 10); layout.addView(text); return text;
+        SettingsStyle.text(text, size); layout.addView(text); return text;
     }
     private interface Action { void run() throws Exception; }
     private Button button(LinearLayout layout, String value, Action action) {
         Button button = new Button(this); button.setText(value); layout.addView(button); controls.add(button);
+        SettingsStyle.control(button);
         button.setOnClickListener(view -> { try { action.run(); } catch (Exception error) { failure(operation, error); } });
         return button;
     }

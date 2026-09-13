@@ -476,3 +476,23 @@ establish arbitrary-device compatibility or a fresh-device root installation.
 For all build/test commands, including optional instrumentation and research APKs,
 see [build verification](docs/reproduction/README.md#2-build-apps-and-run-portable-checks).
 See [third-party notices](docs/THIRD-PARTY-NOTICES.md) for interface attribution.
+
+## Screenshots
+
+Google Drive sync appears in the native Notes and Library settings. The Android
+companions use matching monochrome controls. For ebooks, reading progress,
+bookmarks, annotations and handwritten book notes, follow the
+[Reader Drive setup guide](docs/READER-DRIVE.md), including its NeoReader version
+requirement and additional module scope.
+
+| Notes Settings | Library Settings |
+| --- | --- |
+| ![Native Notes Settings with Google Drive sync](docs/images/notes-settings.png) | ![Native Library Settings with Google Drive sync](docs/images/library-settings.png) |
+
+| Google Drive Settings | Returned reading annotation and handwriting |
+| --- | --- |
+| ![Google Drive companion settings](docs/images/drive-settings.png) | ![NeoReader displaying an annotation returned through Drive and a retained pen stroke](docs/images/reader-sync.png) |
+
+These are captures from the supported BOOX device. The account address in the
+companion capture has been replaced with a neutral label. The reading example
+uses the project's generated disposable PDF.

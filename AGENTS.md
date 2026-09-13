@@ -9,7 +9,8 @@ current acceptance claims.
 
 - `openai-adapter/`: Android API/ChatGPT connector, native AI and NeoReader hooks.
 - `notes-drive/android/`: Drive client, durable revision queue and native Notes
-  hooks. Supported Notes version is 45326; compile-only Xposed headers live in
+  hooks. Supported versions are Notes45326, launcher56737 and NeoReader38701;
+  compile-only Xposed headers live in
   `xposed-stubs/`.
 - `notes-drive/macos/`: Mac reader/editor, independent OAuth and matching protocol.
 - `notes-drive/prototype/`, `probe/`, `apply-probe/`: retained experiments. They

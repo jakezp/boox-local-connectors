@@ -14,8 +14,10 @@ import os
 from pathlib import Path
 import re
 import stat
+import struct
 import sys
 import tarfile
+import zlib
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,6 +25,10 @@ INVENTORY = "docs/reproduction/source-inventory.json"
 MAX_FILE = 16 * 1024 * 1024
 MAX_TOTAL = 64 * 1024 * 1024
 MAX_FILES = 5000
+REVIEWED_IMAGES = {
+    "docs/images/library-settings.png", "docs/images/notes-settings.png",
+    "docs/images/drive-settings.png", "docs/images/reader-sync.png",
+}
 
 # Additional boundary checks for the explicit inventory, not recursive discovery.
 SOURCE_RULES = (
@@ -88,6 +94,7 @@ for _probe in ("probe", "apply-probe"):
         f"notes-drive/{_probe}/AndroidManifest.xml",
         f"notes-drive/{_probe}/assets/xposed_init",
     })
+EXACT.update(REVIEWED_IMAGES)
 
 DENIED_COMPONENTS = {
     "backups", "research", "artifacts", "evidence", "build", "dist", "vendor",
@@ -217,6 +224,32 @@ def load_inventory(root):
     return sorted(entries, key=lambda item: item["path"]), raw
 
 
+def screenshot_png(data):
+    """Only bounded, metadata-free PNGs; pixels still require explicit visual review."""
+    if not data.startswith(b"\x89PNG\r\n\x1a\n") or len(data) > 2 * 1024 * 1024:
+        return False
+    offset, kinds = 8, []
+    while offset + 12 <= len(data):
+        size = struct.unpack(">I", data[offset:offset + 4])[0]
+        kind = data[offset + 4:offset + 8]
+        end = offset + 8 + size
+        if end + 4 > len(data) or kind not in {b"IHDR", b"IDAT", b"IEND"}:
+            return False
+        if zlib.crc32(data[offset + 4:end]) != struct.unpack(">I", data[end:end + 4])[0]:
+            return False
+        if kind == b"IHDR":
+            if kinds or size != 13:
+                return False
+            width, height = struct.unpack(">II", data[offset + 8:offset + 16])
+            if not (0 < width <= 1860 and 0 < height <= 2480):
+                return False
+        if kind == b"IEND" and (size != 0 or end + 4 != len(data)):
+            return False
+        kinds.append(kind)
+        offset = end + 4
+    return offset == len(data) and kinds[:1] == [b"IHDR"] and kinds[-1:] == [b"IEND"] and b"IDAT" in kinds
+
+
 def plan_source(root):
     entries, inventory_bytes = load_inventory(root)
     # The generator excludes its own JSON to avoid a self-referential digest.
@@ -240,6 +273,12 @@ def plan_source(root):
         if digest != entry["sha256"] or len(data) != entry["bytes"]:
             findings.append({"path": name, "rule": "inventory_digest_or_size_mismatch"})
         try:
+            if name in REVIEWED_IMAGES:
+                if not screenshot_png(data):
+                    findings.append({"path": name, "rule": "invalid_or_metadata_bearing_screenshot"})
+                files.append({"path": name, "bytes": len(data), "sha256": digest, "mode": "0644"})
+                payloads[name] = data
+                continue
             text = data.decode("utf-8")
             if any(ord(char) < 32 and char not in "\n\r\t" for char in text):
                 raise ValueError("binary")

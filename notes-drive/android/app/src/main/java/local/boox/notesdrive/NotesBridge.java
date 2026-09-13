@@ -44,10 +44,20 @@ public final class NotesBridge extends ContentProvider {
     @Override public synchronized Bundle call(String method, String argument, Bundle extras) {
         // The inspected launcher shares Android's system UID. That UID receives only
         // the settings operation (two booleans / a switch), never the notebook bridge.
-        if (!"syncSettings".equals(method) || !settingsSystemCaller()) authorize();
+        if ("readerWake".equals(method)) {
+            try {
+                PackageInfo reader = getContext().getPackageManager().getPackageInfo("com.onyx.kreader", 0);
+                if (Binder.getCallingUid() != reader.applicationInfo.uid || reader.getLongVersionCode() != 38701)
+                    throw new SecurityException("Unsupported Reader caller");
+                DriveSession session=(DriveSession)getContext().getApplicationContext();
+                session.requestAutomaticSync(); Bundle state=new Bundle();state.putBoolean("enabled",session.readerEnabled());return state;
+            } catch (PackageManager.NameNotFoundException error) { throw new SecurityException("Reader unavailable"); }
+        }
+        if (!("syncSettings".equals(method) || "readerSettings".equals(method)) || !settingsSystemCaller()) authorize();
         SharedPreferences prefs = getContext().getSharedPreferences("drive", 0);
         Bundle result = new Bundle();
         try {
+            if ("readerSettings".equals(method)) return ((DriveSession) getContext().getApplicationContext()).nativeReaderSettings(extras);
             if ("syncSettings".equals(method)) {
                 DriveSession session = (DriveSession) getContext().getApplicationContext();
                 return session.nativeSyncSettings(extras);

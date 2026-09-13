@@ -65,29 +65,30 @@ The main Notes Settings page is hosted by `com.onyx`, launcher version **56737**
 The notebook editor remains `com.onyx.android.note`, version **45326**. This
 integration targets those inspected versions on the documented firmware.
 
-Notes Drive now needs these two Vector scopes:
+The shared Notes/Reader Drive companion needs these three Vector scopes:
 
 ```text
 com.onyx.android.note/0
 com.onyx/0
+com.onyx.kreader/0
 ```
 
-For a new installation, the setup CLI includes both. For an existing installation
+For a new installation, the setup CLI includes all three. For an existing installation
 with only the editor scope, save/close editors and preserve a current backup,
 then explicitly migrate the scope before the normal reviewed update flow:
 
 ```sh
 tools/platform-tools/adb -s "$BOOX_SERIAL" shell \
-  '/debug_ramdisk/su -c "/data/adb/modules/zygisk_vector/cli scope set local.boox.notesdrive com.onyx.android.note/0 com.onyx/0"'
+  '/debug_ramdisk/su -c "/data/adb/modules/zygisk_vector/cli scope set local.boox.notesdrive com.onyx.android.note/0 com.onyx/0 com.onyx.kreader/0"'
 ```
 
 The installer checks the launcher version and exact scopes. It refreshes the
 Notes hook and restarts the launcher, verifying the current build's markers in
-both processes. This briefly returns the tablet to its launcher. A package
+all three processes. This briefly returns the tablet to its launcher. A package
 installation alone does not prove that either hook has loaded.
 
 The launcher receives a settings-only hook. Because it shares Android's system
-UID, the bridge permits that UID only the `syncSettings` operation on the
+UID, the bridge permits that UID only the `syncSettings` and `readerSettings` operations on the
 supported package versions. That operation exposes switch state and configuration
 changes, not notebook bytes, account identifiers or credentials. All other bridge
 operations retain the existing dedicated-Notes authorization checks.
@@ -105,3 +106,7 @@ heads for multiple notebooks and a folder without any pre-existing local branch.
 This is not a complete physical second-BOOX acceptance test. The latter remains
 the final check when another device is linked. No existing library was erased
 or replaced with an empty one to simulate that test.
+
+Reading sync has a separate switch in native Library Settings. See
+[books and reading data setup](READER-DRIVE.md) for pairing and the additional
+NeoReader version requirement.

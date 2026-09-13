@@ -22,6 +22,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--serial", required=True)
     p.add_argument("--notes-closed", action="store_true", required=True)
+    p.add_argument("--readers-closed", action="store_true", required=True)
     p.add_argument("--report", type=Path)
     args = p.parse_args()
     adb = [str(ROOT / "tools/platform-tools/adb"), "-s", args.serial]
@@ -39,11 +40,14 @@ def main():
     assert re.search(r"versionCode=45326\b", info), "Only inspected Notes45326 is supported"
     launcher_info = root("dumpsys package com.onyx")
     assert re.search(r"versionCode=56737\b", launcher_info), "Only inspected launcher56737 is supported"
+    reader_info = root("dumpsys package com.onyx.kreader")
+    assert re.search(r"versionCode=38701\b", reader_info), "Only inspected NeoReader38701 is supported"
     scopes = set(re.findall(r"^([A-Za-z][\w.]+)\s+(\d+)\s*$",
                             root(VECTOR + " scope ls local.boox.notesdrive"), re.MULTILINE))
-    assert scopes == {("com.onyx.android.note", "0"), ("com.onyx", "0")}, \
-        "Notes Drive requires editor and launcher Settings scopes; review the scope migration first"
+    assert scopes == {("com.onyx.android.note", "0"), ("com.onyx", "0"), ("com.onyx.kreader", "0")}, \
+        "Drive requires Notes, launcher and NeoReader scopes; review the scope migration first"
     root("am force-stop com.onyx.android.note")
+    root("am force-stop com.onyx.kreader")
     disabled = root(VECTOR + " modules disable local.boox.notesdrive")
     assert "Failed: []" in disabled, disabled
     time.sleep(5)  # Vector rebuilds asynchronously; do not coalesce disable and enable.
@@ -88,7 +92,24 @@ def main():
                 break
         time.sleep(0.5)
     assert launcher_marker in launcher_logs, "Updated launcher Settings hook did not load"
-    report = dict(schema=1, apk_sha256=registration["apk_sha256"], hook_build=expected,
+    # Querying this existing provider starts NeoReader without opening a book.
+    reader_marker = "Native Reader build " + expected + " ready for NeoReader 38701"
+    reader_logs = ""
+    for launch in range(2):
+        root("content query --uri content://com.onyx.kreader.feature_list.ContentProvider")
+        for attempt in range(40):
+            reader_pid = root("pidof com.onyx.kreader").strip()
+            if reader_pid.isdigit():
+                reader_logs = subprocess.check_output(adb + ["logcat", "-d", "--pid=" + reader_pid, "-s", "BooxNotesDrive:I"], text=True)
+                if reader_marker in reader_logs:
+                    break
+            time.sleep(0.5)
+        if reader_marker in reader_logs:
+            break
+        assert "ready for NeoReader 38701" not in reader_logs, "A stale Reader hook loaded; investigate before continuing"
+        root("am force-stop com.onyx.kreader")
+    assert reader_marker in reader_logs, "Updated Reader hook did not load"
+    report = dict(schema=1, reader_version=38701, reader_pid=reader_pid, reader_marker=reader_marker, apk_sha256=registration["apk_sha256"], hook_build=expected,
                   native_pid=pid, loaded_marker=marker, notes_version=45326,
                   launcher_pid=launcher_pid, launcher_version=56737, launcher_marker=launcher_marker,
                   grants_preserved=True, other_modules_changed=False)

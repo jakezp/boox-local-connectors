@@ -5,20 +5,21 @@
   "warning": "Sources may change concurrently; regenerate after final builds. Listed source/legacy docs still require privacy and licensing review.",
   "excluded": [
     "Private signing material, OAuth configuration, grants and account/folder registration",
-    "Personal notebooks, live evidence, screenshots, backups and app state",
+    "Personal notebooks, raw live evidence/screenshots, backups and app state; only four named reviewed documentation screenshots are included",
     "Firmware/APKs/JARs/loader archives, decompiled proprietary sources",
     "Downloaded tools, virtual environments, build outputs and caches",
     "This generated inventory itself (avoids a self-referential hash)"
   ],
   "counts": {
     "host_tools": 20,
-    "ai_android": 26,
-    "notes_android": 40,
+    "ai_android": 27,
+    "notes_android": 48,
     "notes_macos": 45,
     "historical_probes": 9,
-    "prototype_and_validation": 20,
-    "legacy_documentation_review_required": 41,
-    "reproduction": 10
+    "prototype_and_validation": 21,
+    "legacy_documentation_review_required": 42,
+    "reproduction": 10,
+    "reviewed_screenshots": 4
   },
   "files": [
     {
@@ -31,8 +32,8 @@
     {
       "path": "AGENTS.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 3001,
-      "sha256": "14b2bbbc1c8008c23825c81bd9c2bb60f013af0cb9dd2f504e03ccf6ea4979b4",
+      "bytes": 3038,
+      "sha256": "b5694f2d6b17927dd9fcde23880fdb0b710a2d2057578fa0be3af745419570fd",
       "publication_review_required": true
     },
     {
@@ -45,8 +46,8 @@
     {
       "path": "HANDOVER.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 2074,
-      "sha256": "2ba03fdcf7bb0e4f37f5bbaec2262ea868a8e756e66564da32f21601c4c4ce08",
+      "bytes": 3021,
+      "sha256": "3eff9c714eb3cb6bbd5a7208fbf9287103ffb0ad707187327eac29123498290d",
       "publication_review_required": true
     },
     {
@@ -59,8 +60,8 @@
     {
       "path": "README.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 24981,
-      "sha256": "215b8af543f2d9f0ea7c30ad50b82b95beebf81bab5daaa29469b3d90b266b1d",
+      "bytes": 26039,
+      "sha256": "a50e529c9fd973b7e6594c319150e2b10200f4f0919f08afde6c424c1a2d9fa4",
       "publication_review_required": true
     },
     {
@@ -80,8 +81,8 @@
     {
       "path": "docs/NOTES-SETTINGS.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 5805,
-      "sha256": "5cb6afd42983e036facc133261d37b52e2528ae2ffde84d3368f0d388c120e61",
+      "bytes": 6079,
+      "sha256": "4a3f0bf04e817f760de734004ac0678cb9c3fa56c5b0da56de8e284d85ec558b",
       "publication_review_required": true
     },
     {
@@ -89,6 +90,13 @@
       "group": "legacy_documentation_review_required",
       "bytes": 2698,
       "sha256": "4a108a7009f0fde7ccb599b92cb0c9de80ed0ddde1d134804f763ecdd6a59517",
+      "publication_review_required": true
+    },
+    {
+      "path": "docs/READER-DRIVE.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 8575,
+      "sha256": "5aa3923e47179fee307845e822a26482d9779f90b6815b1f2c9b4a2fce70432b",
       "publication_review_required": true
     },
     {
@@ -101,8 +109,8 @@
     {
       "path": "docs/TECHNICAL-BRIEF.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 10508,
-      "sha256": "2aa1245383a86cc9460c8f9b7cbfddb53c8025a7b43ccdc8c66239358ea452d5",
+      "bytes": 11461,
+      "sha256": "26a5a4a9068a851d9678e44507c7596a58fc251a10ab2ba20ebb8083c19bcb78",
       "publication_review_required": true
     },
     {
@@ -115,8 +123,36 @@
     {
       "path": "docs/VALIDATION.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 6964,
-      "sha256": "4d1c0cebe7622c592e45f480cdd3a6558941fa913fab71fe4627fbc88a60e94a",
+      "bytes": 10976,
+      "sha256": "1d9bb2bd7e0bc03b4a07a82ef188ec3f1bbf5f744cf967ed6c85be54a2730a3d",
+      "publication_review_required": true
+    },
+    {
+      "path": "docs/images/drive-settings.png",
+      "group": "reviewed_screenshots",
+      "bytes": 133465,
+      "sha256": "d83b2a7411d5e196c757c8283f5c3efdb368d8cabdb8dece5b3a0d7275a7262d",
+      "publication_review_required": true
+    },
+    {
+      "path": "docs/images/library-settings.png",
+      "group": "reviewed_screenshots",
+      "bytes": 120566,
+      "sha256": "6892cc53420980210f755a1e84a46dfd2f883325484b4b2c53bfb840fb219491",
+      "publication_review_required": true
+    },
+    {
+      "path": "docs/images/notes-settings.png",
+      "group": "reviewed_screenshots",
+      "bytes": 103793,
+      "sha256": "14bda1c853b6b347b15fe48b584b2cf962fda89ce0d3357475f3cfb94ba3f8cd",
+      "publication_review_required": true
+    },
+    {
+      "path": "docs/images/reader-sync.png",
+      "group": "reviewed_screenshots",
+      "bytes": 61034,
+      "sha256": "d3c175f814d5441195aecc86e49128cf77179f2bd1e70f77404c222d19fac074",
       "publication_review_required": true
     },
     {
@@ -129,8 +165,8 @@
     {
       "path": "docs/reproduction/GAPS.md",
       "group": "reproduction",
-      "bytes": 5175,
-      "sha256": "51a1601592df3e8bafc1884f01794ffceb4e7d3f1b822202c74c8a1e03d0287f",
+      "bytes": 6461,
+      "sha256": "69e130e73a21572af52dfe93491548bad9bbde4fbe7b426e63ad15c66e73c543",
       "publication_review_required": false
     },
     {
@@ -143,8 +179,8 @@
     {
       "path": "docs/reproduction/README.md",
       "group": "reproduction",
-      "bytes": 17041,
-      "sha256": "9aaf5460404041af001b626ff603451139d469173aedd51eed3afbbfaf79d2d7",
+      "bytes": 17063,
+      "sha256": "2296a9a76a19d03aac9f9dc5ef4b11ab21ee286450e168af221c5ddc5e3b9c4e",
       "publication_review_required": false
     },
     {
@@ -157,8 +193,8 @@
     {
       "path": "docs/reproduction/SETUP-CLI.md",
       "group": "reproduction",
-      "bytes": 11730,
-      "sha256": "4743c7a5f680417e27a7dc0d848ac4a0d00436c9777343e17c1adde038b0cb22",
+      "bytes": 11790,
+      "sha256": "57e65844b0eca16fc46c6c9c480ca38550402ae5cc545d374afb128f2483716b",
       "publication_review_required": false
     },
     {
@@ -178,8 +214,8 @@
     {
       "path": "docs/reproduction/inventory_sources.py",
       "group": "reproduction",
-      "bytes": 4942,
-      "sha256": "8e2250e1c68f73c512c592e48007d1282788170cad04062a8968bf33c3d7cefe",
+      "bytes": 5198,
+      "sha256": "ed990f521d7cc6f1ff6d045b857ed3e67bd98cd99180cbc18448d267e829fe98",
       "publication_review_required": false
     },
     {
@@ -262,22 +298,29 @@
     {
       "path": "notes-drive/android/README.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 3207,
-      "sha256": "d7a9f60e2807272d85b66f2d1e49de16844ac77c311f2b1ebad6d0f32e8be14e",
+      "bytes": 3594,
+      "sha256": "3cd205f2f53f14cecffaa7e6d72cfdfbed9f0c5a3b8dfa3f127f97c6714d696c",
       "publication_review_required": true
     },
     {
       "path": "notes-drive/android/app/build.gradle",
       "group": "notes_android",
-      "bytes": 1225,
-      "sha256": "7011707a7548332ccc5b83fac30a1c8c4f681997e9baa092502f7409cca13f82",
+      "bytes": 1330,
+      "sha256": "c5ef0c8f7df2e3b93c7d1dbc7b03b493d4510a74ce1bd15910e196776e1d9fba",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/androidTest/java/local/boox/notesdrive/ReaderDeviceChecks.java",
+      "group": "notes_android",
+      "bytes": 14291,
+      "sha256": "ca730fd6c5ff5f70fcec621a8107c6de1408963625ea2e7066555e50bb153d4f",
       "publication_review_required": true
     },
     {
       "path": "notes-drive/android/app/src/main/AndroidManifest.xml",
       "group": "notes_android",
-      "bytes": 1676,
-      "sha256": "f8bd4afe6c2868eda0ce6985f406d186839e4809d85343f56e2042637727b580",
+      "bytes": 1727,
+      "sha256": "b72f3afcc778d695919259f1125cecf6b648c7ae6d453d7692941094a90a309b",
       "publication_review_required": true
     },
     {
@@ -290,8 +333,8 @@
     {
       "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/AutoSyncJob.java",
       "group": "notes_android",
-      "bytes": 2083,
-      "sha256": "b5e26b2bc3619b272b5532ffebf1f9ec511069c806ac92959cf246c22604b4c7",
+      "bytes": 2177,
+      "sha256": "48bc3aeba886ebdbbd3b2ea4b20bc23e79d6a6dac0c5dfbebc5de0c96ec211c8",
       "publication_review_required": true
     },
     {
@@ -318,8 +361,8 @@
     {
       "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/DriveSession.java",
       "group": "notes_android",
-      "bytes": 30426,
-      "sha256": "b291df8fe6af2500c963a4d2753631162ac814c18bffa4cf4c79359d082704d5",
+      "bytes": 34734,
+      "sha256": "ff77889f4fdbc16016c4faa28ae8ac4226b0441093bcb505160c97366ea2b7c1",
       "publication_review_required": true
     },
     {
@@ -360,8 +403,8 @@
     {
       "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeDriveSettings.java",
       "group": "notes_android",
-      "bytes": 6216,
-      "sha256": "2b1f11d117b2037f0cceec78acae9413109c74c93325583ba0c56bacdf08aeff",
+      "bytes": 7925,
+      "sha256": "607ea3f7f36ba378ada53515bc35538704825724c7fe6f5c577af6920795af56",
       "publication_review_required": true
     },
     {
@@ -374,8 +417,8 @@
     {
       "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeLauncherSettings.java",
       "group": "notes_android",
-      "bytes": 2043,
-      "sha256": "6e2b4c028b7fb1efbf4b8a31139d35d3bfbf44ea191714e524da2f31ffd68a06",
+      "bytes": 2813,
+      "sha256": "af1c74b5b3328e49c0e7f1e7b6879c98c4144eec852c68bffca43058296f8ad4",
       "publication_review_required": true
     },
     {
@@ -388,8 +431,15 @@
     {
       "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeNotesHook.java",
       "group": "notes_android",
-      "bytes": 26970,
-      "sha256": "686dea7283f5698effacc223f8356e18ad7d47e2ceb44ce2c2a6ad0129f0a9f5",
+      "bytes": 27227,
+      "sha256": "f63244fb1c7b7d5076511b41ba323e0704b1a186438fd423a85bd47003908db2",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeReaderSync.java",
+      "group": "notes_android",
+      "bytes": 40119,
+      "sha256": "39020adb8242fa0990459f44310b2b239f1ab0488b6f3b7edc50d214ed086552",
       "publication_review_required": true
     },
     {
@@ -416,8 +466,36 @@
     {
       "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NotesBridge.java",
       "group": "notes_android",
-      "bytes": 15208,
-      "sha256": "b9a8bbf951f8fbfc81d07de50a67efbd3847db1689411966045ec95e2babcb03",
+      "bytes": 16106,
+      "sha256": "a1958e10674a83f3cc3a7c5fe64364992eab53a9c2892d087cbf875c26650877",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/ReaderBundle.java",
+      "group": "notes_android",
+      "bytes": 8490,
+      "sha256": "bfd858dfed61b6e25fb9f1a0ea9d220fc196ed3981f5d62b588037d2bd165842",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/ReaderConflictReview.java",
+      "group": "notes_android",
+      "bytes": 2406,
+      "sha256": "e014f5a8ae98378458fd033dbdb764c7cf8fef5103bf01207d0393cb453a1b2d",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/ReaderDriveStore.java",
+      "group": "notes_android",
+      "bytes": 9275,
+      "sha256": "d86ec633ee031fd7da4d32fc0637633d939ab171ba5c75b44eb4add929ac4ee4",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/ReaderSync.java",
+      "group": "notes_android",
+      "bytes": 10457,
+      "sha256": "6151036142235427f776caa0a5bb41451a1b7d511945088149eeafcfa8fdcd8c",
       "publication_review_required": true
     },
     {
@@ -449,10 +527,17 @@
       "publication_review_required": true
     },
     {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/SettingsStyle.java",
+      "group": "notes_android",
+      "bytes": 6272,
+      "sha256": "6a810af7e34ebc36f0b48e5d38691b94ce38a12eb5dfdd560644762320cad1e8",
+      "publication_review_required": true
+    },
+    {
       "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/SetupActivity.java",
       "group": "notes_android",
-      "bytes": 10779,
-      "sha256": "5ffb58a56ee6827868692d8f29dce4ccf16378dea6aa29c584dcf6c0d73d443f",
+      "bytes": 11874,
+      "sha256": "7ec4a72b0f82ae26bf602a5079e3dd809124ab456edb06735c3e80afc5efefac",
       "publication_review_required": true
     },
     {
@@ -495,6 +580,13 @@
       "group": "notes_android",
       "bytes": 8673,
       "sha256": "16f237ca313a8b3a1b6298cc97e52e98142ca78bc6a563fac3c0f5d8fc38c36b",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/test/java/local/boox/notesdrive/ReaderBundleTest.java",
+      "group": "notes_android",
+      "bytes": 4599,
+      "sha256": "2ba7ecbc17e0d7b00a80fe74ea8012f3f95fd55ef699efb051f1a041a0bd4ac7",
       "publication_review_required": true
     },
     {
@@ -1079,6 +1171,13 @@
       "publication_review_required": true
     },
     {
+      "path": "notes-drive/tests/generate_reader_fixture.py",
+      "group": "prototype_and_validation",
+      "bytes": 1868,
+      "sha256": "591205b0564582ddf5abe5ca34fdb8bdae49019efd4a390e1ac98dae1f10dc28",
+      "publication_review_required": true
+    },
+    {
       "path": "notes-drive/tests/preflight_native_corpus.py",
       "group": "prototype_and_validation",
       "bytes": 2027,
@@ -1289,10 +1388,17 @@
       "publication_review_required": true
     },
     {
+      "path": "openai-adapter/src/local/boox/openai/SettingsStyle.java",
+      "group": "ai_android",
+      "bytes": 6268,
+      "sha256": "29e5d3c11105fd7a69ebbe38cc58d2480f5a475e7cd7fb2454b0d3bc0a5060d3",
+      "publication_review_required": true
+    },
+    {
       "path": "openai-adapter/src/local/boox/openai/SetupActivity.java",
       "group": "ai_android",
-      "bytes": 17250,
-      "sha256": "9c3d8d29a4f9fc2a805be1ce986ec624a11472f24bd51e7205d04cdee2bc0566",
+      "bytes": 17536,
+      "sha256": "2d38d6d3691c3eb77699b2cd7dabc6470b6100288876d016fb8c0229f0fbac7a",
       "publication_review_required": true
     },
     {
@@ -1382,15 +1488,15 @@
     {
       "path": "tools/boox_doctor.py",
       "group": "host_tools",
-      "bytes": 12935,
-      "sha256": "8dd883dbbd88e4932e5458987b9b595712a865e61a2986be9994ff92218fea49",
+      "bytes": 12957,
+      "sha256": "f3d2a450586f77ab6176448f1ee6f9cc0e36417df82486731ec7dfcf5d52323d",
       "publication_review_required": true
     },
     {
       "path": "tools/boox_setup.py",
       "group": "host_tools",
-      "bytes": 26762,
-      "sha256": "eedb7866dcfdc31d5e2328af5cfd6a57e4310cd90c33a99423ea2f20d9a04f89",
+      "bytes": 27246,
+      "sha256": "32fe3f2cdcbb4845d529449bf969c0cd0ac78112db5ba79a6bdc5f02e7a73c10",
       "publication_review_required": true
     },
     {
@@ -1410,15 +1516,15 @@
     {
       "path": "tools/install_notes_drive.py",
       "group": "host_tools",
-      "bytes": 5185,
-      "sha256": "d1a215bb2512141dd15ab173b46e12945805fe58730ffd4db220c007922d1d0f",
+      "bytes": 6548,
+      "sha256": "cbd93c2679a30372debb0f4e7638cb0499079a2e68ff9715ac46f7f936705455",
       "publication_review_required": true
     },
     {
       "path": "tools/package_source.py",
       "group": "host_tools",
-      "bytes": 15688,
-      "sha256": "afbd226ca82b371081efacf89f5232a4af74fafd1db2abcba8f72be7a8f56420",
+      "bytes": 17408,
+      "sha256": "813fe1a493aabdd225a6c36cc4cefa37e47c3e1522a4bfcc8011b9e0249a504c",
       "publication_review_required": true
     },
     {
@@ -1459,15 +1565,15 @@
     {
       "path": "tools/test_boox_doctor.py",
       "group": "host_tools",
-      "bytes": 9145,
-      "sha256": "f6f0272bbc782bc1e971b7b26ccf146d55cc8f43b97c13c019a83143e1509d29",
+      "bytes": 9185,
+      "sha256": "3042c68c12d24e7da8ff7ba6fa84930eb9973022f94bd066a5d70e5db10e48b2",
       "publication_review_required": true
     },
     {
       "path": "tools/test_boox_setup.py",
       "group": "host_tools",
-      "bytes": 27883,
-      "sha256": "ad76d7df273e852782ed9d15afa4a4b4352360c5e65103de631a739390a9232e",
+      "bytes": 28714,
+      "sha256": "6cd51f1f824e229ee6cfc1ee929f72fa4724f47d5fe59e97b65349bc94cffa6e",
       "publication_review_required": true
     },
     {
@@ -1480,8 +1586,8 @@
     {
       "path": "tools/test_package_source.py",
       "group": "host_tools",
-      "bytes": 11915,
-      "sha256": "c55ef154bcc5a2e1109d9d2230fff5f197e862e4dfbb0884906faa88addc2a98",
+      "bytes": 12782,
+      "sha256": "b2996f6daa8d405c95e687e9a9acd50091a91c4e7d6f2c02ebb16a3382ca2820",
       "publication_review_required": true
     },
     {

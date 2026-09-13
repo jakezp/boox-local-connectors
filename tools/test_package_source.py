@@ -7,13 +7,26 @@ import os
 from pathlib import Path
 import tarfile
 import tempfile
+import struct
 import unittest
+import zlib
 from unittest import mock
 
 import package_source as package
 
 
 class SourcePackageTests(unittest.TestCase):
+    def test_documentation_png_requires_known_name_and_no_metadata(self):
+        def chunk(kind, data):
+            return struct.pack(">I", len(data)) + kind + data + struct.pack(">I", zlib.crc32(kind + data))
+        header = b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", 1, 1, 8, 2, 0, 0, 0))
+        end = chunk(b"IDAT", zlib.compress(b"\0\xff\xff\xff")) + chunk(b"IEND", b"")
+        self.assertTrue(package.screenshot_png(header + end))
+        self.assertFalse(package.screenshot_png(header + chunk(b"tEXt", b"private") + end))
+        self.assertFalse(package.screenshot_png(header + end + b"extra"))
+        self.assertFalse(package.screenshot_png((header + end)[:-1]))
+        self.assertTrue(package.allowed("docs/images/reader-sync.png"))
+        self.assertFalse(package.allowed("docs/images/raw-account.png"))
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

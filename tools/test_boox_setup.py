@@ -50,6 +50,7 @@ class FakeDevice:
         self.bad_property = None
         self.helper_fail = False
         self.launcher_version = 56737
+        self.reader_version = 38701
         self.plan = plan
         for item in plan["artifacts"]:
             if item["mode"] == "update":
@@ -72,6 +73,8 @@ class FakeDevice:
         if args[0] == "sha256sum":
             return setup.doctor.PATCHED_FRAMEWORK
         if args[0] == "dumpsys":
+            if args[-1] == "com.onyx.kreader":
+                return f"versionCode={self.reader_version} minSdk=24\n"
             if args[-1] == "com.onyx":
                 return f"versionCode={self.launcher_version} minSdk=24\n"
             return "versionCode=45326 minSdk=28\n"
@@ -119,6 +122,8 @@ class FakeDevice:
             "apk_sha256": item["apk_sha256"], "hook_build": item["hook_build"],
             "loaded_marker": "Native sync adapter v0.4 build " + item["hook_build"]
                              + " ready for Notes 45326", "notes_version": 45326,
+            "reader_version": 38701,
+            "reader_marker": "Native Reader build " + item["hook_build"] + " ready for NeoReader 38701",
             "launcher_version": 56737,
             "launcher_marker": "Launcher Notes Settings build " + item["hook_build"]
                                + " ready for launcher 56737",
@@ -344,6 +349,16 @@ class SetupTests(unittest.TestCase):
         device = FakeDevice(self.root, plan)
         device.launcher_version = 56738
         with self.assertRaisesRegex(setup.GuardError, "launcher56737"):
+            setup.preflight(device, plan, backups, self.root)
+        self.assertFalse(any(call[0] in ("install", "vector", "helper") for call in device.calls))
+
+    def test_preflight_rejects_uninspected_reader_before_mutation(self):
+        plan = self.plan(("notesdrive",))
+        path, _ = self.receipt(plan)
+        backups = setup.verify_backups(path, SERIAL, plan, NOW)
+        device = FakeDevice(self.root, plan)
+        device.reader_version = 38702
+        with self.assertRaisesRegex(setup.GuardError, "NeoReader38701"):
             setup.preflight(device, plan, backups, self.root)
         self.assertFalse(any(call[0] in ("install", "vector", "helper") for call in device.calls))
 

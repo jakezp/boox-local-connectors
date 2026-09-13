@@ -64,6 +64,10 @@ GROUPS = {
         "docs/reproduction/BACKUP-RECEIPT.example.json",
         "docs/reproduction/setup-checkpoint.json",
     ],
+    "reviewed_screenshots": [
+        "docs/images/library-settings.png", "docs/images/notes-settings.png",
+        "docs/images/drive-settings.png", "docs/images/reader-sync.png",
+    ],
 }
 
 
@@ -97,7 +101,7 @@ def main():
                    "Listed source/legacy docs still require privacy and licensing review.",
         "excluded": [
             "Private signing material, OAuth configuration, grants and account/folder registration",
-            "Personal notebooks, live evidence, screenshots, backups and app state",
+            "Personal notebooks, raw live evidence/screenshots, backups and app state; only four named reviewed documentation screenshots are included",
             "Firmware/APKs/JARs/loader archives, decompiled proprietary sources",
             "Downloaded tools, virtual environments, build outputs and caches",
             "This generated inventory itself (avoids a self-referential hash)",
