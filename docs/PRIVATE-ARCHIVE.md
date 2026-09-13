@@ -19,6 +19,27 @@ No remote, release, upload or real private archive was created by this sidecar.
 Only filesystem metadata was inspected in the original workspace. Tests below
 used disposable synthetic files.
 
+## Final private Git transport
+
+The final recovery collection uses ordinary private Git after GitHub's release
+creation API returned repeated server errors. The already verified gzip stream
+was repartitioned into **87 parts of at most 32 MiB**, preserving its full SHA-256:
+`73cfeb727a3b503e7502efc0bd573a3a6a3d38fd24a42f78df394b798889185e`.
+
+The collection contains **216,648 regular files and 248,519 total entries**, with
+5,760,072,542 logical file bytes. The compressed stream is 2,891,626,000 bytes.
+A full local restoration matched every file, directory, link, mode and mtime in
+the embedded inventory. Git stores the parts as binary files without filters;
+bounded pushes avoid a single multi-gigabyte upload. The private repository's
+`restore.py` and `verify_restore.py` provide offline recovery after cloning.
+
+For a new capture intended for this transport, use the archive tool with
+`--chunk-mib 32 --gzip --recheck-content`. Keep the output outside the captured
+source. The private index records the actual snapshot, transport and verification
+receipts; the larger original-part manifest remains historical evidence.
+The release and optional encryption procedures below remain alternatives, not
+the transport used for this completed capture.
+
 ## Measured size and scope
 
 Metadata scan on 2026-09-13, before adding this helper/test/guide:

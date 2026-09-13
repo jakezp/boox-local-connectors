@@ -59,8 +59,8 @@
     {
       "path": "README.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 7058,
-      "sha256": "a70e60e8ab89789bfc77e2ffa2920118e993c1dcc7cb4dd39679981c12206165",
+      "bytes": 7064,
+      "sha256": "75bb34cf6a59f295872abef60937c5e9b1071a9700db5acfb403bd7d718c1304",
       "publication_review_required": true
     },
     {
@@ -73,8 +73,8 @@
     {
       "path": "docs/PRIVATE-ARCHIVE.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 19223,
-      "sha256": "05cb6b15593da2dd58b573bb2d44498cee62f55482fa21280e218e08b79337f8",
+      "bytes": 20476,
+      "sha256": "2338a1546aad7a2b3f5501c94ba80f1d51a242fd15c5f66b2ff88b049673e565",
       "publication_review_required": true
     },
     {
@@ -94,8 +94,8 @@
     {
       "path": "docs/VALIDATION.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 5615,
-      "sha256": "85da960fe0c285b95624accf89274e06daa196628975d3eb45eb707ae3954ee2",
+      "bytes": 6115,
+      "sha256": "3aadfec759eb7053f93d117327fe56ff939f1d41d9d71a9aed236fe836baeed4",
       "publication_review_required": true
     },
     {

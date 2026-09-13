@@ -116,7 +116,7 @@ The public source is maintained at **`jakezp/boox-local-connectors`**. The owner
 complete recovery collection is kept separately in **`jakezp/boox-private-archive`**,
 including firmware, project keys, builds, backups and evidence. The private
 repository's snapshot manifest and verification receipts identify the retained
-files and release assets. The public source builds its apps and mandatory tests
+files and stored archive parts. The public source builds its apps and mandatory tests
 without access to that archive.
 
 See [private archival and restoration](docs/PRIVATE-ARCHIVE.md) for the complete

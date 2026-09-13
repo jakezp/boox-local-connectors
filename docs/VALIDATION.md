@@ -98,3 +98,12 @@ Root preparation has27 mandatory safety tests plus an optional actual-input test
 all 28 passed in the original workspace. The 15 staged assets matched the historical
 environment. No new boot patch or flash was performed. See
 [root staging](ROOT-STAGING.md) and [remaining limits](reproduction/GAPS.md).
+
+## Private recovery verification
+
+The complete project collection contains 216,648 regular files across 248,519
+entries. Creation used a second full source-content pass. A full restoration
+matched the embedded inventory's file bytes, entry coverage, modes, mtimes and
+links. Repartitioning for ordinary private Git preserved the exact compressed
+archive SHA-256. The private repository carries its own publication and remote
+checkout verification receipts; credentials and firmware are absent here.
