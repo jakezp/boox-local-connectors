@@ -1,0 +1,91 @@
+{
+  "date": "2026-09-13",
+  "version": "0.6",
+  "build": "7",
+  "executable_sha256": "fc19e074c3dab9f9b19a0a6125c577042cc066f5ddbd3cf4f2a56eb4e6996890",
+  "mandatory_checks": 162,
+  "python_checks": 69,
+  "swift_checks": 93,
+  "new_portability_checks": 14,
+  "source_only_build": true,
+  "credential_free": true,
+  "private_project_client_folder_constants_absent": true,
+  "generated_resources": {
+    "Target-after.note": "8bfae218c43404b6c60bf0d29ff1c38b16303d285fcfe03fce47a2588410f150",
+    "B2.note": "8690023e718bdf5f8f61456a66d33e6939a86be3768dcd921d47d7de37aee724"
+  },
+  "resource_helpers": {
+    "note_reader.py": "b613c9ec001e44f4e8c6dfe0957d3520474b8b4ace34f9a34f517e6ad13bf2bf",
+    "note_editor.py": "8d85673c5007720c74e63690f011872b0c27f5a22c29b986e42f701860583d1a",
+    "note_library.py": "df6383bd57d9c0bad4f70511966b79c0d65106c37fc8f352922adff8a8979cbe"
+  },
+  "build_source_sha256": {
+    "build.sh": "a71bab87db5a4c5b6763eb19176b45c79fea7a43fd5cf3293f9daec2eedf6f2c",
+    "test.sh": "acd3599d76a51f6e49ab4863d4242e70be78aef127bb0e6569ddb731313bddbf"
+  },
+  "connection_migration": "Existing client-keyed app grant and exact account/folder retained; legacy selection gets desktopClientID only after successful authenticated verification; mismatches and lost destination fail closed.",
+  "external_network_used": false,
+  "live_grant_accessed": false,
+  "live_state_mutated": false,
+  "gui_launched": false,
+  "prior_bundles_unchanged": true,
+  "agent_execution_flags_apply_to": "The Mac build agent only. The parent performed the separate live OAuth, UI, Drive and native-device acceptance below.",
+  "parent_reported_live_acceptance": {
+    "date": "2026-09-13",
+    "version": "0.6",
+    "build": "7",
+    "status": "passed",
+    "authentication_and_saved_library_access": "passed",
+    "nested_native_input": {
+      "embedded_ancestor_rows": 1,
+      "pages": 1,
+      "pens": 0,
+      "opened_from_verified_native_head": true
+    },
+    "mac_gui_edit": {
+      "pen_drag": "passed",
+      "undo_pen_count": 0,
+      "redo_pen_count": 1,
+      "save_and_own_oauth_publication": "passed",
+      "notebook_identity_preserved": true
+    },
+    "android_apply": {
+      "exact_branch_status": "COMMITTED",
+      "native_readback_pens": 1,
+      "stock_notes_visible_blue_diagonal": true,
+      "normal_close": true
+    },
+    "android_return_to_mac": {
+      "automatic_verified_fetch": "passed",
+      "pens": 1,
+      "samples": 2,
+      "latest_revision_opened_explicitly_from_library": true
+    },
+    "already_open_nested_document_follow": {
+      "status": "passed",
+      "trigger": "Native UI rename followed by normal close",
+      "manual_mac_refresh": false,
+      "manual_mac_reopen": false,
+      "updated_title_visible": true,
+      "pens": 1,
+      "samples": 2,
+      "page_and_zoom_preserved": true,
+      "displayed_status": "Notebook updated from Drive. Page and zoom preserved."
+    },
+    "bundled_fixture_gui": {
+      "status": "passed",
+      "action": "Open bundled test notebook",
+      "resource": "Target-after.note",
+      "title": "Synthetic two-page fixture",
+      "pages": 2,
+      "samples": 343,
+      "sha256": "8bfae218c43404b6c60bf0d29ff1c38b16303d285fcfe03fce47a2588410f150"
+    },
+    "private_evidence": "notes-drive/research/incoming/mac-v06-nested-ui",
+    "identity_and_hash_detail": "Exact native identifiers, title, revision ancestry and payload/readback hashes remain in the parent-managed private evidence."
+  },
+  "parent_reported_clean_clone_checks": 162,
+  "remaining": [],
+  "mac_acceptance_blockers": [],
+  "scope": "Mac build-agent changes were confined to Mac source and local build/test artifacts. This update changes documentation only and records parent-reported live acceptance. Public source publication and the private all-files/firmware/keys archive are parent-owned."
+}

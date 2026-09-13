@@ -132,8 +132,20 @@ or sibling research directory before generation. **162 mandatory checks pass**:
 Config tests use synthetic data only. The latest source-only build includes
 the Python ancestor fix and version 0.6 runtime parameterization.
 `PORTABLE-RUNTIME-VALIDATION.json` records its executable/resource hashes,
-test counts and remaining live acceptance. Earlier validation reports and pinned
+test counts and completed live acceptance. Earlier validation reports and pinned
 bundles remain as historical evidence.
+
+The parent reports 162 checks passing from a clean clone and successful live
+acceptance of version 0.6 authentication and nested-notebook draw/undo/redo/save.
+The own-OAuth publication committed on the exact Android branch and appeared
+visually in stock Notes. After normal close, the Mac automatically fetched the
+verified one-pen/two-sample return, then the parent opened it from the library.
+Separate parent tests then confirmed already-open following after a native
+rename/normal close, without Mac refresh or reopen, preserving page and zoom.
+The bundled synthetic fixture also opened through the GUI with its expected
+two pages, 343 samples and pinned payload hash. All planned version 0.6 Mac
+acceptance checks pass, with no Mac acceptance blocker remaining. The private
+evidence reference is recorded in `PORTABLE-RUNTIME-HANDOFF.md`.
 
 The parent reports that an actual GUI reconnect, pen drag, save and automatic
 Drive publication succeeded on the frozen app. One intervening refresh rejected

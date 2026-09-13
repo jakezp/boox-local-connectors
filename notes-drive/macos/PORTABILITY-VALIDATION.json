@@ -1,0 +1,47 @@
+{
+  "date": "2026-09-13",
+  "validation": "Mac-only source copy without private notebook, OAuth config, evidence, shared artifacts or sibling research inputs",
+  "mandatory_checks": 148,
+  "python_checks": {
+    "synthetic": 4,
+    "packaging": 6,
+    "native_apply_generator": 4,
+    "reader": 29,
+    "editor": 10,
+    "library": 7,
+    "nested_metadata": 9
+  },
+  "swift_checks": 79,
+  "optional_private_corpus_checks": 5,
+  "production_swift_unchanged": true,
+  "live_app_and_frozen_bundle_unchanged": true,
+  "source_only_app_executable_sha256": "b74cf5f2aef6efeb587553a78e644bbc4838b4234659ddb36bd767f793a61034",
+  "signed_resources": [
+    "B2.note",
+    "Target-after.note",
+    "note_editor.py",
+    "note_library.py",
+    "note_reader.py",
+    "synthetic-resources.json"
+  ],
+  "generated_notebook_sha256": {
+    "Target-after.note": "8bfae218c43404b6c60bf0d29ff1c38b16303d285fcfe03fce47a2588410f150",
+    "B2.note": "8690023e718bdf5f8f61456a66d33e6939a86be3768dcd921d47d7de37aee724"
+  },
+  "verified": [
+    "source-only build",
+    "strict codesign before and after CLI",
+    "both generated notebooks inspect as 2 pages/11 pens/343 samples",
+    "2 generated page PNGs rendered",
+    "no OAuth config in built resources",
+    "all 148 mandatory source-only checks",
+    "frozen Swift source and existing executable hashes unchanged"
+  ],
+  "not_validated": [
+    "generic cross-project OAuth; runtime guards remain frozen",
+    "legacy B2 validation publication; runtime still pins former hash"
+  ],
+  "network_used": false,
+  "live_grant_accessed": false,
+  "gui_launched": false
+}

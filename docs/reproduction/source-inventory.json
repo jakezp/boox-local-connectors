@@ -11,13 +11,13 @@
     "This generated inventory itself (avoids a self-referential hash)"
   ],
   "counts": {
-    "host_tools": 18,
+    "host_tools": 20,
     "ai_android": 26,
     "notes_android": 38,
-    "notes_macos": 42,
+    "notes_macos": 45,
     "historical_probes": 9,
     "prototype_and_validation": 20,
-    "legacy_documentation_review_required": 36,
+    "legacy_documentation_review_required": 38,
     "reproduction": 10
   },
   "files": [
@@ -45,29 +45,36 @@
     {
       "path": "HANDOVER.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 57096,
-      "sha256": "9b1f4039ded5f08338c6f0de5f22d7c609833e1ac28067f9353c0ebb87631fc6",
+      "bytes": 59109,
+      "sha256": "33ef3f5d9c89d24c912dbecc44bac1138ba3e9f5e91641bcd32aaa9ec67ade9f",
       "publication_review_required": true
     },
     {
       "path": "IMPLEMENTATION-PLAN.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 4714,
-      "sha256": "d08418a126c217182a5020ea654b8a7ef94d352b36aa51d255235473f3b7f28a",
+      "bytes": 3911,
+      "sha256": "7a1dc3338fa44f68b39c7653ca126111da5ef8744db4508e970f592b2719c4df",
       "publication_review_required": true
     },
     {
       "path": "README.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 7320,
-      "sha256": "5d51c7d3e093c290b56800d443052452b85036ec367c4281ac7580abe486998b",
+      "bytes": 7058,
+      "sha256": "a17520f2c15367ff0e7c2d8739dad6e5bcf66821261665ff7103644bf64c21bd",
       "publication_review_required": true
     },
     {
       "path": "STATUS.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 6386,
-      "sha256": "566f301f009ac8a613e340f3236d5ff30a7cd832c06ac73d9e5b084de85e1fb4",
+      "bytes": 6378,
+      "sha256": "a13679aae3e98a129eb8ca88fdf8aefc520e710d3a464a49191d31663e7ed2c0",
+      "publication_review_required": true
+    },
+    {
+      "path": "docs/PRIVATE-ARCHIVE.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 18414,
+      "sha256": "39c6ba7941771659ff192f6896de0b6e5a5d2e5aa4c61d01fc156f83922a7848",
       "publication_review_required": true
     },
     {
@@ -78,10 +85,17 @@
       "publication_review_required": true
     },
     {
+      "path": "docs/THIRD-PARTY-NOTICES.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 13054,
+      "sha256": "de33ef2af8d45af4efd49d91261560152920d8ec733d70404896f57d419b15f0",
+      "publication_review_required": true
+    },
+    {
       "path": "docs/VALIDATION.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 3938,
-      "sha256": "828673b487df6a445445fa5c0ca0ac19d8d6fe4657962a0611c8f67302ab5c29",
+      "bytes": 5437,
+      "sha256": "afef2e01152f1deffd952b7f36ba473cab03ef70747b86f17095f105a75b0787",
       "publication_review_required": true
     },
     {
@@ -94,22 +108,22 @@
     {
       "path": "docs/reproduction/GAPS.md",
       "group": "reproduction",
-      "bytes": 4303,
-      "sha256": "7d5d36c2690ab99ff88b3bd0996639d90e1deb60ece5642590c19c3578dd776d",
+      "bytes": 5784,
+      "sha256": "63b2aa171d92e4a16d5fa948f1f59c62daba6d9521d90da83eebf920a58385d4",
       "publication_review_required": false
     },
     {
       "path": "docs/reproduction/PACKAGING.md",
       "group": "reproduction",
-      "bytes": 16258,
-      "sha256": "085600879698acfca158e0c40fa79aa54ee4be8d64d5f2c61e397c5935bb070b",
+      "bytes": 13300,
+      "sha256": "0ef0f36241bdf4bfddb72c8b2dfb8936e180ab9165b3f41d7689f56df150b463",
       "publication_review_required": false
     },
     {
       "path": "docs/reproduction/README.md",
       "group": "reproduction",
-      "bytes": 26092,
-      "sha256": "feb6530223b4a666445ebce89358a0b12f8e43e2fba5119775e9c76f56d544d6",
+      "bytes": 19394,
+      "sha256": "1d3054ece0473b78c205be664286e8b1fba56a936e1ed598f721a5706fc5169f",
       "publication_review_required": false
     },
     {
@@ -129,8 +143,8 @@
     {
       "path": "docs/reproduction/SOURCE-INVENTORY.md",
       "group": "reproduction",
-      "bytes": 11279,
-      "sha256": "5cfadffc61d741f92d4219ee10b293607c3538bb70487d4e3655428a094cedc6",
+      "bytes": 11423,
+      "sha256": "a0c0403745929f0ead9356ae10563b1df3204c0b177ed0ebaab9c5352be50b9f",
       "publication_review_required": false
     },
     {
@@ -143,8 +157,8 @@
     {
       "path": "docs/reproduction/inventory_sources.py",
       "group": "reproduction",
-      "bytes": 4768,
-      "sha256": "9f14dfd34c85208db3d95c32d8e8d547f885ebb9fc352c5711aef54ab095ecb7",
+      "bytes": 4942,
+      "sha256": "8e2250e1c68f73c512c592e48007d1282788170cad04062a8968bf33c3d7cefe",
       "publication_review_required": false
     },
     {
@@ -185,8 +199,8 @@
     {
       "path": "notes-drive/INCOMING-VALIDATION.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 12763,
-      "sha256": "c647c36d2a4f738b8354655cd3ac59586ec7b9f0ca59defaa53391f71823c799",
+      "bytes": 13238,
+      "sha256": "e3ddbf8d4b9f7f11063db189eec14de63a2ae24661387b5a5aa7b27c557bc30f",
       "publication_review_required": true
     },
     {
@@ -227,8 +241,8 @@
     {
       "path": "notes-drive/android/README.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 10004,
-      "sha256": "59af5eacbe7e7b9e5e5d44005bf616d7846bb8bdc2084fd79c6a0571065cd097",
+      "bytes": 10063,
+      "sha256": "b5db7cefb54d21b54805e0dbe8b92dd376471c4abfac01cd44094796767a2b64",
       "publication_review_required": true
     },
     {
@@ -542,8 +556,8 @@
     {
       "path": "notes-drive/macos/INTEGRATION.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 22080,
-      "sha256": "6f5beaa57fe058b12d27e5067430fe6d8ebb6b84ae3fe1ae397f78a31e5871e7",
+      "bytes": 22993,
+      "sha256": "6ccbfc4b07b19d485c492ab74ac68ac3c490d8f0a76bf192a424428f4942648b",
       "publication_review_required": true
     },
     {
@@ -568,31 +582,45 @@
       "publication_review_required": true
     },
     {
+      "path": "notes-drive/macos/PORTABILITY-VALIDATION.json",
+      "group": "notes_macos",
+      "bytes": 1596,
+      "sha256": "3844d90e9d32a3b01809bf43bab329d9927ba256cb6fcd5c5f55bad7b7d37932",
+      "publication_review_required": true
+    },
+    {
       "path": "notes-drive/macos/PORTABLE-BUILD.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 7778,
-      "sha256": "e117c8553e10246746b1e94939fe7dba01ad8fcec477fb8e4a3a5b4c3445208f",
+      "bytes": 8622,
+      "sha256": "5980554b1fa9f0f075b986efcce64746bab656ab9e0b36e59096ac9796a6bcb9",
       "publication_review_required": true
     },
     {
       "path": "notes-drive/macos/PORTABLE-RUNTIME-HANDOFF.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 4616,
-      "sha256": "efee4affab28d62350edb14295d1374f69ed8f35ed9e6fa9546764eddbae859a",
+      "bytes": 6584,
+      "sha256": "aae49a0d40cc18d926d4bb804c169d138f517bcfe17b2f84ba87ec9d18fbca49",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/PORTABLE-RUNTIME-VALIDATION.json",
+      "group": "notes_macos",
+      "bytes": 3852,
+      "sha256": "54d888ce108b258110c11acb9dd031c99b4f826e5cabead114131ff65891cba6",
       "publication_review_required": true
     },
     {
       "path": "notes-drive/macos/PROBE-CLI.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 6911,
-      "sha256": "8f6092325f4964424b68bb7ee95205c703e966fd4073010b293de1a93b97b159",
+      "bytes": 6941,
+      "sha256": "beb4dbd1370cd7297530bf09744f0eca41b25ec0bba82a9e9e1a9d1a998d8cd0",
       "publication_review_required": true
     },
     {
       "path": "notes-drive/macos/README.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 36331,
-      "sha256": "9a5ddbe750cea9a732fe7833122d6c13a1149da24d9088f84f612f28a9b7f1ac",
+      "bytes": 37312,
+      "sha256": "beaa2a5fb9e79cf6d5cf6c1ecce9eb7b76fe94a354e7a2dc8ede4e70fdf8b317",
       "publication_review_required": true
     },
     {
@@ -621,6 +649,13 @@
       "group": "legacy_documentation_review_required",
       "bytes": 6563,
       "sha256": "58ac607fc820c1f3a95dcbeb99f07a9f86d0a2c69c1d79d2e82682e0f706c9de",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/SYNTHETIC-VALIDATION.json",
+      "group": "notes_macos",
+      "bytes": 3746,
+      "sha256": "9e8b5d59e99a5f22b8bab69efb91326e83a11310ae0cc1d343a623a904372fc0",
       "publication_review_required": true
     },
     {
@@ -1296,6 +1331,13 @@
       "publication_review_required": true
     },
     {
+      "path": "tools/archive_private_workspace.py",
+      "group": "host_tools",
+      "bytes": 25748,
+      "sha256": "eca44f321d2eb1fea001b784293e763afe694eab261c948d8bf64d4c4d46126c",
+      "publication_review_required": true
+    },
+    {
       "path": "tools/bootstrap_dependencies.py",
       "group": "host_tools",
       "bytes": 12760,
@@ -1340,8 +1382,8 @@
     {
       "path": "tools/package_source.py",
       "group": "host_tools",
-      "bytes": 15441,
-      "sha256": "e7449a886d9e70582ab357c674934419a138960f180ec9c09e478cae2a508613",
+      "bytes": 15688,
+      "sha256": "afbd226ca82b371081efacf89f5232a4af74fafd1db2abcba8f72be7a8f56420",
       "publication_review_required": true
     },
     {
@@ -1363,6 +1405,13 @@
       "group": "host_tools",
       "bytes": 332,
       "sha256": "d13d0e396856f864677d35c5f621e62384dd2125df9eb2d0a77904ac258e0554",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/test_archive_private_workspace.py",
+      "group": "host_tools",
+      "bytes": 13382,
+      "sha256": "322acffae443e0ad7b920af35ebabcb36219682d14207364e8c67c1913ee8220",
       "publication_review_required": true
     },
     {

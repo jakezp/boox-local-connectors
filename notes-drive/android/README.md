@@ -108,7 +108,7 @@ Signing SHA-1:
 `AA:D0:A1:FC:C2:DF:4E:96:DC:A1:43:0C:0E:76:3C:13:CF:3A:F6:16`
 
 Android client **BOOX Notes Drive Android**:
-`YOUR_DESKTOP_CLIENT_ID`
+`GOOGLE_PROJECT_NUMBER-124nqkm9ivv19h0t5e0s8ncsbduf6hdh.apps.googleusercontent.com`
 
 The app also has a **Copy Google registration details** button. The APK uses
 Google's `AuthorizationClient`; it does not need an embedded client secret or a

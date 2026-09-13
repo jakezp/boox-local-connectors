@@ -36,6 +36,9 @@ GROUPS = {
         "notes-drive/macos/Tests/protocol-vectors.json",
         "notes-drive/macos/Tests/synthetic-manifest.json",
         "notes-drive/macos/Tests/native-apply-manifest.json",
+        "notes-drive/macos/PORTABLE-RUNTIME-VALIDATION.json",
+        "notes-drive/macos/PORTABILITY-VALIDATION.json",
+        "notes-drive/macos/SYNTHETIC-VALIDATION.json",
         "notes-drive/macos/*.sh",
     ],
     "historical_probes": [

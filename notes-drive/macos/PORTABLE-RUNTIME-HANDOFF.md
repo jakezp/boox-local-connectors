@@ -22,7 +22,40 @@ was compiled from a Mac-only source copy without private notes, config or
 sibling/shared artifacts. Strict signature verification passes before and after
 CLI inspection/rendering.
 
-## Parent activation and acceptance
+## Confirmed parent live acceptance — 2026-09-13
+
+The parent authenticated version 0.6 and opened the current verified native
+notebook inside a folder: one page, one embedded ancestor row and zero pens.
+An actual GUI pen drag, undo to zero pens, redo to one pen, save and own-OAuth
+Drive publication passed with the notebook identity preserved.
+
+Android applied that exact branch as **COMMITTED**, re-exported one pen and
+visibly displayed the blue diagonal in stock Notes. After normal native close,
+the Mac automatically fetched the verified Android return containing one pen
+and two samples. The parent explicitly opened that latest revision from the
+library. This confirms the nested-notebook Mac → Drive → native → Mac roundtrip.
+
+The parent separately confirmed **already-open automatic following**: with the
+nested notebook open in Read mode, a native UI rename and normal close produced
+a new revision. Without any Mac refresh or reopen, the Mac displayed the new
+title, one pen and two samples, with status “Notebook updated from Drive. Page
+and zoom preserved.”
+
+**Bundled-fixture GUI acceptance also passed:** “Open bundled test notebook”
+opened `Target-after.note` as “Synthetic two-page fixture”, two pages and
+343 samples, matching the pinned generated payload hash
+`8bfae218c43404b6c60bf0d29ff1c38b16303d285fcfe03fce47a2588410f150`.
+All planned version 0.6 Mac acceptance checks have passed; no Mac acceptance
+blocker remains. Existing format, transport and rendering limits still apply.
+
+The parent also reports all 162 checks passing from a clean clone. Exact notebook
+identifiers, title, revision ancestry and payload/readback hashes remain in the
+private evidence directory `notes-drive/research/incoming/mac-v06-nested-ui`.
+This public source document records behavior without copying those private
+identifiers. Source publication and the private all-files/firmware/keys archive
+remain parent-owned.
+
+## Activation procedure for another installation
 
 1. Quit the currently running app and launch this candidate. This agent has
    performed no app restart, grant access or live state mutation.
@@ -42,10 +75,10 @@ CLI inspection/rendering.
    exercise the clean-build resource path. New installation discovery has no
    private folder fallback; multiple verified folders require user selection.
 
-The user reports that the earlier 0.5 UI passed own-OAuth add/erase, undo/redo,
-create/rename/move/delete/restore and native readback. Those results do not claim
-live acceptance of the new binding/migration code; that acceptance remains for
-the parent.
+The earlier 0.5 UI also passed own-OAuth add/erase, undo/redo,
+create/rename/move/delete/restore and native readback. The version 0.6 acceptance
+above is a separate live result, including the independently confirmed
+already-open following and bundled-fixture checks.
 
 ## Completed checks and boundaries
 

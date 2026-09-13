@@ -1,21 +1,14 @@
 # Source packaging and dependency bootstrap
 
-This continuation audits the 173-file source checkpoint and adds source packaging
-and dependency acquisition tools. It does not create a repository, upload source,
-use OAuth, run a device command or certify full Notes/Mac acceptance.
-The Mac is unlocked and the parent's own-OAuth UI round trip passed: GUI pen
-drag/save automatically published, BOOX committed six pens/129 samples with exact
-IDs and visible diagonal, then native close/save followed back to the Mac while
-preserving page/zoom. UI notebook creation/rename/move also committed/opened
-natively. A decoder ancestor-row bug is now being fixed by the Mac owner.
-Fixed-build acceptance and source review remain prerequisites for final
-packaging and the requested actual fresh-clone build. Source cleanup and Git
-remain with the parent; no repository is created here.
+Current checkpoint: 2026-09-13. The public source package builds all five Android
+APKs and the Mac app from a separate clean clone. Mac v0.6 also passed final
+interactive nested-notebook sync and automatic following. See
+[validation](../VALIDATION.md) for the evidence and
+[private archive](../PRIVATE-ARCHIVE.md) for complete recovery storage.
 
-Later parent acceptance also passed GUI erase/undo/redo with five pens committed
-natively, UI deletion with native SQL status 0, and same-ID blank restoration
-committed with zero pens. These lifecycle checks are recorded separately from
-the final fixed-build sign-off and fresh-clone build.
+Public source contains authored code, tests, synthetic fixtures and reproducible
+dependency/setup tools. Firmware, project keys, real notebooks and acquired
+binaries belong only in the explicitly private archive.
 
 ## Reviewable source plan
 
@@ -209,56 +202,21 @@ It has no real-device fallback. UI commands remain mutating/live operations and
 were not executed here. Other device tools should continue using their own
 explicit serial options; setting this variable is not permission to run them.
 
-## Remaining source/portability handoff
+## Verified portability and publication boundary
 
-At audit time, the following need coordination before source publication:
+The source-only Android build generates synthetic notebook assets; it does not
+need private captures. Mac source has no personal Google project/client/folder
+bindings. OpenAI, instrumentation, Notes and both historical probes use the shared
+build environment resolver. All five APKs and the Mac app built in a fresh local
+clone using downloaded, hash-verified Android/Gradle tools and an empty Gradle
+cache. Strict offline dependency verification passed with 501 SHA-256 entries.
 
-- Parent's Android source-only synthetic build now passes all 57 tests and release
-  assembly. `notes-drive/tests/generate_build_fixtures.py` generates all required
-  inputs without real `.note` files, replacing the former mandatory private
-  fixture dependency. The reported APK SHA-256 is
-  `fce3cc2727b64f139796ae4f45d2dab48a4a5c41ce1f2fdf02bd3fb432bf42e6`;
-  hook build remains `1b35137b83528a78`. The parent is now installing this APK
-  through the live helper; installation/acceptance success has not yet been
-  reported to this sidecar.
-  The generator matches the inventory's `notes-drive/tests/*.py` coverage and the
-  packager's explicit source-family boundary; refresh the snapshot after stable
-  acceptance. This parent-reported build does not replace the requested final
-  fresh-clone build or live installation acceptance.
-- Historical `prototype/test_native_fixture.py` and `test_prepare_apply.py`
-  are now opt-in through `BOOX_PRIVATE_WORKSPACE`, with paths relative to that
-  explicit base. Without the variable they skip before reading the corpus.
-  Parent reports prototype discovery passed. The live apply harness remains a
-  manual, mutating experiment, not a default offline test.
-- The fixed JDK builder gap is closed in the inspected sources:
-  `openai-adapter/tests/build.py`, both historical probes and
-  `notes-drive/tests/preflight_native_corpus.py` now use the shared resolver.
-  Preflight honors `GRADLE_USER_HOME` and requires an explicitly supplied notebook
-  plus the resolved `org.json:20240303` cache artifact; it is not a default test.
-  The frozen doctor still reports its historical host JDK path.
-  Parent also reports all four additional portable-path APK builder checks
-  passed, including OpenAI instrumentation and both historical probes.
-- Mac owner handles synthetic packaging. Its `Drive.swift`, `OAuth.swift`,
-  `ProbeCLI.swift` and `Tests/ProbeTests.swift` still contained fixed
-  folder/project/client bindings at this audit. Parameterize production/probe
-  registration or use independently synthetic test values without preserving the
-  original account identity. The packaging plan records detectable blockers.
-- Legacy root/Android/Mac/protocol/validation Markdown still contains fixed
-  serial, project, folder and home-path references. Parent owns those documents.
-  Inventory inclusion is not publication approval, and scanner findings are
-  not a complete substitute for the parent's content review.
-- Preserve `tools/android_build_env.py`, the three named Mac JSON inputs and the
-  synthetic generator/test sources in the next inventory. Keep generated
-  `.test-runs`, bundles, private corpora, OAuth JSON and downloaded dependencies
-  outside the source package. Review compile-only Xposed header attribution.
-
-No unhandled mandatory private notebook path was found in the inspected default
-Android build/unit tests, Mac build/default suite or default prototype discovery.
-The Mac build defaults to generated resources and no OAuth configuration;
-`--oauth-config FILE` is an explicit private runtime-provisioning choice.
-Its default suite additionally requires the shareable
-`Tests/native-apply-manifest.json`; inventory/export rules now include that exact
-file alongside `protocol-vectors.json` and `synthetic-manifest.json`.
+Historical capture tests require explicit `BOOX_PRIVATE_WORKSPACE`. Mac builds
+contain no OAuth configuration unless the optional private build flag is supplied.
+Public Markdown is sanitized separately from the preserved original workspace.
+The exact public file set is reviewed and scanned; private archive creation uses
+a separate tool with complete entry coverage. Xposed compile-only interface
+attribution is recorded in [third-party notices](../THIRD-PARTY-NOTICES.md).
 
 Remaining input/order requirements are explicit:
 

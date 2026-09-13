@@ -36,42 +36,30 @@ tests, fixtures and end-to-end documentation.
    and backed up; never flash this user's already-working device merely to test
    installation. Exercise nondestructive stages and build-from-clean-source.
 7. Write detailed README, architecture, tested scope, recovery, chronology,
-   maintainer/agent handover and limitations. Create a private GitHub repository
-   using the authenticated account if available, scan the exact upload content,
-   push it, and verify a fresh clone can follow the documented build/tests.
+   maintainer/agent handover and limitations. Create the public source and private archive repositories requested below,
+   scan the exact public upload content, and verify a remote source clone and
+   the complete private archive.
 
-## Current baseline
+## Current acceptance
 
-Historical stable checkpoint: `backups/notes-drive-automatic-v0.3-20260912/`.
-That checkpoint has Android v0.3 / Mac v0.2, 30 Android + 60 Mac tests and preserved
-the original three notebooks / 182 files.
+Implementation and final Mac v0.6 live acceptance are complete for the bounded
+core Notes sync described in `docs/VALIDATION.md`. The nested native export
+round trip, open-notebook automatic following, bundled synthetic fixture and
+post-validation original-data preservation all passed. Clean-source builds pass
+for all five Android APKs and the Mac app. No fresh-device root/flash is claimed.
 
-Active v0.4:57 Android tests, native add/erase, seven crash checkpoints,
-folder/book lifecycle, conflict UI, new Mac blank creation/open and native Sync
-controls passed. Original3rows/182files unchanged. Mac frozenv0.5 lifecycle125
-checks; current mandatory synthetic129 plus5 explicit private-corpus checks.
-Host doctor/setup56 tests; existing Notes wrapper update passed live preflight/
-apply with signatures, APK hashes, scopes and loaded-hook evidence.
+The user subsequently specified two distribution destinations:
 
-Mac own-OAuth UI pen round trip passed after unlock: real GUI drag, automatic
-publication, native exact-ID six-pen readback/visual open, then automatic Mac
-following of the normal native save. GUI notebook creation and rename/move also
-committed on BOOX. Native nested-folder exports exposed repeated ancestor rows
-that the Mac decoder must handle; that correction is active. Source packaging,
-generated Android fixture integration and portable build paths are in progress.
-Both Android auto switches remain ON. Re-read latest branch IDs before mutations.
-GitHub creation/push and clean-checkout validation are still outstanding.
+1. Public `boox-local-connectors`: reviewed authored source, tests, synthetic
+   fixtures, dependency pins, automated setup/diagnostics and end-to-end guides.
+2. Private `boox-private-archive`: complete original project files, including
+   ignored files, firmware, downloaded tools, build outputs, keys, configuration,
+   notebook evidence and backups, with checksummed restoration instructions.
 
-Do not conflate transport verification with native application verification,
-overwrite concurrent edits, or claim full renderer/content parity from pen tests.
-Do not restore old whole-library snapshots over newer edits. OAuth grants remain
-app-owned; secret configuration/signing keys stay in private local storage.
+Final tasks are exact publication-set review, public push/remote-clone checks,
+and complete private archive upload/verification. Keep private storage separate
+from the public repository. Preserve the original working directory.
 
-## Current continuation gate
-
-Source implementation and clean local checkout builds pass, including Mac v0.6
-ancestor handling and generic OAuth binding. Actual v0.5 own-grant UI pen and
-notebook lifecycle round trips passed. The rebuilt v0.6 app is awaiting user
-authorization in macOS Keychain; SecurityAgent is blocked to computer-use tools.
-After that, finish the nested-note live check, update acceptance, and publish the
-private repo from the cleaned sibling source directory. No GitHub push yet.
+Do not overwrite concurrent edits or restore an old whole-library snapshot over
+newer data. OAuth grants remain app-owned. The private archive is a backup;
+restoration does not authorize copying a grant between different clients.

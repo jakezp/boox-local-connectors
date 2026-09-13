@@ -6,13 +6,13 @@
 
 Current overall state: [HANDOVER.md](HANDOVER.md). Root is complete; Magisk was later found to be30.7. Vector/Zygisk and a native OpenAI adapter are now installed and tested. The chronology below records the original root work.
 
-Current Notes milestone: **automatic BOOX → Drive → Mac publishing works**.
-Android v0.3 captures native saves with offline/restart recovery; Mac v0.2 polls
-automatically and follows verified descendants while preserving page/zoom.
-30 Android + 60 Mac tests pass. The original three notebooks/182 files are
-unchanged. See [automatic validation](notes-drive/AUTOMATIC-VALIDATION.md).
-Incoming native application, folder/deletion propagation and native ONYX sync
-controls remain unfinished; older “automatic sync off” entries below are history.
+Current Notes milestone (2026-09-13): **bidirectional automatic Drive sync and
+Mac editing passed live validation**. Android v0.4 and Mac v0.6 support native
+incoming edits, folders, moves, recoverable deletion/restoration and explicit
+conflict resolution. Mac pen edits render in stock Notes; native changes
+automatically update the open Mac notebook. The final nested-folder test and
+original-data preservation check passed. See [current validation](docs/VALIDATION.md)
+for tested versions, clean-source builds and remaining product limits.
 
 Latest adapter update (2026-09-12): **v0.9** is installed. ChatGPT subscription
 sign-in works, the account-model dropdown loads automatically, and **GPT-5.6 Luna**

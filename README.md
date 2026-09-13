@@ -1,124 +1,125 @@
 # BOOX local connectors
 
-Firmware-specific BOOX Note Air4C integrations for OpenAI/ChatGPT and Google Drive
-Notes sync, with a native Mac reader/editor and reproducibility tooling.
+OpenAI/ChatGPT integration for the native BOOX AI Assistant and NeoReader, plus
+Google Drive synchronization between native BOOX Notes and a Mac pen editor.
+The Android hooks target **NoteAir4C**, firmware
+`2026-04-28_17-50_4.2-rel_04282_555977efe`, and **Notes versionCode 45326**.
 
-**Current work is still under validation.** The original OpenAI/ChatGPT connector
-is working; the Drive replacement now supports automatic publishing, journaled
-native incoming updates, folders, moves, recoverable deletion/restoration and
-explicit conflict resolution. Final Mac interactive validation and clean-checkout
-reproduction remain unfinished. This workspace has not yet been published to GitHub.
+Start with the [end-to-end setup guide](docs/reproduction/README.md). It covers
+hash-verified dependency acquisition, builds, root prerequisites, guarded APK
+installation, independent account setup and a disposable notebook acceptance
+check. Builds and companion installation have automation; root/flashing,
+AMS/Vector provisioning, backups and account authorization are separate steps.
 
-Start with the [end-to-end reproduction guide](docs/reproduction/README.md). It
-covers the historical root procedure, Magisk AMS fix, Vector, builds, connector
-configuration, native application changes, testing and recovery. It distinguishes
-what was actually tested from steps that still require rehearsal.
+## What works
 
-| Component | Source and guide |
-| --- | --- |
-| Root recovery and firmware boundaries | [Root/recovery guide](docs/reproduction/ROOT-RECOVERY.md) |
-| Recreate the exact historical Magisk patch inputs | [Private boot staging](docs/ROOT-STAGING.md), `tools/prepare_magisk_stage.py` |
-| Firmware-specific Magisk manager fix | `tools/build_ams_fix.py` |
-| OpenAI API key and ChatGPT sign-in | [OpenAI validation](openai-adapter/OAUTH-VALIDATION.md), `openai-adapter/src/` |
-| Native AI/NeoReader integration and footer spacing | [NeoReader validation](openai-adapter/NEOREADER-VALIDATION.md) |
-| Notes Drive Android connector and native hooks | `notes-drive/android/`, [current validation](notes-drive/INCOMING-VALIDATION.md) |
-| Mac Notes reader/editor | [Mac guide](notes-drive/macos/README.md), `notes-drive/macos/Sources/` |
-| Shared immutable revision protocol | [Protocol](notes-drive/PROTOCOL.md) |
-| Setup planning and diagnostics | [Setup CLI](docs/reproduction/SETUP-CLI.md), `tools/boox_doctor.py` |
-| Dependency provenance and authored file inventory | [Source inventory](docs/reproduction/SOURCE-INVENTORY.md) |
-| Active continuation | [Implementation plan](IMPLEMENTATION-PLAN.md), [handover](HANDOVER.md) |
+The native AI integration supports an API connection or the custom ChatGPT
+sign-in route, with retained conversations and NeoReader passage context.
+Notes Drive publishes immutable revisions and applies incoming changes through
+an idle-editor, journaled transaction with semantic readback. It supports pen
+edits, folders, notebook creation/rename/move, recoverable deletion/restoration
+and explicit conflict resolution that preserves every head.
 
-See [the current validation record](docs/VALIDATION.md) for source/build evidence.
+The Mac v0.6 editor uses its own Google authorization. Live nested-notebook
+acceptance passed: GUI draw/undo/redo/save published a revision, BOOX committed
+one pen under the same notebook ID and displayed it in stock Notes, and normal
+native close produced a return revision that the Mac downloaded automatically
+and opened from its library. A subsequent native rename automatically updated
+the already-open Mac document title while retaining page, zoom, one pen and two
+samples, without refresh or reopening. The bundled test notebook also loaded
+in the GUI with two pages and 343 samples. The v0.6 live acceptance gates are complete.
 
-## Validation checkpoint
+Earlier live checks cover pen addition/whole-stroke erasing, notebook and folder
+lifecycle, seven native apply crash checkpoints and Android conflict selection.
+The recorded preservation checkpoint matched all 182 associated original files
+and all fields in three original notebook rows; it describes that checkpoint,
+not the state of later user edits.
 
-Android currently passes 57 unit tests. Live disposable tests have verified
-Mac-generated pen add/erase payloads in the native editor, all seven native
-crash/recovery checkpoints, folder creation/rename/move/delete/restore, notebook
-deletion/restoration and Android conflict selection retaining both branches.
-All 182 original files and every field in the three original notebook rows are
-unchanged. A new Mac-created blank notebook also applied successfully. The native
-library Drive panel and editor Sync action passed live checks.
+## Build and verification
 
-The frozen Mac v0.5 lifecycle checkpoint passed 125 local tests. The current
-Mac v0.6 suite passes 162 checks using generated synthetic notebooks. The Mac now reconnects with its own saved Google grant. A real UI pen edit
-published automatically, applied in BOOX with six strokes intact, opened visibly,
-and returned through a native save to the Mac via automatic following. A new
-notebook created and renamed/moved in the Mac UI also appeared in BOOX. Whole-stroke
-erase, undo/redo, recoverable deletion and restoration passed through the Mac UI
-and native readback. Testing found a Mac decoder issue with ancestor folder
-records in native exports; v0.6 corrects it and preserves those records during
-edits. The source-only checkout builds all five Android APKs and the Mac app, with
-162 Mac checks, 57 Android checks and 115 host checks passing. Live acceptance
-of that rebuilt Mac app is awaiting its macOS Keychain access prompt. Earlier Android-grant
-fixture tests remain separately identified from this own-OAuth round trip.
+A separate source-only Git clone built all five Android APKs and the Mac app,
+using freshly downloaded, hash-verified Android tools, an empty Gradle cache,
+synthetic notebook fixtures and newly generated signing identities. It used the
+host's existing Python, JDK and Xcode installations.
 
-## Supported boundary
+| Suite | Passed |
+| --- | ---: |
+| Android unit tests | 57 |
+| Mac mandatory checks | 162 |
+| Host tools (including archive checks) | 133 |
+| Portable protocol/prototype tests | 19 |
 
-The native adapter is gated to Notes **45326** on the inspected NoteAir4C firmware
-`2026-04-28_17-50_4.2-rel_04282_555977efe`. The AMS framework patch has an exact
-original-JAR hash guard. Other firmware requires analysis and validation.
+One host private-input test and 21 historical prototype cases skip by default.
+The Android dependency verification metadata contains **501 SHA-256 entries
+across 291 components**; a subsequent strict offline build passed.
+[Validation evidence](docs/VALIDATION.md) records the build artifacts and source
+relationship. The pre-publication build/documentation baseline is `3fa9050`.
 
-Current limits include 4 MiB notebook payloads, 200 Android-managed items,
-1,000 Drive objects and 64 MiB per verified catalog refresh. Locked/associated
-notebooks and unsupported metadata remain held for review. Incoming native
-changes wait for editors to close. The Mac synchronizes while running and edits
-pen strokes and library metadata; it does not reproduce every BOOX rendering or
-editing feature. Android may defer work during sleep.
-
-## Working safely and reproducing results
-
-Run the host-only inventory without touching a device:
-
-```sh
-python3 tools/boox_doctor.py
-```
-
-Read the reproduction and setup guides before issuing device commands. An
-already-working device does not need rerooting. Preserve its signing keys,
-app-owned grants, scoped module configuration and current backups.
-
-The original bootloader was already unlocked. The historical root operation
-flashed only boot B on UFS LUN 4. No GPT backup was actually produced despite the
-old tool's success message. Boot images, firmware JARs, private keys, personal
-notebooks and credential-bearing backups are local inputs, not source assets.
-
-The cleanup phase will retain every authored app, script and test, replace private
-test dependencies with reproducible synthetic fixtures, organize generated/private
-evidence separately, scan the exact upload set and verify a fresh checkout.
-Existing backups and investigation evidence must remain intact throughout.
-
-## Build and test from source
-
-On Apple Silicon macOS, install Python 3.10+, JDK 17 and the Xcode command-line
-tools. The [dependency bootstrap](docs/reproduction/PACKAGING.md) retrieves
-hash-pinned Android SDK components and Gradle into a separate directory. Set
-`JAVA_HOME`, `ANDROID_HOME` and `BOOX_GRADLE` if using tools outside the checkout.
+On Apple Silicon macOS, provision Python 3.10+, JDK 17, Xcode command-line tools
+and the [pinned SDK/Gradle dependencies](docs/reproduction/README.md#1-acquire-the-host-tools),
+then run from the checkout:
 
 ```sh
 python3 openai-adapter/build.py
 python3 openai-adapter/tests/build.py
 python3 notes-drive/android/build.py
+python3 notes-drive/probe/build.py
+python3 notes-drive/apply-probe/build.py
 bash notes-drive/macos/build.sh
 bash notes-drive/macos/test.sh
-python3 -m unittest discover -s tools -p 'test_*.py'
-python3 -m unittest discover -s notes-drive/prototype -p 'test_*.py'
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_*.py'
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s notes-drive/prototype -p 'test_*.py'
 ```
 
-Builds generate synthetic notebook assets. New Android signing keys stay local;
-preserve existing keys when updating an installed connector. The Mac build
-contains no Google credentials by default: import your downloaded Desktop client
-JSON in the app and sign in independently. Android's OAuth registration uses
-its package name and the certificate fingerprint printed by its build.
+The instrumentation and two historical probe APKs are verification/research
+artifacts; normal use installs only the OpenAI and Notes Drive companions.
+Existing installations need their original signing keys for compatible updates.
+New builds generate local keys and need matching Google registration. The Mac
+bundle contains no Google configuration by default; import a Desktop client JSON
+through the app and complete its own sign-in.
 
-The prototype suite runs 19 portable tests and explicitly skips 21 historical
-capture-dependent tests unless `BOOX_PRIVATE_WORKSPACE` is supplied. The optional
-Magisk and Mac private-input checks are similarly separate from mandatory tests.
-All historical probe source and builders are retained for investigation.
+## Guides and components
 
-For installation, follow the [end-to-end guide](docs/reproduction/README.md):
-establish the matching rooted firmware, prepare the AMS overlay, install Vector,
-configure the two narrowly scoped connectors, authorize each client, then test a
-disposable notebook. The [setup CLI](docs/reproduction/SETUP-CLI.md) supports
-reviewed companion installation on an already-rooted baseline. Root preparation
-and partition flashing remain separate stages with explicit input verification.
+| Area | Guide |
+| --- | --- |
+| Acquisition, builds and installation | [End-to-end setup](docs/reproduction/README.md) |
+| Reviewed plan, backup receipt and APK apply | [Setup CLI](docs/reproduction/SETUP-CLI.md) |
+| Root, exact firmware inputs and recovery | [Root/recovery](docs/reproduction/ROOT-RECOVERY.md), [host-only Magisk staging](docs/ROOT-STAGING.md) |
+| Native AI and reading context | [OpenAI/ChatGPT](openai-adapter/OAUTH-VALIDATION.md), [NeoReader](openai-adapter/NEOREADER-VALIDATION.md) |
+| Native Notes application and protocol | [Incoming changes](notes-drive/INCOMING-VALIDATION.md), [immutable protocol](notes-drive/PROTOCOL.md) |
+| Mac editor and independent OAuth | [Mac guide](notes-drive/macos/README.md) |
+| Source export and dependency provenance | [Source inventory](docs/reproduction/SOURCE-INVENTORY.md), [packaging](docs/reproduction/PACKAGING.md) |
+| Current limitations | [Acceptance boundaries](docs/reproduction/GAPS.md) |
+
+Run `python3 tools/boox_doctor.py` for a host-only inventory. Device inspection
+requires an explicit `--serial`; existing-root queries also require
+`--root-checks`. The installer checks firmware, Notes, framework, signatures,
+backups and scopes before applying reviewed APKs. Its existing Notes update path
+has live acceptance; first-install and OpenAI wrapper paths have offline tests.
+
+## Scope and distribution
+
+Payloads are limited to 4 MiB per notebook, 200 Android-managed items, 1,000 Drive
+objects and 64 MiB per verified catalog refresh. Native incoming changes wait
+for editors to close. Android sleep can defer work; Mac synchronization runs
+while the app is open. The Mac supports normal pen editing and whole-stroke
+erasing, with bounded library operations; it does not reproduce every BOOX
+content type, pressure brush or page/layer editing feature.
+
+Root support is firmware-specific. The original bootloader was already unlocked;
+host staging reproduces the verified Magisk 30.2 inputs, but no new boot patch or
+flash was performed. The historical GPT command produced no GPT backup files.
+The exact earlier Magisk support-file repair and later 30.7 upgrade sequence
+remain unrecorded. Recovery and OTA boundaries are in the root guide.
+
+The public source is maintained at **`jakezp/boox-local-connectors`**. The owner's
+complete recovery collection is kept separately in **`jakezp/boox-private-archive`**,
+including firmware, project keys, builds, backups and evidence. The private
+repository's snapshot manifest and verification receipts identify the retained
+files and release assets. The public source builds its apps and mandatory tests
+without access to that archive.
+
+See [private archival and restoration](docs/PRIVATE-ARCHIVE.md) for the complete
+snapshot format and [third-party notices](docs/THIRD-PARTY-NOTICES.md) for interface
+attribution. Private runtime inputs and firmware-derived artifacts remain outside
+the public source export.

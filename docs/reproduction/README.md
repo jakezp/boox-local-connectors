@@ -1,455 +1,385 @@
-# BOOX Note Air4C: setup and reproduction record
+# BOOX Note Air4C: end-to-end setup
 
-This guide describes the authored root-support tools, firmware-specific AMS fix,
-Vector hooks, OpenAI/ChatGPT integration, Notes Drive Android app and Mac editor.
-It is a reproducibility guide and evidence map, **not a claim that full Notes sync
-replacement or a clean-machine reinstall has passed**.
+This guide takes a source checkout through dependency acquisition, builds,
+firmware prerequisites, companion installation, account setup and a live
+acceptance check. Run commands from the checkout root. Replace placeholder
+paths and device selectors with your own values; keep generated plans, receipts,
+signing keys and account configuration in private storage.
 
-Historical documentation baseline: **2026-09-12**; latest parent update:
-**2026-09-13**. Android v0.4 now has57 parent-reported checks plus passing native
-crash7, folder lifecycle, notebook deletion/restore, conflict UI with all parents,
-Mac-created blank notebook application, toolbar Drive panel and editor Sync/save
-validation. The completed pre-reinstall preservation snapshot confirmed all three original notebook rows and182
-associated files unchanged. The parent-recorded native snapshot is
-`backups/notes-drive-native-v0.4-20260913/native-after.tar`, SHA-256
-`99f4b4576fcb0dd3350f8e88246bfa334d27816c90c37d346dd9f981870616a9`.
-The archive remains private and was not extracted by this sidecar. These are
-parent-reported results, not device tests rerun by this sidecar.
-The Mac was locked at that checkpoint. The parent's later **own-OAuth UI round
-trip passed**: GUI pen drag/save automatically published to BOOX, native apply
-committed six pens/129 samples with exact IDs and a visible diagonal, and normal
-native close/save automatically followed back to the Mac with page/zoom retained.
-UI notebook creation/rename/move also committed and opened natively. A Mac decoder
-ancestor-row bug found during that follow-up is being fixed; fixed-build
-acceptance remains pending. The parent reports129 mandatory
-synthetic Mac checks plus a separate five-check explicit private-fixture suite.
-These are distinct from the frozen v0.5 app's125-check build/test checkpoint.
-Do not combine those counts into a claim that the frozen app was rebuilt;
-the later interactive result is separate parent-reported evidence.
+## Validated scope
 
-Installer continuation **2026-09-13**: the [staged setup CLI](SETUP-CLI.md) now
-provides offline planning, explicit read-only preflight and guarded companion
-installation on an already-rooted baseline. The AMS builder accepts explicit
-input/output paths and pins the exact supported original JAR internally.
-The parent has now passed the **existing-install NotesDrive** wrapper preflight
-and guarded same-APK apply, including delegated hook verification and final
-signature/hash/scopes. Its original report status is `installed_pending_acceptance`.
-Subsequent parent acceptance passed: Notes opened the new Mac-created blank
-notebook with a visible canvas and closed normally; both latest fixture heads
-were verified in Drive, uploads pending were zero, and both automatic settings
-were on. Evidence is `notes-drive/research/incoming/latest-checkpoint.json`.
-The later Mac own UI/OAuth round trip passed as recorded above. Physical BOOX
-stylus validation is not established by the Mac GUI pen round trip.
-OpenAI wrapper and first-install
-paths are not live-validated; rooting/flashing remain outside the wrapper.
-The stable [setup checkpoint](setup-checkpoint.json) records the tool/helper hashes
-and the offline-validated plan for Notes APK `f15a19bb…`, hook build
-`1b35137b83528a78`. The subsequent NotesDrive-only live plan is
-`2d4531791aadf0796405372e3d2386727ccab53c01fc1a8a44503393b8edcfbf`;
-its evidence is recorded in that checkpoint and [SETUP-CLI.md](SETUP-CLI.md).
-Future reruns still require a current full device-bound backup receipt; the
-native snapshot alone does not supply every required backup role. The parent
-requested one inventory regeneration after these documentation updates, including
-root README/HANDOVER, OpenAI XML-resource coverage and the two named shareable Mac
-test-input JSON files. It is not a final-release snapshot. Final packaging and the
-fresh-clone build await the Mac decoder fix/acceptance and source review;
-parent README/HANDOVER hold the latest
-overall acceptance status.
+The supported device is **NoteAir4C**, Android 13/API 33, firmware
+`2026-04-28_17-50_4.2-rel_04282_555977efe`, active slot `_b`, with native Notes
+**versionCode 45326**. Companion setup requires working root, the exact AMS
+framework overlay and Vector **2.2 / 3080**. Magisk codes **30200** and **30700**
+are accepted by the installer; the recorded root procedure originally used 30.2.
 
-Older v0.3 headings in `HANDOVER.md`, `STATUS.md` and Notes READMEs describe
-historical outbound sync. Their unfinished-feature lists are not authoritative
-for the active v0.4 source. Consult `notes-drive/INCOMING-VALIDATION.md` and the
-parent's final report for subsequent evidence.
+The source-only build checkpoint (`113c0fe`) produced all five Android APKs and
+the Mac app without private notebooks, account configuration or existing signing
+keys. Android 57, Mac 162, host 115 and portable prototype 19 checks passed. The
+pre-publication documentation baseline is `3fa9050`; dependency verification
+records 501 SHA-256 entries across 291 components and a passing strict offline
+Android build. This used an existing Mac toolchain, not a fresh operating-system
+installation. [Build evidence](../VALIDATION.md) records the artifacts.
 
-## Clean-source continuation
+Mac v0.6 live acceptance now includes a nested native notebook: GUI
+draw/undo/redo/save through its own OAuth grant published `dc3b267a8ea4…`, Android
+committed one pen under the same ID, and stock Notes displayed the result.
+Normal native close produced `2cab97843ab9…`, which the Mac automatically
+downloaded and then opened from the library. A subsequent native UI rename
+produced `009b9ae05cad…`; the already-open Mac document automatically adopted the
+new title while retaining page, zoom, one pen and two samples, without refresh
+or reopening. The bundled test notebook loaded through the GUI with two pages
+and 343 samples. All v0.6 live acceptance gates are complete. These abbreviated
+historical evidence IDs are not revision bases for a new test.
 
-A separate local Git clone now builds all five authored Android APKs and the Mac
-app. The SDK and Gradle were freshly downloaded and hash-verified, Gradle used an
-empty cache, and build signing keys were newly generated. No private notebook or
-Google configuration was needed. The existing installed JDK/Xcode/Python were used.
-Mandatory checks passed: Mac 162, Android 57, host 115 and portable prototype 19.
-Final v0.6 interactive acceptance awaits its macOS Keychain prompt; GitHub/remote
-clone remain pending. See [current limits](GAPS.md) for the concise current status.
-
-The new [Magisk staging guide](../ROOT-STAGING.md) closes the host extraction gap:
-15 individually verified assets reproduce the retained environment. The exact
-Magisk 30.2 APK is now obtainable from its verified official release URL. No new
-root/flash or support-directory repair was performed.
-
-## Read first
-
-| File | Purpose |
+| Automated stage | Operator-supplied prerequisites / acceptance |
 | --- | --- |
-| [Historical root and recovery](ROOT-RECOVERY.md) | Exact firmware boundary, boot/JAR hashes, flash/readback evidence, rollback and OTA |
-| [Magisk input staging](../ROOT-STAGING.md) | Recreate the exact 15 verified historical APK assets and boot input without running a patcher |
-| [Acquisition manifest](acquisition.json) | Observed versions, SHA-256 and source URLs; explicit missing provenance |
-| [Source inventory](SOURCE-INVENTORY.md) | What belongs in the source repository, prototypes, exclusions and regeneration |
-| [Packaging and dependency bootstrap](PACKAGING.md) | Dry-run source staging, checked dependency acquisition, build overrides and remaining fixed bindings |
-| [Machine-readable inventory](source-inventory.json) | Per-file paths/hashes for selected authored source at this checkpoint |
-| [Remaining gaps](GAPS.md) | Required inputs and unexecuted reproduction/live checks |
-| [Staged setup CLI](SETUP-CLI.md) | Reviewed-plan/backup/closed-editor contract and explicit installation phases |
-| `notes-drive/PROTOCOL.md` | Immutable revision, parent, folder and tombstone contract |
-| `openai-adapter/OAUTH-VALIDATION.md` | Historical subscription tests and limitations |
-| `notes-drive/macos/README.md` | Mac build, editor behavior and its current limits |
+| Hash-pinned dependency bootstrap and source builds | Installed Python/JDK/Xcode; initial dependency network access |
+| Host-only Magisk input staging and AMS builder | Exact original boot/framework inputs; separate root/recovery procedure |
+| Offline setup plan, read-only preflight, guarded APK apply | Root/AMS/Vector, current backup receipt, closed editors, correct signing identities |
+| App revision queues and verified native application | Each app's own OAuth setup, matching Drive destination, supported notebooks |
 
-Paths below are relative to the workspace root unless they begin with `/` or `~`.
-Run commands after `cd` to your checkout; `BOOX_SERIAL` is your own ADB serial.
-No actual serial, account identity, notebook title, OAuth registration identity or
-private signing key is included in these reproduction documents.
+A clean local clone and an existing NotesDrive update have passed. First-install
+and OpenAI wrapper paths are offline-tested but have no fresh-device live
+acceptance. Root flashing, module provisioning, backups and OAuth are outside
+the companion installer's automation. [GAPS.md](GAPS.md) lists the remaining
+boundaries without requiring the historical handover chronology.
 
-## 1. Establish the supported baseline
+## 1. Acquire the host tools
 
-Historical hardware: **NoteAir4C**, Android 13 / API 33, firmware
-`2026-04-28_17-50_4.2-rel_04282_555977efe`, security patch property `2026-04-01`,
-active `_b`, already-unlocked bootloader. The Notes hook requires
-`com.onyx.android.note` **versionCode 45326**. Vector was **2.2 / 3080 / API 102**.
-Magisk initially **30.2 / 30200**, later observed **30.7** without a deliberately
-recorded upgrade procedure.
+The tested host is Apple Silicon macOS with Python 3.10+, JDK 17 and Xcode
+command-line tools. The Mac app targets macOS 13+ and uses `/usr/bin/python3`
+at runtime. The bootstrap recipes supply macOS Android tools; they are not a
+Linux/Windows SDK installer.
 
-A working existing device does not need rerooting. Use a separate recovery plan
-before changing firmware, boot partitions, signing identities or app data.
-No unlock procedure was performed or validated. A locked bootloader is outside
-the demonstrated path. The original procedure flashed only boot B on UFS LUN 4.
-**No GPT backup exists despite the EDL success messages.**
+Choose an existing private review directory and a **new** dependency directory:
 
-Read-only inventory:
+```sh
+export BOOX_REVIEW='/PRIVATE/REVIEW'
+export BOOX_DEPS='/PRIVATE/NEW-DEPENDENCIES'
+python3 tools/bootstrap_dependencies.py > "$BOOX_REVIEW/dependencies-plan.json"
+```
+
+Review the plan, then materialize exactly those archives:
+
+```sh
+python3 tools/bootstrap_dependencies.py --apply \
+  --destination "$BOOX_DEPS" \
+  --reviewed-plan "$BOOX_REVIEW/dependencies-plan.json"
+export JAVA_HOME="$(/usr/libexec/java_home -v 17)"
+export ANDROID_HOME="$BOOX_DEPS/tools/android-sdk"
+export BOOX_GRADLE="$BOOX_DEPS/tools/gradle-8.11.1/bin/gradle"
+export GRADLE_USER_HOME='/PRIVATE/NEW-GRADLE-CACHE'
+```
+
+Defaults are platform-tools 37.0.1, build-tools 35.0.0, Android platform 35
+revision 2 and Gradle 8.11.1. Every archive is size/hash-checked before extraction.
+The output must not already exist. To reuse retained archives without a download,
+add `--offline --archive-root '/PRIVATE/ARCHIVES'` to the apply command; archive
+paths must match [acquisition.json](acquisition.json). Bootstrap does not accept
+SDK licenses or install JDK/Xcode/Python.
+
+Builders honor the environment above. The companion installer still expects
+workspace-relative SDK/ADB paths. In a fresh checkout where the following two
+paths are absent, expose the verified dependency tree to it:
+
+```sh
+ln -s "$BOOX_DEPS/tools/android-sdk" tools/android-sdk
+ln -s "$BOOX_DEPS/tools/platform-tools" tools/platform-tools
+```
+
+If those paths already exist, retain and verify their tool versions instead.
+The bootstrap includes both standard SDK layout and the historical
+`android-15` build-tools directory used by the installer. That name denotes
+build-tools 35.0.0, not API 15. [PACKAGING.md](PACKAGING.md) documents resolver
+options and export mechanics; its older dated checkpoints are historical.
+
+## 2. Build apps and run portable checks
+
+For an update, supply each companion's existing private `local-signing.p12`
+before building. With no key present, a builder generates a new installation
+identity. Register that identity with Google for a new Notes deployment.
+
+```sh
+python3 openai-adapter/build.py
+python3 openai-adapter/tests/build.py
+python3 notes-drive/android/build.py
+python3 notes-drive/probe/build.py
+python3 notes-drive/apply-probe/build.py
+bash notes-drive/macos/build.sh
+bash notes-drive/macos/test.sh
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_*.py'
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s notes-drive/prototype -p 'test_*.py'
+```
+
+OpenAI production must precede its instrumentation build. The Notes builder
+creates the synthetic fixture assets before Gradle, runs unit tests, builds the
+APK and writes `notes-drive/android/registration.json` with its certificate,
+APK hash and source-derived hook generation. It imports the retained Mac
+synthetic tooling; keep those source files in the checkout.
+
+Normal installation uses these two APKs:
+
+- `openai-adapter/build/boox-openai-setup.apk`
+- `notes-drive/android/app/build/outputs/apk/release/app-release.apk`
+
+The instrumentation APK and both historical probe APKs are built for source
+verification and explicitly selected research tests, not normal installation.
+Building instrumentation does not execute its 48 recorded device checks.
+The default prototype suite skips 21 private-capture cases; one host
+original-input staging case also skips unless explicitly requested. These skips
+do not require copying private data into a source checkout.
+
+After the first successful Notes build has populated the cache, repeat its
+Gradle tasks with strict offline verification while preserving the hook value:
+
+```sh
+BOOX_HOOK_BUILD="$(python3 -c 'import json; print(json.load(open("notes-drive/android/registration.json"))["hook_build"])')"
+"$BOOX_GRADLE" -p notes-drive/android --no-daemon --console=plain \
+  --dependency-verification strict --offline "-PhookBuild=$BOOX_HOOK_BUILD" \
+  testReleaseUnitTest assembleRelease
+```
+
+The checked-in `gradle/verification-metadata.xml` pins the resolved dependency
+artifacts. Offline mode requires the populated cache; it does not acquire missing
+dependencies. Re-run the Python builder before installer planning if an APK was
+changed by a separate build, so registration matches the final APK.
+
+## 3. Establish root, AMS and Vector prerequisites
+
+An already-working supported installation can proceed to inspection. For a
+root reproduction, use [ROOT-RECOVERY.md](ROOT-RECOVERY.md) and
+[ROOT-STAGING.md](../ROOT-STAGING.md). They contain exact firmware/boot/JAR
+hashes, historical flash geometry and evidence boundaries. The bootloader was
+already unlocked; no unlock procedure was tested.
+
+The official Magisk v30.2 download was verified byte-for-byte against the saved
+installed APK. Its pinned recipe, Vector and the loader can be acquired as
+opaque artifacts using a separate plan and new destination:
+
+```sh
+python3 tools/bootstrap_dependencies.py \
+  --select magisk_30_2 --select vector --select edl_loader \
+  > "$BOOX_REVIEW/root-artifacts-plan.json"
+python3 tools/bootstrap_dependencies.py --apply \
+  --select magisk_30_2 --select vector --select edl_loader \
+  --destination '/PRIVATE/NEW-ROOT-ARTIFACTS' \
+  --reviewed-plan "$BOOX_REVIEW/root-artifacts-plan.json"
+python3 tools/prepare_magisk_stage.py \
+  --apk '/PRIVATE/NEW-ROOT-ARTIFACTS/tools/Magisk-v30.2.apk' \
+  --original-boot '/PRIVATE/ORIGINALS/boot_b.img' \
+  --output '/PRIVATE/NEW-MAGISK-STAGE'
+```
+
+Staging verifies both exact originals and 15 APK assets. It produces an inert
+payload, hashes and reviewed device-local patch instructions. Its status is
+`prepared_not_patched`: no new patch or flash was performed. The historical
+patched boot is a comparison target, not a newly verified result. The exact
+missing-support-file repair and later Magisk 30.7 upgrade sequence were not
+recorded. The historical EDL GPT command produced no GPT backup payloads.
+Full recovery and OTA have not been rehearsed.
+
+Build the AMS overlay only from the exact supported original `services.jar`.
+Use a Python environment with the recorded `androguard==4.1.4` and `loguru`
+dependencies; their full transitive acquisition lock remains incomplete:
+
+```sh
+python3 tools/build_ams_fix.py \
+  --source '/PRIVATE/ORIGINALS/services.jar' \
+  --output '/PRIVATE/NEW-OUTPUT/boox-ams-fix.zip' \
+  --patched-jar '/PRIVATE/NEW-OUTPUT/services-patched.jar'
+```
+
+The builder verifies the original hash, the precise DEX change and the exact
+patched JAR hash. Module installation, enabling Zygisk and installing Vector
+are separate device operations described in the root guide. Historical module
+installation used Magisk's `--install-module`; the proposed Zygisk UI route is
+not a replayed installation test. Verify the active framework hash and Vector
+version before companion setup. The AMS overlay must be disabled/removed before
+a firmware update; a new framework requires analysis rather than reuse of the
+old JAR.
+
+Inspect the host and then the explicitly selected device:
 
 ```sh
 python3 tools/boox_doctor.py
-BOOX_SERIAL='<SERIAL>'
+export BOOX_SERIAL='<SERIAL>'
 python3 tools/boox_doctor.py --serial "$BOOX_SERIAL"
 python3 tools/boox_doctor.py --serial "$BOOX_SERIAL" --root-checks
 ```
 
-Only the first command was executed by this documentation sidecar. The other
-commands are reproduction examples for the parent/operator to run later.
-The parent subsequently reported a read-only live doctor run matching
-model/firmware/slot/root/Magisk/modules and both local APK hashes. Its table-form
-scope output revealed a parser false negative; that parser is now corrected and
-offline-tested. The final parent rerun now reports both scopes exact and zero
-query failures. This doctor result is separate from the subsequent successful
-NotesDrive wrapper preflight/apply described above. Live evidence was not changed
-by this sidecar.
-`--root-checks` assumes existing shell authorization in Magisk; omit it when
-root requests must not trigger a prompt. ADB/Magisk may update their own connection
-bookkeeping. The doctor itself issues only read queries, never installations,
-grant changes, preference writes, UI actions, process stops or network/OAuth calls.
+Root queries require existing shell authorization. The doctor reads selected
+metadata and hashes; it does not install, read grants or change app state.
+Its successful exit is an inventory result, not proof of loaded hooks or sync.
 
-Doctor output includes an allowlisted set of model/firmware/slot properties,
-package versions, framework hash, local/installed adapter APK hashes, and optional
-Magisk/module versions and expected Vector scopes. It never reads grants,
-Keychain, private app files, notebooks, private keys, accounts, broad logs or a
-complete property list. Raw command output, exception text and the selected serial
-are not printed. Unknown parsing stays unknown. APK hashes are byte identity,
-**not certificate verification or proof of the hook loaded in a running process**.
-Configured scope does not establish enabled module state. Exit 1 means a query
-failed; exit 0 is an inventory result, not an installation/sync certificate.
+## 4. Register clients and install the companions
 
-## 2. Provision build tools and private inputs
+For Notes Drive, enable the Drive API in your Google project and register an
+Android OAuth client for `local.boox.notesdrive` and the certificate SHA-1 in
+`registration.json`. Configure the consent audience/test users and `drive.file`
+scope. Register a Desktop OAuth client in the same project for the Mac. Existing
+deployments retain their own project, signing identities and app-owned grants.
 
-The acquisition manifest pins observed archives. The parent has now passed a
-fresh network bootstrap of all four default host-tool archives with exact hashes
-and successful extraction; the actual fresh-clone build remains pending.
-Other recorded archives need their own verification. Check each SHA-256 before extracting.
-Do not download firmware, a loader or Magisk from an arbitrary mirror.
-The loader is now an explicit exception to the earlier missing-acquisition
-record: the parent downloaded its pinned bkerler/Loaders raw URL and verified
-the identical SHA-256. Its exact commit/path/blob are recorded in
-[ROOT-RECOVERY.md](ROOT-RECOVERY.md) and [acquisition.json](acquisition.json).
-This closes exact-binary reproduction provenance, without identifying the
-original historical loader checkout.
+The installer requires saved/closed Notes, Assistant and NeoReader editors, the
+supported rooted baseline, reviewed APK identities and a current device-bound
+backup receipt. Prepare the receipt using
+[the schema and required roles](SETUP-CLI.md#required-backup-receipt); the example
+receipt is invalid until populated with actual checkpoint hashes and
+attestations. The CLI validates that receipt but does not create backups.
 
-Historical host layout (still used by installer/auxiliary-tool defaults):
-
-```text
-tools/platform-tools/adb
-tools/android-sdk/android-15/{aapt,d8,zipalign,apksigner}
-tools/android-sdk/android-35/android.jar
-tools/android-sdk/build-tools/35.0.0/...
-tools/android-sdk/platforms/android-35/...
-tools/gradle-8.11.1/bin/gradle
-/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home/bin/javac
-```
-
-`android-15` is the historical extraction name for **build-tools 35.0.0**, not
-Android API 15. Both historical flat paths and normal SDK paths are present in the
-working environment. The new [bootstrap CLI](PACKAGING.md) verifies declared
-archives and creates both layouts as ordinary files in a new directory.
-The parent added `tools/android_build_env.py`: main Notes/OpenAI builds now honor
-`JAVA_HOME`, `ANDROID_HOME`/`ANDROID_SDK_ROOT`, `BOOX_ANDROID_BUILD_TOOLS` and
-`BOOX_GRADLE`. See PACKAGING for exact precedence and legacy fallbacks.
-Probe/instrumentation/preflight builders now use the same resolver; native-corpus
-preflight also honors `GRADLE_USER_HOME`. The frozen doctor's host report retains
-its historical JDK path.
-The acquisition manifest records current host metadata:
-Oracle JDK17.0.16 (`17.0.16+12-LTS-247`), Xcode26.4.1 and Swift6.3.1. Original
-download URLs/archive hashes and the original historical compiler version remain
-unproven; current installed metadata is not a retained acquisition receipt.
-
-Android compilation targets Java 8 bytecode. The manual OpenAI/probe builders use
-API 35 libraries and D8 minimum API 26; Notes uses minSdk 28, target/compile 35.
-Notes dependencies: Gradle **8.11.1**, AGP **8.9.2**,
-`com.google.android.gms:play-services-auth:22.0.0`, `junit:junit:4.13.2`,
-`org.json:json:20240303`. Google/Maven Central/plugin repositories are configured
-in `notes-drive/android/settings.gradle`. A clean dependency download and full
-transitive lock verification have not been executed here.
-
-The Mac build requires Apple Silicon, macOS 13+, Apple command-line developer
-tools providing `xcrun swiftc`, and working **`/usr/bin/python3`** at runtime.
-It compiles with Swift language mode 5 and target `arm64-apple-macosx13.0`,
-using SwiftUI, AppKit, Security, Network, CryptoKit and LocalAuthentication.
-It creates an ad-hoc signed app; it is not notarized distribution.
-
-Private inputs must be supplied locally:
-
-1. Original matching boot/framework backups and compatible loader, if root repair
-   is needed. They are not repository assets. See ROOT-RECOVERY.
-2. Existing `openai-adapter/local-signing.p12` and
-   `notes-drive/android/local-signing.p12` for compatible updates. Never put them
-   in Git. Builders generate a new key when absent; that is a new installation
-   identity, not a compatible update. The hard-coded local build password is not
-   protection for distributing the private key.
-3. For a new Notes installation, register its exact package
-   `local.boox.notesdrive` plus newly built certificate SHA-1 with Google.
-   Existing installations must preserve their original key/registration.
-4. A Desktop OAuth client JSON for the Mac's **own** grant, at
-   `notes-drive/macos/config/oauth-desktop.json` or
-   `notes-drive/desktop-oauth.local.json`. Never extract another app's tokens.
-5. Historical private fixture suites used reviewed disposable exports such as
-   `Target-after.note` and `B2.note`. Parent/Mac owners are replacing mandatory
-   build/test dependencies with synthetic generation. Verify those replacements
-   in a fresh source export; do not distribute old native exports to fill the gap.
-
-The current Mac build defaults to synthetic notebook resources without OAuth
-configuration. Private configuration is included only through explicit
-`--oauth-config FILE`; no prior bundle is inherited. Keep any configured bundle
-private; source-only exports never include bundles.
-
-## 3. Root, AMS repair and Vector
-
-Follow [ROOT-RECOVERY.md](ROOT-RECOVERY.md), including input verification and the
-distinction between saved historical evidence and reconstructed commands.
-Do not run an EDL write just to test a normally booting tablet.
-
-The AMS module must be built from the exact original `services.jar`, never a
-generic replacement. Its installer checks `NoteAir4C` and the supplied original
-JAR hash. The parameterized builder now checks the exact known original SHA-256
-before importing its DEX dependencies, retains explicit instruction/DEX/JAR
-proofs, and requires the exact historical patched JAR hash before writing new
-outputs. It refuses to overwrite existing files. See ROOT-RECOVERY for its CLI.
-
-After working Magisk, the historical Vector installer was
-`tools/vector.zip`, v2.2 release. Installation and Zygisk changes are operator
-actions, not doctor functions. Historical module installation used
-`/debug_ramdisk/magisk --install-module`; Zygisk was enabled via Magisk SQLite.
-The exact SQL invocation is not retained here. Reproduction should use the
-Magisk application's explicit Zygisk setting and reboot, then verify actual
-Vector status; that UI route is proposed, not replayed by this sidecar.
-
-## 4. Build and configure the AI integration
-
-For reviewed installation use [SETUP-CLI.md](SETUP-CLI.md). The direct commands
-below preserve the historical build/scope procedure for reference.
+For the live-validated **existing NotesDrive update** route:
 
 ```sh
-python3 openai-adapter/build.py
-tools/platform-tools/adb -s "$BOOX_SERIAL" install --no-incremental -r \
-  openai-adapter/build/boox-openai-setup.apk
+python3 tools/boox_setup.py --install notesdrive \
+  --write-plan "$BOOX_REVIEW/notes-plan.json"
 ```
 
-These are source-derived reproduction commands; the original build/install path
-has historical evidence, but was not rerun here. Preserve the signing key and
-private app state. Source package is `local.boox.openai`; its Xposed init entry
-is `local.boox.openai.NativeHook`. Headers in `stubs/` are compile-only.
-
-Set only these scopes and enable the module:
+Review the plan and supply a current receipt, then run preflight and apply:
 
 ```sh
-tools/platform-tools/adb -s "$BOOX_SERIAL" shell \
-  '/debug_ramdisk/su -c "/data/adb/modules/zygisk_vector/cli scope set local.boox.openai com.onyx.aiassistant/0 com.onyx.kreader/0"'
-tools/platform-tools/adb -s "$BOOX_SERIAL" shell \
-  '/debug_ramdisk/su -c "/data/adb/modules/zygisk_vector/cli modules enable local.boox.openai"'
+python3 tools/boox_setup.py --install notesdrive --preflight \
+  --serial "$BOOX_SERIAL" --editors-closed \
+  --reviewed-plan "$BOOX_REVIEW/notes-plan.json" \
+  --backups '/PRIVATE/BACKUP/receipt.json'
+python3 tools/boox_setup.py --install notesdrive --apply \
+  --serial "$BOOX_SERIAL" --editors-closed \
+  --reviewed-plan "$BOOX_REVIEW/notes-plan.json" \
+  --backups '/PRIVATE/BACKUP/receipt.json' \
+  --report "$BOOX_REVIEW/notes-apply.json"
 ```
 
-After saving native work, restart both Assistant and NeoReader so they load the
-new hook. Do not scope this module to `system_server` or ksync. The original
-system APKs remain in place. Enable/unfreeze the companion through the BOOX
-launcher if installation auto-freezes it.
+Each plan/report output must be new. Apply rechecks firmware, signatures, scopes,
+backups and inputs, delegates Notes hook refresh to the guarded installer, and
+verifies the actual current Notes process loaded the expected hook generation.
+Its final status is `installed_pending_acceptance`; account setup and the sync
+check below establish application readiness separately.
 
-Open **BOOX OpenAI Setup** and privately configure one connection:
-
-- **OpenAI API:** enter your own API key and model, save, run the explicit
-  connection test, then activate that mode. Source calls
-  `https://api.openai.com/v1/responses`, disables redirects and sends `store:false`.
-  The app's UI describes separate API billing.
-- **ChatGPT:** choose that configuration tab, initiate sign-in, copy the code,
-  complete the official page yourself, return, refresh/select an available model,
-  run the connection test and activate the mode. The source's sign-in page is
-  `https://auth.openai.com/codex/device`. Its subscription transport uses
-  `https://chatgpt.com/backend-api/codex`; this is the custom integration's
-  historical behavior, not a guarantee of a stable public third-party API.
-  Account eligibility and the currently returned model catalog must be checked
-  in the user's own session. Do not hard-code historical account model lists.
-
-API and OAuth secrets stay in the companion's encrypted, Keystore-backed state.
-Do not collect codes, tokens, typed setup dumps or refresh grants. A private-data
-backup alone does not export Android Keystore keys.
-
-Historical v0.9/code9 has 48 recorded regression checks and live Setup,
-full-screen Assistant and NeoReader contextual follow-up evidence. Earlier API
-transport also exercised floating UI, Stop/recovery and regeneration; those were
-not all repeated live for the subscription transport. Verify both native surfaces
-with disposable text and a follow-up before describing a new installation as ready.
-
-## 5. Build and connect Notes Drive Android
+For a **first installation of both companions**, generate a different plan:
 
 ```sh
-python3 notes-drive/android/build.py
+python3 tools/boox_setup.py \
+  --install notesdrive --first-install notesdrive \
+  --install openai --first-install openai \
+  --write-plan "$BOOX_REVIEW/first-install-plan.json"
 ```
 
-The builder runs release JVM tests, assembles/signs the APK and writes
-`notes-drive/android/registration.json` with APK SHA-256, signing certificate SHA-1
-and the Java-source-derived `hook_build`. It also copies the disposable fixture
-into assets and writes local SDK configuration. Preserve the generated registration
-for your installation privately.
+Use those same four component flags in the preflight/apply templates above,
+select that first-install plan, supply the matching backup roles, and add
+`--registration-confirmed` to both live phases. The first-install route requires
+both packages/modules to be absent. For an OpenAI update, select
+`--install openai` without its first-install flag and provide its update backup
+roles. First-install, OpenAI-only and combined wrapper routes have offline
+validation, not live installer acceptance.
 
-Register/confirm a Google project with Drive API enabled, an Android OAuth client
-matching that package/certificate, correct consent branding/audience/test-user
-configuration, and sole Drive scope `https://www.googleapis.com/auth/drive.file`.
-The existing deployment already has its own project; reuse its local registration
-instead of creating a duplicate. A fresh operator creates their own registration.
-No identities from the existing project are reproduced here.
+The intended scopes are fixed:
 
-For an initial install, install the APK first, then explicitly set the scope and
-enable the module:
+| Companion | Native scope |
+| --- | --- |
+| `local.boox.openai` | `com.onyx.aiassistant/0`, `com.onyx.kreader/0` |
+| `local.boox.notesdrive` | `com.onyx.android.note/0` |
+
+The wrapper sets scopes only for explicit first installs. Updates require the
+existing scopes to match. It does not provision root, AMS/Vector, backups, Google
+registration or credentials. See [SETUP-CLI.md](SETUP-CLI.md) for exact guards,
+receipt requirements and partial-failure handling. Preserve queued changes and
+later native edits during recovery; old whole-library snapshots are historical
+checkpoints, not automatic rollback targets.
+
+## 5. Authorize and configure each app
+
+Open **BOOX OpenAI Setup**, unfreezing it in the BOOX launcher if needed. Configure
+an API key/model or complete the custom ChatGPT device-code sign-in in your own
+browser session, then select a returned model, test the connection and activate
+that mode. The ChatGPT transport is a custom integration with version-dependent
+behavior; historical model lists are not configuration defaults. API keys and
+grants stay in the app's Keystore-backed state. A private app-data backup alone
+does not export Android Keystore keys.
+
+Test a disposable question and follow-up in the native Assistant, then selected
+passage context in NeoReader. [OAuth validation](../../openai-adapter/OAUTH-VALIDATION.md)
+and [NeoReader validation](../../openai-adapter/NEOREADER-VALIDATION.md) describe
+the recorded transport/surface coverage. Installation of the OpenAI APK alone
+does not prove a newly loaded hook in both processes.
+
+Open **BOOX Notes Drive**, complete Google Play services authorization and
+create/select its managed folder. Enable automatic publishing/following as
+appropriate. Run its disposable transport check before a notebook acceptance
+check. For private corpus compatibility review, the optional offline command is:
 
 ```sh
-tools/platform-tools/adb -s "$BOOX_SERIAL" install -r \
-  notes-drive/android/app/build/outputs/apk/release/app-release.apk
-tools/platform-tools/adb -s "$BOOX_SERIAL" shell \
-  '/debug_ramdisk/su -c "/data/adb/modules/zygisk_vector/cli scope set local.boox.notesdrive com.onyx.android.note/0"'
-tools/platform-tools/adb -s "$BOOX_SERIAL" shell \
-  '/debug_ramdisk/su -c "/data/adb/modules/zygisk_vector/cli modules enable local.boox.notesdrive"'
+python3 notes-drive/tests/preflight_native_corpus.py '/PRIVATE/EXPORT/notebook.note'
 ```
 
-Initial install/registration on a clean device is not end-to-end revalidated.
-For subsequent updates, close/save **every** native editor before the guarded
-installer:
+This consumes the selected private export and the pinned `org.json` dependency
+from the build cache; it is not a mandatory build or a device test.
+
+Launch the Mac app:
 
 ```sh
-python3 tools/install_notes_drive.py --serial "$BOOX_SERIAL" --notes-closed
+open 'notes-drive/macos/build/BOOX Notes Reader.app'
 ```
 
-The broader staged wrapper in [SETUP-CLI.md](SETUP-CLI.md) adds exact
-device/signing/backup guards around an unchanged, private staged copy of this
-helper. Prefer that wrapper for reproducible reviewed deployment.
+Import the downloaded Desktop OAuth client JSON through the app, complete its
+own browser sign-in and allow any local Keychain access prompt. Select the same
+managed Drive destination by its identity, not just its display name. Each app
+uses its own normal grant. Builds omit Google configuration by default; a
+configured bundle remains a private runtime artifact.
 
-This installer is **mutating**, unlike the doctor. It verifies Notes45326, stops
-the closed Notes process, separates Vector disable/enable to permit cache rebuild,
-installs and checks APK bytes, launches the library/setup, then requires the expected
-hook-build marker from the current Notes PID. It does not set scopes itself.
-`--notes-closed` is an operator assertion; never use it to bypass unsaved work.
-Same-version APK installation alone previously left stale hooks loaded.
+Open a verified library head, draw with Pen or use whole-stroke erasing on a
+supported layer, then choose **Save to library**. Drafts and queued snapshots
+are durable; revisions retain parent relationships and conflicts preserve all
+heads. [The Mac guide](../../notes-drive/macos/README.md) covers supported editing,
+folder/notebook operations, queue recovery and renderer limitations.
 
-Launch the connector, connect through Google Play services, and create/select its
-managed folder. Use the registered Android and Desktop clients in the same project
-and independently authorize each client. Match the selected destination by exact
-identity in the private app session, not merely the display name; earlier work
-created more than one similarly named folder. Unfreeze the connector persistently
-through the BOOX launcher.
+## 6. Accept the installed workflow
 
-Run the explicit disposable Drive round-trip test. Before enabling native apply on
-new content, run strict preflight against private exports and review unsupported
-features:
+Use a clearly named disposable notebook, with all participating apps connected
+to the same intended destination:
+
+1. Record the installed companion identity and actual loaded Notes hook.
+2. Save/close the notebook in BOOX and open its current verified head on the Mac.
+3. Draw, undo/redo and save in the Mac UI using its own grant. Confirm Drive
+   publication, native same-ID commit/readback and visible stock Notes opening.
+4. Close/save in native Notes. Confirm the Android return revision reaches the
+   Mac and opens correctly. Test automatic replacement of an already-open Mac
+   document separately from automatic download plus a library open.
+5. Exercise the supported lifecycle operations needed for your deployment and
+   retain revision/queue evidence for interruptions or conflicts.
+
+The v0.6 nested-notebook round trip passed steps 2–4, including automatic
+return download and a library open, followed by a separate native rename that
+updated the already-open Mac document without refresh or reopening. The bundled
+fixture GUI check also passed. Earlier live validation covers add/erase,
+notebook/folder lifecycle, all seven native crash checkpoints and Android
+conflict selection with both heads retained. Long-term renewal, large-library
+scale and complete rendering parity remain separate boundaries. Physical BOOX stylus entry on a freshly Mac-created blank
+has not been established by the Mac mouse-drawn pen test.
+
+## 7. Source export and repository status
+
+The intended public repository is `jakezp/boox-local-connectors`. Its content is
+reviewed authored source, documentation, synthetic fixtures and dependency
+verification metadata. Planned `jakezp/boox-private-archive` holds the complete
+private workspace archive, including firmware, keys, notebooks, backups and
+historical evidence. Neither GitHub repository has been created or published at
+this checkpoint; a clone from the published remote has therefore not been
+verified. The source-only local clone/build has passed independently.
+
+The public build does not require access to the private archive. Existing-device
+updates and root repair still need the matching private signing/firmware inputs.
+Private archive completeness and publication are separately verified operations;
+no complete archive is claimed here.
+
+For public source review, use the [source inventory](SOURCE-INVENTORY.md) and
+[packaging CLI](PACKAGING.md):
 
 ```sh
-python3 notes-drive/tests/preflight_native_corpus.py /PRIVATE/PATH/notebook.note
+python3 docs/reproduction/inventory_sources.py
+python3 tools/package_source.py
 ```
 
-This preflight is offline but consumes private notebook content; keep its output
-private. It needs the pinned `org.json` JAR resolved by the Android build. It is
-not the doctor and should not be run on personal data during repository packaging.
-
-## 6. Build and independently connect the Mac editor
-
-```sh
-bash notes-drive/macos/test.sh
-bash notes-drive/macos/build.sh
-open "notes-drive/macos/build/BOOX Notes Reader.app"
-```
-
-These are reproduction instructions, not actions performed by this sidecar.
-`build.sh` preserves the prior app bundle and does not restart the running app.
-Save any drafts, then restart deliberately to use the new build.
-
-Configure the matching Desktop OAuth client locally; complete the Mac's own
-browser consent. Its refresh token belongs in its own Keychain item. Do not
-copy Android grants or desktop-connector credentials. If the Mac is locked or
-Keychain requires interaction, unlock/reconnect normally; successful encoding
-or an Android-grant publication is not a substitute.
-
-Select the managed Drive folder and open a verified current head. Draw with Pen
-or use whole-stroke erasing on a supported visible/unlocked layer, then save to
-the library. Drafts and queued snapshots are durable; conflicts retain parents
-and both heads. The Mac's preview uses recorded pen coordinates and nominal
-width/color; it does not reproduce BOOX's full brush/pressure renderer.
-Consult the Mac README for current folder/notebook operations and limits.
-
-Supplemental `--validate-probe-publish` in the Mac app is an explicit disposable
-probe transport path, not interactive editor validation. Read
-`notes-drive/macos/PROBE-CLI.md` before use. Do not claim that a publication through
-the Android app's grant proves the Mac's independent OAuth path.
-
-## 7. Acceptance and regression checks
-
-Run the applicable local suites after build inputs are supplied:
-
-```sh
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_*.py'
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover \
-  -s notes-drive/prototype -p 'test_*.py'
-python3 notes-drive/android/build.py
-bash notes-drive/macos/test.sh
-python3 openai-adapter/tests/build.py
-```
-
-The last command builds the isolated Android instrumentation app; it does not run
-the 48 device checks. Follow `openai-adapter/VALIDATION.md` and
-`OAUTH-VALIDATION.md` for runner targets and fixture constraints. Prototype tests
-are historical research, not the production native-apply verifier.
-Device publishers, crash injectors and apply probes are mutating validation tools;
-never include them in a generic unattended doctor or run all scripts indiscriminately.
-
-Full replacement acceptance still needs a current recorded sequence:
-
-1. Verify the installed APK and actual loaded hook generation.
-2. Save a disposable native notebook, reach the Mac, edit from its current verified
-   head using the interactive Mac app, publish with its own grant, and reopen the
-   same-ID descendant in BOOX with semantic readback.
-3. Repeat after offline saves and app/device restarts, verifying exact queued bytes
-   and ancestry; exercise concurrent edits without losing either head.
-4. Exercise supported folders, rename/move, notebook/folder deletion and restore,
-   routed native sync controls, open-editor exclusion and recoverable failures.
-5. Confirm originals against the correct pre-change checkpoint, not a stale older
-   library snapshot. Do not restore historical archives wholesale over newer work.
-
-Historical outbound sync, staged Mac interoperation and native add/erase commits
-are separate passed milestones. They do not certify every notebook type,
-background lifetime, long-term grant renewal or an OTA.
-
-## 8. Package the source only after final validation
-
-Use [SOURCE-INVENTORY.md](SOURCE-INVENTORY.md) as the allowlist basis. This sidecar
-does not create/push Git repositories, move files, remove evidence or alter the
-root README. A private repository still must exclude credentials, keys, firmware,
-decompiled proprietary apps and personal notebooks/backups.
-
-The new [packaging CLI](PACKAGING.md) provides a deterministic dry-run manifest
-and an explicitly reviewed local tar export. A plan with privacy, path or digest
-findings blocks export. No real source tar or dependency installation was created
-by this sidecar during this continuation.
-
-Before final packaging regenerate the source inventory after parent/Mac edits,
-sanitize legacy narrative files and test fixtures, and execute a clean-checkout
-build using the documented inputs. Preserve private backups separately.
-No claim of a completed GitHub publication is made here.
+Regenerate the inventory after final source/documentation edits, review the exact
+allowlisted bytes and use the packaging tool's reviewed-plan export flow. The
+public export excludes private runtime inputs and generated/acquired artifacts.
+Preserve the original private workspace when preparing either repository.

@@ -23,6 +23,19 @@ The native app lives entirely in `notes-drive/macos/`.
 App output: `build/BOOX Notes Reader.app`.
 Validation entry point: `test.sh`.
 
+Version 0.6 parent live acceptance now confirms authenticated nested-notebook
+draw/undo/redo/save, own-OAuth publication, exact-branch Android **COMMITTED**
+readback and a visible pen in stock Notes. After normal native close, the Mac
+automatically fetched the verified one-pen/two-sample return and the parent
+opened it explicitly from the library. A separate native rename/normal-close
+test then updated the already-open Mac notebook without refresh or reopen,
+preserving page and zoom. Bundled-fixture GUI opening also passed with two pages,
+343 samples and the expected synthetic payload hash. All planned version 0.6
+Mac acceptance checks pass; no Mac acceptance blocker remains.
+The parent also reports 162 clean-clone checks passing. Exact private identities
+and hashes remain in `notes-drive/research/incoming/mac-v06-nested-ui`; see
+`PORTABLE-RUNTIME-VALIDATION.json` for the public acceptance summary.
+
 ## Shareable test-data preparation
 
 The frozen 0.5 app and native-create fixture remain unchanged; see

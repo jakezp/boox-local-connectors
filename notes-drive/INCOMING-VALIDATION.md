@@ -1,7 +1,15 @@
-# Native incoming sync validation — in progress
+# Native incoming sync validation
 
-This continuation implements automatic ONYX Notes replacement and Mac editing.
-It is not yet a completed release or verified replacement for all BOOX content.
+**Current checkpoint, 2026-09-13:** core bidirectional sync and Mac v0.6 nested
+editing passed live validation. Native Sync controls, folder lifecycle, conflicts,
+recoverable deletion/restoration, seven crash checkpoints and original-data
+preservation passed. Clean-source builds require no personal notebook files.
+See [current validation](../docs/VALIDATION.md) for the final versions and evidence.
+This is a bounded Notes integration, not full BOOX content/renderer parity.
+
+The sections below retain the chronological investigation, including earlier
+locked-Mac and incomplete-implementation checkpoints. Their pending statements
+are historical.
 
 ## Implementation
 

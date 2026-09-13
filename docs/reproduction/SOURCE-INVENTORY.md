@@ -147,11 +147,12 @@ their synthetic status.
 The acquisition manifest separately records downloaded tools and historical
 firmware-derived inputs. They are not authored source. Magisk scripts copied into
 `patch/`/`magisk-env/` and the EDL/JADX trees must not be misclassified as newly
-authored scripts. Compile-only Xposed headers need license/attribution review
-before publication, even though their implementation is excluded from app DEX.
+authored scripts. Compile-only Xposed declarations contain no runtime implementation and are
+excluded from app DEX. Their API attribution and upstream Apache license notice
+are retained in [third-party notices](../THIRD-PARTY-NOTICES.md).
 
-The root source repository currently belongs to the parent's broader workspace;
-do not `git add` that parent wholesale. This sidecar performs no repository
-creation, commit, upload or cleanup. Final packaging must preserve private recovery
-evidence outside the source repository and regenerate this manifest after the
-last source edits.
+The public source repository is prepared as its own Git root, separately from the
+original workspace. Never add the broader parent directory wholesale. The private
+archive preserves the complete project collection, including ignored files and
+recovery material; it uses [separate archive tooling](../PRIVATE-ARCHIVE.md), not
+this public allowlist. Regenerate the source inventory after final edits.

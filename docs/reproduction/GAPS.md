@@ -1,25 +1,56 @@
-# Remaining limits and acceptance work
+# Supported scope and remaining acceptance work
 
-Current checkpoint: 2026-09-13. This distinguishes tested functionality from
-historical evidence and work that has not been demonstrated.
+Checkpoint: **2026-09-13**. The [setup guide](README.md) provides the operational
+sequence. [Validation evidence](../VALIDATION.md) records source/build artifacts;
+the current acceptance boundaries are summarized here.
 
-| Area | Established | Remaining boundary |
-| --- | --- | --- |
-| Core Notes synchronization | Real Mac UI pen add/erase, undo/redo, automatic publication, native same-ID readback and visible opening, automatic BOOX-to-Mac return, notebook creation/rename/move/recoverable deletion/restore; seven native crash checkpoints and Android all-head conflict selection | Final Mac v0.6 interactive nested-export acceptance awaits its macOS Keychain prompt. Its decoder/writer fix passes synthetic tests and actual retained native export checks. |
-| Clean source | All five authored Android APKs and the Mac app built from a separate local Git clone. Freshly downloaded hash-verified SDK/Gradle, empty Gradle cache and new signing identities; no private notebook/configuration inputs | This used the existing Mac's installed JDK/Xcode/Python, not a newly provisioned OS. GitHub creation and a remote clone remain pending final live acceptance. |
-| Mandatory tests | 162 Mac checks, 57 Android unit tests, 115 host checks and 19 portable prototype tests passed | One host and 21 prototype private-input cases intentionally skip by default. Separate historical private suites do not count as portable tests. |
-| Root staging | Exact original boot/APK guards, 15 asset hashes, 28 staging checks including actual offline equality. Official Magisk v30.2 download matches the saved APK | A fresh device patch/flash was not repeated on the working tablet. Original stock firmware inputs and an already-unlocked bootloader are required; no unlock procedure was tested. |
-| Magisk support repair / 30.7 | Historical successful root/UI and later observed 30.7 state | Exact earlier missing-file repair actions and the 30.7 upgrade sequence were not recorded. Do not claim a bit-identical recreation of the current rooted boot. |
-| GPT and boot recovery | Original boot/selected partition images and B-only flash/readback evidence retained | The historical EDL command did not actually write GPT backup files. Full recovery/OTA rehearsal remains untested. |
-| AMS module | Exact original/patched JAR hashes, parameterized builder, bytecode and unchanged-entry checks | New-firmware analysis and a new live module installation were not performed. Disable the firmware-specific module before OTA. |
-| Installer | Existing NotesDrive wrapper preflight/apply passed; later synthetic-asset build installed with current-process hook verification | First-install paths and the OpenAI wrapper were not exercised live. Root, flashing and OAuth remain explicit separate stages. |
-| OAuth | Each client owns its grant; actual Mac and Android publication passed | Long-term expiry/revocation and unattended multi-day operation are not established. A rebuilt ad-hoc-signed Mac app can require Keychain permission. |
-| Scale | Bounded immutable protocol and verified content cache, durable offline queue | 4 MiB notebook payloads, 200 Android items, 1,000 Drive objects, 64 MiB verified catalog and 16 Mac queued saves. Unlimited history/large-library operation is not implemented. |
-| Editing/rendering | Native pen coordinates, nominal ink, whole-stroke erase, IDs and retained opaque data | Mac rich text/media/templates/pressure-brush reproduction, pixel erasing and page/layer topology editing are unsupported. Physical BOOX stylus entry on a freshly Mac-created blank was not proven. |
-| Sync availability | Android save hooks and background jobs; Mac polling while running | Incoming native changes wait until editors close. BOOX sleep may defer work; the Mac does not sync when closed. |
-| Distribution | Reviewed authored source, synthetic fixtures, dependency pins and private staging | Credentials, personal notebooks, firmware/decompilation, installed signing keys and private evidence stay outside Git. Acquisition does not grant redistribution rights. |
+## Established results
 
-Read the newest root README and handover first. Earlier validation documents
-retain historical checkpoints, including superseded locked-Mac and outbound-only
-milestones. Private evidence is retained in the original working directory; it is
-not silently included in the source repository.
+A separate source-only Git clone built all five Android APKs and the Mac app.
+It used freshly downloaded hash-verified SDK/Gradle archives, an empty Gradle
+cache, synthetic notebooks and new local signing identities. Tests passed:
+**57 Android, 162 Mac, 115 host and 19 portable prototype**. One optional host
+private-input case and 21 historical prototype cases skip by default.
+Dependency verification now pins **501 SHA-256 entries across 291 components**;
+the Android tasks passed with strict verification in offline mode. The pre-publication
+documentation baseline is `3fa9050`; detailed build provenance
+identifies the earlier clean-build checkpoint separately.
+
+**Mac v0.6 nested-notebook own-OAuth UI acceptance passed.** Draw/undo/redo/save
+published `dc3b267a8ea4…`; native application committed one pen under the same
+notebook ID, and stock Notes displayed it. Normal native close produced
+`2cab97843ab9…`, which the Mac automatically downloaded and then opened from the
+library. A subsequent native UI rename produced `009b9ae05cad…` and automatically
+updated the already-open Mac document title, retaining page, zoom, one pen and
+two samples without refresh or reopening. The bundled test notebook loaded in
+the GUI with two pages and 343 samples. All v0.6 live acceptance gates are
+complete. Earlier live tests cover add/erase, notebook and folder lifecycle,
+seven native crash checkpoints and conflict selection preserving both heads.
+The recorded original-data preservation checkpoint matched 182 files and all
+fields in three notebook rows.
+
+## Remaining boundaries
+
+| Area | Boundary |
+| --- | --- |
+| Build environment | The clean clone used existing Python/JDK/Xcode installations. Fresh operating-system provisioning was not tested; original host-tool archive provenance and the complete EDL/AMS Python dependency lock remain incomplete. |
+| GitHub distribution | Public `jakezp/boox-local-connectors` contains reviewed reproducible source; private `jakezp/boox-private-archive` retains the recovery collection. The private snapshot manifest and receipts identify exact archive coverage and checksums. |
+| Private archive | The collection includes the original workspace and related clean-build artifacts, including firmware, project keys, notebooks, backups and evidence. POSIX metadata is preserved; ACLs/resource forks and external symlink referents are outside this tar format. Keychain-backed grants require normal sign-in on a restored Mac. |
+| Companion installer | Existing NotesDrive wrapper preflight/apply passed, and the synthetic-asset APK passed current-process hook verification. First-install, OpenAI wrapper and combined wrapper routes have offline tests only. The installer does not create backups, provision root/AMS/Vector, perform OAuth or configure the Mac. |
+| Root staging | Exact original boot/APK guards and 15 asset comparisons passed; all 28 staging tests passed with the optional originals enabled. The official Magisk v30.2 APK download matches the saved installed APK. No new device patch or flash was performed. |
+| Firmware and unlock | The demonstrated root path starts with an already-unlocked NoteAir4C on the exact recorded firmware, active B. Other firmware/devices and bootloader unlocking are outside the validated procedure. |
+| Magisk support repair / 30.7 | Historical successful root/UI and later 30.7 were recorded. The exact earlier missing files/repair commands and later upgrade sequence were not. Staging does not establish bit-identical recreation of the current rooted boot. |
+| GPT, recovery and OTA | Historical B-only flash/readback evidence and selected original partition images exist. The historical EDL command wrote no GPT backup payloads. Full recovery, OTA and root preservation across OTA have not been rehearsed. |
+| AMS overlay | The builder checks exact original/patched JAR hashes and the bytecode change. A new module installation was not repeated, and new firmware needs separate analysis. Disable/remove the firmware-specific overlay before OTA. |
+| OAuth lifetime | Independent Android/Mac authorization and real publication passed. Long-term expiry/revocation and unattended multi-day operation are not established. A rebuilt ad-hoc-signed Mac app may require a local Keychain prompt. |
+| Scale | Limits are 4 MiB per notebook, 200 Android-managed items, 1,000 Drive objects, 64 MiB per verified catalog and 16 Mac queued saves. Unlimited history and large-library operation are not implemented. |
+| Editing and content | Mac normal pen editing, whole-stroke erase, IDs and retained opaque data are supported. Full pressure-brush rendering, rich-text/media/template editing, pixel erasing and page/layer topology editing are unsupported. Locked/associated notebooks and unsupported metadata remain held for review. |
+| Physical stylus | Mac mouse-drawn pen acceptance does not establish physical BOOX stylus entry on a freshly Mac-created blank notebook. |
+| Availability | Native incoming changes wait for editors to close. BOOX sleep can defer work; Mac sync runs while the app is open. |
+
+The preservation result refers to its recorded checkpoint; later user edits need
+current backups. Historical revision hashes are evidence references, not bases
+to reuse for new mutations. Root details are in
+[ROOT-RECOVERY.md](ROOT-RECOVERY.md) and [ROOT-STAGING.md](../ROOT-STAGING.md).
+Earlier dated validation documents retain narrower checkpoints and should be
+read with these current boundaries.

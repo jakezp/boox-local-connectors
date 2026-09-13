@@ -1,0 +1,72 @@
+{
+  "status": "mandatory_synthetic_and_explicit_private_suites_pass",
+  "mandatory_tests": {
+    "generator_provenance": 4,
+    "reader": 29,
+    "pen_writer": 10,
+    "lifecycle_writer": 7,
+    "swift": 79,
+    "total": 129,
+    "skipped": 0
+  },
+  "optional_private_tests": 5,
+  "isolated_source_copy_without_private_shared_archives_evidence_or_config": true,
+  "generator_has_no_filesystem_or_network_input": true,
+  "profile_manifest": {
+    "chunked-20-page.note": {
+      "bytes": 1410930,
+      "sha256": "525fe0017df359f93488b34512f7c398357ee679cbb40ebfb3d26cfc47ef4f4b",
+      "title": "Synthetic chunked twenty-page fixture"
+    },
+    "history-five-pen.note": {
+      "bytes": 7606,
+      "sha256": "e9753bf576d83ee263ef4f4906951d6fc17648c78a12fca099e90990fb86c437",
+      "title": "Synthetic five-pen history fixture"
+    },
+    "proto3-reexport.note": {
+      "bytes": 8164,
+      "sha256": "072fe93880a51ea6be0c637c6f2cb91956d6462e116573ecd1db5ec09b44f74c",
+      "title": "Synthetic five-pen history fixture"
+    },
+    "two-page-variant.note": {
+      "bytes": 12113,
+      "sha256": "8690023e718bdf5f8f61456a66d33e6939a86be3768dcd921d47d7de37aee724",
+      "title": "Synthetic two-page variant"
+    },
+    "two-page.note": {
+      "bytes": 12113,
+      "sha256": "8bfae218c43404b6c60bf0d29ff1c38b16303d285fcfe03fce47a2588410f150",
+      "title": "Synthetic two-page fixture"
+    }
+  },
+  "source_file_sha256": {
+    ".gitignore": "b239b18be512653398bc6b0d6e3f3a9068487818a14e2d03562fcc6f0c73e441",
+    "LIFECYCLE-HANDOFF.md": "d422c800405cefc647137ac6bb4748b407fc6a6052be07db1cce1292694eec29",
+    "SYNTHETIC-TESTS.md": "55e1b4c1674d0b5f5d7247493a4edb8e066e995c34fff597ee477237343de88f",
+    "README.md": "523c7cd10ef400bcf2ab78b8380f4ca872389d6ffbbf9c9093b7cb5b48169e13",
+    "INTEGRATION.md": "9e3f8a02500bfa0e44ce791a8252de86284ab97f1d6606c7d901ce2e30ec5b14",
+    "PROBE-CLI.md": "94d1ec6617467b5723e7d309646ccee01ab8dee19794dc9bc535f0ee5c566295",
+    "test.sh": "d465b313e0d34422afc718514dc970306c97b9f8fcfb276cc6604b9e7a07b786",
+    "Tests/synthetic_fixtures.py": "857aaa7cdeb4eac3c095b5bbb5f71de67bab2afcdd7cc5a89b47c914a43b6ee8",
+    "Tests/synthetic-manifest.json": "1a08ca27f295a7cb4c8544e73ccf08d617fda313b715bb5201a118d6be432352",
+    "Tests/protocol-vectors.json": "a69c6b1e9df5808c2b6a4b59725628594d514c1826d890684485438232d6417c",
+    "Tests/test_synthetic.py": "ffeb6166392871f088236c292d3e1aed65fde5894bd0f9ccf670725cdd95b82f",
+    "Tests/private_corpus.py": "d41756012532b362ad30c14dc30d316434dc9c9966aedbac3c813b5074462c8e",
+    "Tests/test_reader.py": "f35e71ff7e50f1fbe5bf90e70ee074f264a55315d6aa75f8b78f0717ba5e0db8",
+    "Tests/test_editor.py": "cf351d055055d3690472d3640cd370ec69597fd90fe5f3de5fb227f5dd5fdc71",
+    "Tests/test_library.py": "210f1c7ed5d41ba766e2fee8969c94874a5e4d83853a26b339d5c323de2f7c63",
+    "Tests/EditorTests.swift": "8b5987e61a0c5096bb78cccb3a5487ccd88db0783ddfa60665b8da8958bbe658",
+    "Tests/ProbeTests.swift": "730b4db1a16c7b47d18f04bbbe71e5f97011c843051e8670e8d9c9be78b2f453"
+  },
+  "production_sources_resources_and_build_script_unchanged": true,
+  "frozen_lifecycle_executable_sha256": "a6c72cc9e6cc55a1a0615a20722e528f0a4c198243afea8b89b168d8fa262611",
+  "frozen_lifecycle_and_native_create_fixtures_preserved": true,
+  "optional_private_originals_preserved": true,
+  "existing_evidence_not_overwritten": true,
+  "shared_protocol_vectors_byte_identical": true,
+  "shared_files_modified": false,
+  "gui_or_grant_access": false,
+  "cleanup_or_push": false,
+  "remaining_parent_packaging": "build.sh still consumes sibling Target-after/B2 artifacts; separate public packaging decision required",
+  "oauth_cli": "unchanged private-project validation only; no guard weakening"
+}

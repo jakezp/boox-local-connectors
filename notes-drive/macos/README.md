@@ -32,11 +32,27 @@ available through an explicit separate command. See
 [SYNTHETIC-TESTS.md](SYNTHETIC-TESTS.md). Test output now uses fresh ignored
 `.test-runs` directories and preserves existing evidence and frozen bundles.
 
+**Version 0.6 live nested-notebook roundtrip passed (parent report, 2026-09-13).**
+The authenticated Mac opened a native notebook with one ancestor row and no
+pens; GUI draw/undo/redo/save published one pen through its own OAuth grant.
+Android committed the exact branch and displayed the blue diagonal in stock
+Notes. After native close, the Mac automatically fetched the verified return
+(one pen, two samples), which the parent opened from the library. The parent
+also reports 162 checks passing from a clean clone.
+Separate live checks also passed: after a native rename and normal close, the
+already-open Mac notebook updated its title and retained one pen/two samples,
+page and zoom without refresh or reopen. The bundled synthetic fixture opened
+through the GUI with two pages and 343 samples. No planned version 0.6 Mac
+acceptance blocker remains. See
+[PORTABLE-RUNTIME-HANDOFF.md](PORTABLE-RUNTIME-HANDOFF.md) for the confirmed scope
+and private evidence reference.
+
 The focused ancestor-metadata hotfix is documented in
 [NESTED-METADATA-HANDOFF.md](NESTED-METADATA-HANDOFF.md). Native re-exports may
 include folder rows alongside the notebook in `note_info`. The reader selects
 the exact archive-root notebook; pen and metadata edits preserve the folder rows
-and unknown wire bytes. A separate signed checkpoint is ready for parent restart.
+and unknown wire bytes. The retained ancestor-only checkpoint is historical;
+the activated 0.6 candidate includes this fix.
 
 The parent previously ran the frozen 0.4.1 own-OAuth probe CLI while the Mac was locked.
 It failed closed with Keychain `-25293`, saved its isolated request/candidate,
@@ -59,10 +75,9 @@ Swift core/editor/library/folder/CLI checks). The parent reports native add and
 erase both **COMMITTED**, visually reopened correctly, and recovered exact
 component hashes/SQL values after a crash at DOCUMENT_REPLACED. The native
 six-pen re-export also renders in the Mac tests and accepts a subsequent seventh pen.
-Interactive Mac drawing, own-grant publication and folder application remain
-separate live checks.
-**Parent restart required to activate the new build.** This subagent has not
-opened the UI, accessed the grant or altered the running app's state.
+The later 0.5 and 0.6 live results above remain distinct from those earlier
+checks. The parent has now activated 0.6. This subagent has not opened the UI,
+accessed the grant or altered the running app's state.
 
 For the next live notebook edit, refresh the verified catalog and open its
 current head. Historical hashes in evidence are not current-base suggestions.

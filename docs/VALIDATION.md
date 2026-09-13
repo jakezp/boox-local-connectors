@@ -15,6 +15,9 @@ A separate Git clone of source commit `113c0fe` built:
 - Host suite:115 passed, one explicitly optional private-input case skipped.
 - Protocol/prototype suite:19 passed,21 historical private-capture cases skipped.
 
+The final publication candidate also passed all 133 host checks (134 discovered,
+one optional private-input case skipped), including 18 complete-archive tests.
+
 No private `.note` file, OAuth config or signing key was copied to that clone.
 It generated fresh signing identities. Android SDK/Gradle came from freshly
 downloaded hash-verified archives, and Gradle used an empty user cache. The Mac's
@@ -52,13 +55,35 @@ that later user edits cannot exist.
 Testing found repeated ancestor folder records in native notebook exports. Mac
 v0.6 selects the exact archive-root notebook and preserves ancestor/unknown bytes
 through edits. Its162automated checks and retained native export exercises pass.
-The rebuilt app imported the existing Desktop configuration through its UI;
-**its final interactive nested-notebook check awaits the macOS Keychain prompt**.
-The computer-use tool cannot operate macOS SecurityAgent.
+The rebuilt app imported the existing Desktop configuration through its UI and
+reconnected its own grant after the user completed Keychain authorization.
+Its final nested-notebook live test passed:
+
+1. Open the latest BOOX export containing an ancestor folder record.
+2. Draw a pen through the Mac UI, undo, redo and save. Automatic publication
+   produced revision `dc3b267a8ea4ce47ef4606349cc4079ccc26c9ccddff8747d52a6164e5d44921`.
+3. Verify BOOX committed that exact branch under the same notebook ID, retaining
+   the folder and one pen. Native readback SHA-256:
+   `d1fe8bf958136d8f15cce2ac81fa6230a88b81e74abb55bebd5c4bd376f9a918`.
+   Stock Notes visibly rendered the blue diagonal.
+4. Close normally and open the automatically fetched native return in the Mac.
+5. Rename in stock Notes while the notebook remains open in Mac Read mode.
+   The Mac automatically followed revision
+   `009b9ae05cadb61e06d5b58c4c5735f78d962115da7542faee3bff1b9b782099`,
+   showing the new title and retaining the pen, page and zoom without refresh
+   or reopening.
+6. Open the bundled synthetic notebook through the UI: two pages and 343 samples.
+
+The post-validation native snapshot again matched all 182 original associated
+files and every field in the three original notebook rows. Private evidence is
+retained under `notes-drive/research/incoming/mac-v06-nested-ui/`. An initial
+comparison used an incomplete snapshot that omitted shared `.ksync` files;
+the complete snapshot comparison passed and both reports remain available.
 
 The v0.6 executable checkpoint is
 `fc19e074c3dab9f9b19a0a6125c577042cc066f5ddbd3cf4f2a56eb4e6996890`.
-No live acceptance is claimed for that binary until the pending step completes.
+This exact binary passed the live acceptance above. No runtime code changed
+between its build and the final test.
 
 ## Reproduce and interpret
 

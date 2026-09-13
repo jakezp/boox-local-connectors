@@ -23,7 +23,7 @@ Use the frozen bundle recorded in `evidence/probe-cli-build-validation.json`,
 or the standard path below. Help reads no saved state and does not access Keychain:
 
 ```sh
-BOOX_PROBE_EXE='/PATH/TO/boox-local-connectors/notes-drive/macos/build/BOOX Notes Reader.app/Contents/MacOS/BOOXNotesReader'
+BOOX_PROBE_EXE='/PATH/TO/Documents/New project/boox-work/notes-drive/macos/build/BOOX Notes Reader.app/Contents/MacOS/BOOXNotesReader'
 "$BOOX_PROBE_EXE" --validate-probe-help
 ```
 
@@ -36,7 +36,7 @@ The command does not generate, merge or rebase edits.
 "$BOOX_PROBE_EXE" --validate-probe-publish \
   --fixture '/absolute/path/to/reviewed-edited-GDrive-Sync-Probe.note' \
   --expected-base 'REPLACE_WITH_CURRENT_FULL_LOWERCASE_REVISION_SHA256' \
-  --journal-dir '/PATH/TO/boox-local-connectors/notes-drive/macos/evidence/live-own-mac-probe-attempt-01'
+  --journal-dir '/PATH/TO/Documents/New project/boox-work/notes-drive/macos/evidence/live-own-mac-probe-attempt-01'
 ```
 
 The journal directory must **not exist**; its parent must exist. Do not create the
@@ -50,7 +50,7 @@ On an unknown upload result or silent-grant failure, retry the same request:
 ```sh
 "$BOOX_PROBE_EXE" --validate-probe-retry \
   --expected-base 'SAME_FULL_REVISION_SHA256_AS_THE_ORIGINAL_ATTEMPT' \
-  --journal-dir '/PATH/TO/boox-local-connectors/notes-drive/macos/evidence/live-own-mac-probe-attempt-01'
+  --journal-dir '/PATH/TO/Documents/New project/boox-work/notes-drive/macos/evidence/live-own-mac-probe-attempt-01'
 ```
 
 Retry uses the exact saved account, folder, device, payload, revision and parents.

@@ -2,6 +2,36 @@
 
 Updated 2026-09-13. This file is the current state; older investigation notes contain superseded recommendations.
 
+## Latest acceptance and distribution — 2026-09-13
+
+Mac v0.6/build7 has now passed final live acceptance after the user completed
+Keychain authorization. The exact executable remains
+`fc19e074c3dab9f9b19a0a6125c577042cc066f5ddbd3cf4f2a56eb4e6996890`.
+Real GUI drawing/undo/redo in a native nested-folder export produced revision
+`dc3b267a8ea4ce47ef4606349cc4079ccc26c9ccddff8747d52a6164e5d44921`.
+BOOX committed that exact branch with one pen, then stock Notes visibly rendered
+it. Normal native save returned through Drive. A later stock Notes rename
+produced `009b9ae05cadb61e06d5b58c4c5735f78d962115da7542faee3bff1b9b782099`;
+the already-open Mac notebook followed automatically, preserving page and zoom.
+The bundled two-page synthetic fixture also opened through the UI.
+
+Final complete native snapshot: `backups/final-validation-20260913/native-complete.tar`.
+Its receipt identifies each retained archive and the exact installed AMS module.
+All 182 original associated files and every field in the three original notebook
+rows still match the preceding checkpoint. The initial app-only comparison was
+incomplete because shared `.ksync` files were absent; retain that report as history
+and use `final-preservation-complete.json` for the complete successful comparison.
+Live evidence: `notes-drive/research/incoming/mac-v06-nested-ui/`.
+
+User explicitly requested TWO repositories: public reproducible source/setup,
+and a private complete project archive including firmware, keys and credentials.
+Public staging remains `../boox-local-connectors`; final publication host checks
+passed (133 checks plus one optional skip). Private archival tooling has 18
+passing tests. The GitHub source and private archive repositories are created;
+publication receipts are maintained in the private archive index. No new root or firmware flash is required.
+The Keychain block in earlier sections is resolved. Read `docs/VALIDATION.md`
+for current evidence; earlier sections retain chronological investigation notes.
+
 ## Final source-preparation checkpoint — 2026-09-13
 
 Mac v0.6/build7 corrects repeated ancestor metadata and removes personal OAuth
@@ -527,9 +557,9 @@ The latest request to remove disclaimer footers and connect NeoReader's embedded
 AI panel is complete; see the v0.5 update above. Core text validation from v0.3
 is also retained below as historical evidence.
 
-Workspace: `/PATH/TO/USER/Documents/New project`
+Workspace: `/PATH/TO/Documents/New project`
 
-Project: `/PATH/TO/boox-local-connectors`
+Project: `/PATH/TO/Documents/New project/boox-work`
 
 Host: macOS, zsh. Timezone: Africa/Johannesburg.
 
