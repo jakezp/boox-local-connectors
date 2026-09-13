@@ -45,8 +45,8 @@
     {
       "path": "HANDOVER.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 59177,
-      "sha256": "54e4c57ac2e14beaa987388b879f5befb0a02f5fe6b603b2dcf3a1353ee09130",
+      "bytes": 59056,
+      "sha256": "46d3d7256f10027265722296149ca2c642d09afb3efa9424e62d722e7de05e74",
       "publication_review_required": true
     },
     {
@@ -73,8 +73,8 @@
     {
       "path": "docs/PRIVATE-ARCHIVE.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 20476,
-      "sha256": "2338a1546aad7a2b3f5501c94ba80f1d51a242fd15c5f66b2ff88b049673e565",
+      "bytes": 7288,
+      "sha256": "4b50ef2f2deff68285d82e23ff7c376603f170da4a8b47f236ffa0970382e1da",
       "publication_review_required": true
     },
     {
@@ -109,7 +109,7 @@
       "path": "docs/reproduction/GAPS.md",
       "group": "reproduction",
       "bytes": 5784,
-      "sha256": "63b2aa171d92e4a16d5fa948f1f59c62daba6d9521d90da83eebf920a58385d4",
+      "sha256": "7d4c267aec78674cd1804f57485e5181c3d1d2934465ef155a30559e192a7816",
       "publication_review_required": false
     },
     {

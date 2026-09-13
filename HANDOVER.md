@@ -32,7 +32,7 @@ publication receipts are maintained in the private archive index. No new root or
 The Keychain block in earlier sections is resolved. Read `docs/VALIDATION.md`
 for current evidence; earlier sections retain chronological investigation notes.
 
-## Final source-preparation checkpoint — 2026-09-13
+## Historical source-preparation checkpoint — 2026-09-13
 
 Mac v0.6/build7 corrects repeated ancestor metadata and removes personal OAuth
 project/client/folder defaults. Its credential-free candidate is
@@ -51,20 +51,18 @@ as the prior pen round trip. Root staging has27 mandatory +1 actual private-inpu
 test; all15 assets match. Official Magisk v30.2 APK download matches the original.
 No root, framework or partition write was repeated.
 
-**Remaining user action:** the v0.6 app imported the existing Desktop JSON through
-its UI, then Reconnect opened macOS Keychain authorization. SecurityAgent access
-is blocked to computer-use tools. The user must complete that prompt directly.
-The new app remains running; do not extract/reuse tokens or bypass the prompt.
-Then verify nested notebook `38b21fb7a1d34a99936cd84dbe5f29a5` using its CURRENT
-head, add a pen through Mac UI, verify BOOX and return, and finish final acceptance.
-Earlier v0.5 own-OAuth round trips are already verified; don't redo them wholesale.
+**Resolved historical authorization checkpoint:** v0.6 imported the Desktop JSON
+through its UI, and the user completed the macOS Keychain prompt. The nested
+notebook GUI pen test, BOOX readback, native return and automatic Mac following
+subsequently passed, as recorded above. No token extraction or prompt bypass
+was used. Do not repeat these fixture edits merely to resume this project.
 
 Clean source repository is staged separately at `../boox-local-connectors` with
 branch `codex/initial-import`; original evidence/keys remain here. A local source
 clone is `../boox-clean-checkout-20260913`; dependencies are separately in
-`../boox-clean-dependencies-20260913`. GitHub repository creation/push remains
-pending final live acceptance. Authenticated account is available; intended
-private repo name `boox-local-connectors` was unoccupied. Keep current docs,
+`../boox-clean-dependencies-20260913`. At this earlier checkpoint, GitHub publication was pending live acceptance.
+Publication is now complete in public `jakezp/boox-local-connectors` and private
+`jakezp/boox-private-archive`; the current state is recorded at the top. Keep current docs,
 source inventory and exact upload scan synchronized before publishing.
 
 ## Live continuation — 2026-09-13, Mac unlocked

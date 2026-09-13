@@ -9,7 +9,7 @@ the current acceptance boundaries are summarized here.
 A separate source-only Git clone built all five Android APKs and the Mac app.
 It used freshly downloaded hash-verified SDK/Gradle archives, an empty Gradle
 cache, synthetic notebooks and new local signing identities. Tests passed:
-**57 Android, 162 Mac, 115 host and 19 portable prototype**. One optional host
+**57 Android, 162 Mac, 137 host and 19 portable prototype**. One optional host
 private-input case and 21 historical prototype cases skip by default.
 Dependency verification now pins **501 SHA-256 entries across 291 components**;
 the Android tasks passed with strict verification in offline mode. The pre-publication
