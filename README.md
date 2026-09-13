@@ -1,4 +1,4 @@
-# BOOX Local Connectors
+# BOOX AI use OpenAI and Google Drive Cloud Sync
 
 Use your own AI connection inside BOOX's native reading apps, and synchronize
 editable notebooks through Google Drive between a BOOX tablet and a Mac.
