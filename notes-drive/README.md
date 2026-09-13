@@ -1,15 +1,30 @@
-# BOOX Notes Drive exploration and native validation
+# BOOX Notes Drive and Mac editor
 
-## Current: automatic publishing
+Android connector **v0.4** replaces the inspected Notes cloud path with automatic
+Google Drive publishing and journaled incoming application. Mac reader/editor
+**v0.6** is the second client, with its own OAuth grant, pen drawing/whole-stroke
+erasing, durable drafts, notebook/folder management and automatic library updates.
 
-Android v0.3 now captures native Notes saves and publishes to Drive automatically.
-Mac v0.2 reconnects silently, refreshes every 12 seconds while open, and follows
-verified descendants without resetting page/zoom. The real library and an offline
-edit/restart/reconnect round trip are validated. See
-[AUTOMATIC-VALIDATION.md](AUTOMATIC-VALIDATION.md) for evidence and limits.
+Live checks passed Mac UI pen edits → Drive → native BOOX readback/visual opening
+→ native save → automatic Mac following. Creation, rename/move, recoverable
+notebook deletion/restoration, native folder lifecycle, all-head Android conflict
+selection and seven crash checkpoints passed. The v0.6 nested-folder export fix
+passes automated/retained-export tests; its final interactive check awaits the
+rebuilt app's macOS Keychain prompt.
 
-Incoming native application, folders/deletions and native sync-control replacement
-remain unfinished. The earlier preview milestones below are historical.
+A clean source checkout builds all applications without private notebooks or
+Google config. Android 57 and Mac 162 mandatory checks pass. Start with the
+[project README](../README.md), [end-to-end setup](../docs/reproduction/README.md),
+[protocol](PROTOCOL.md), [Android guide](android/README.md),
+[Mac guide](macos/README.md) and [current validation](INCOMING-VALIDATION.md).
+
+Incoming changes wait for editors to close. Mac sync runs while the app is open.
+The adapter is firmware-specific and bounded; [current limits](../docs/reproduction/GAPS.md)
+record scale, renderer and acceptance boundaries. Each client retains its own
+credentials; no ONYX account is required for the configured replacement path.
+
+The milestones below are historical, including their original unfinished-work
+statements. They are retained to explain how the implementation developed.
 
 ## Earlier milestones
 

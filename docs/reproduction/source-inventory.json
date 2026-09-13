@@ -13,11 +13,11 @@
   "counts": {
     "host_tools": 18,
     "ai_android": 26,
-    "notes_android": 37,
+    "notes_android": 38,
     "notes_macos": 42,
     "historical_probes": 9,
     "prototype_and_validation": 20,
-    "legacy_documentation_review_required": 34,
+    "legacy_documentation_review_required": 36,
     "reproduction": 10
   },
   "files": [
@@ -45,22 +45,22 @@
     {
       "path": "HANDOVER.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 54771,
-      "sha256": "f9163a4eeeb456c340a954c6908c20d4c94a288d2273a28bd5a3f32edbba576a",
+      "bytes": 57096,
+      "sha256": "9b1f4039ded5f08338c6f0de5f22d7c609833e1ac28067f9353c0ebb87631fc6",
       "publication_review_required": true
     },
     {
       "path": "IMPLEMENTATION-PLAN.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 4210,
-      "sha256": "5ebfed3d05f737b71d67b462897bb0f6f4c3745a3a790328c1f132bb72506c11",
+      "bytes": 4714,
+      "sha256": "d08418a126c217182a5020ea654b8a7ef94d352b36aa51d255235473f3b7f28a",
       "publication_review_required": true
     },
     {
       "path": "README.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 7093,
-      "sha256": "f09d12f4790c3f1d78e5c0a53245bd74a5133800ac6eda5e76c6e7433ff861d6",
+      "bytes": 7320,
+      "sha256": "5d51c7d3e093c290b56800d443052452b85036ec367c4281ac7580abe486998b",
       "publication_review_required": true
     },
     {
@@ -73,8 +73,15 @@
     {
       "path": "docs/ROOT-STAGING.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 13387,
-      "sha256": "930b9777a9260194f2a15437c022063918123a986bd8ec635fe400e42e85d880",
+      "bytes": 13610,
+      "sha256": "f488f309e3eb522945556a745ea3a6542294a6480fc1104386af9b280f7e2f8f",
+      "publication_review_required": true
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 3938,
+      "sha256": "828673b487df6a445445fa5c0ca0ac19d8d6fe4657962a0611c8f67302ab5c29",
       "publication_review_required": true
     },
     {
@@ -87,8 +94,8 @@
     {
       "path": "docs/reproduction/GAPS.md",
       "group": "reproduction",
-      "bytes": 10827,
-      "sha256": "bad9c969e79c9e21f252f9c11df4491a1eae4296675b4a322898b8cfbeb8e73f",
+      "bytes": 4303,
+      "sha256": "7d5d36c2690ab99ff88b3bd0996639d90e1deb60ece5642590c19c3578dd776d",
       "publication_review_required": false
     },
     {
@@ -101,8 +108,8 @@
     {
       "path": "docs/reproduction/README.md",
       "group": "reproduction",
-      "bytes": 25188,
-      "sha256": "533b2397c29b09cee9772cf3f5e66ebd92ef677b19f40937245a2eda8b8d3f6b",
+      "bytes": 26092,
+      "sha256": "feb6530223b4a666445ebce89358a0b12f8e43e2fba5119775e9c76f56d544d6",
       "publication_review_required": false
     },
     {
@@ -129,15 +136,15 @@
     {
       "path": "docs/reproduction/acquisition.json",
       "group": "reproduction",
-      "bytes": 14748,
-      "sha256": "ae8a662e5054793a5bbca3d8c9affda774b36b9a603b02960a6d159d32c0e893",
+      "bytes": 15684,
+      "sha256": "c88cf7c77ea62d4a332f35b06c1cb4b1b19915806a35c21a777b8e49d28d6e77",
       "publication_review_required": false
     },
     {
       "path": "docs/reproduction/inventory_sources.py",
       "group": "reproduction",
-      "bytes": 4704,
-      "sha256": "e3e7a7072e4ea72875b24f3c00f832c0f186482a27a419593db81f336e358908",
+      "bytes": 4768,
+      "sha256": "9f14dfd34c85208db3d95c32d8e8d547f885ebb9fc352c5711aef54ab095ecb7",
       "publication_review_required": false
     },
     {
@@ -206,8 +213,8 @@
     {
       "path": "notes-drive/README.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 2840,
-      "sha256": "3b5a5a03c69814816425008e27e00c90b4d27830d4e47103a05e22022944a1a1",
+      "bytes": 3889,
+      "sha256": "cc9da3a11a29424273675f4b83049636ce10e3170c992c649f8db6b723574e0b",
       "publication_review_required": true
     },
     {
@@ -220,8 +227,8 @@
     {
       "path": "notes-drive/android/README.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 9243,
-      "sha256": "3246a95731ba1af0a986ab1c914a4e350fb0dce6d3a3c89b01de410a3bb2371a",
+      "bytes": 10004,
+      "sha256": "59af5eacbe7e7b9e5e5d44005bf616d7846bb8bdc2084fd79c6a0571065cd097",
       "publication_review_required": true
     },
     {
@@ -467,6 +474,13 @@
       "group": "notes_android",
       "bytes": 76,
       "sha256": "67eefa02d084d8fd6e2698683ca4d007a344395ca89eed9012a79bac373ba359",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/gradle/verification-metadata.xml",
+      "group": "notes_android",
+      "bytes": 131114,
+      "sha256": "7258852bbcf23d15a67181c4e99ed16f3ea58ab6627ef152deb8d21fd0240f88",
       "publication_review_required": true
     },
     {
@@ -1079,10 +1093,17 @@
       "publication_review_required": true
     },
     {
+      "path": "openai-adapter/README.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 2745,
+      "sha256": "20cba92deb9af1ca5f18e86dc8f892c58acedd88387e085d550daf473b71be5d",
+      "publication_review_required": true
+    },
+    {
       "path": "openai-adapter/STATUS.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 6103,
-      "sha256": "b1617e443b7e564183961d03f2bd0593d79399f765cf240a33df5f8904eb165d",
+      "bytes": 6892,
+      "sha256": "cf27951ec07eb4e201ce0513297bc484897d72c98bcbd58891d86e006629ff9d",
       "publication_review_required": true
     },
     {
@@ -1319,8 +1340,8 @@
     {
       "path": "tools/package_source.py",
       "group": "host_tools",
-      "bytes": 15381,
-      "sha256": "d5c6f17a260330ff2ab6218564344fda6a5965dfe1bf04ef4a65da991f614e35",
+      "bytes": 15441,
+      "sha256": "e7449a886d9e70582ab357c674934419a138960f180ec9c09e478cae2a508613",
       "publication_review_required": true
     },
     {

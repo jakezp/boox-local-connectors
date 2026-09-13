@@ -1,3 +1,17 @@
+# BOOX OpenAI connector status
+
+Current supported checkpoint: **v0.9**, API key and ChatGPT subscription sign-in,
+model dropdown, native AI Assistant and embedded NeoReader integration. The
+input disclaimer text is invisible while its original spacing is retained;
+reply disclaimers are removed. The user confirmed the working experience.
+Historical live validation includes48 isolated regression checks and real
+subscription replies in Setup, AI Assistant and NeoReader. Current portability
+work rebuilt the connector/test APK without changing the runtime source.
+
+See [README.md](README.md), [OAuth validation](OAUTH-VALIDATION.md) and
+[NeoReader validation](NEOREADER-VALIDATION.md). The records below are historical;
+their pending-sign-in and older-version statements are superseded.
+
 BOOX OpenAI integration status — 2026-09-12
 
 CURRENT: OAuth v0.8 installed; the return-from-browser problem is fixed.

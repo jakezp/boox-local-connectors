@@ -24,8 +24,11 @@ The tool accepts only these two original files:
 | Original boot B | 100663296 | `765d41d770c9fcccb812ebef9ce1eb56f24e799a2be97304c960b5b73f7bf0de` |
 
 These hashes were recomputed from the local originals on 2026-09-13. The APK was
-backed up from the installed application; no identical upstream download
-provenance is established. A similarly named release APK is not a substitute.
+backed up from the installed application. On 2026-09-13 the official Magisk v30.2
+release asset digest and a fresh download both matched this exact SHA-256. The
+`magisk_30_2` entry in [acquisition.json](reproduction/acquisition.json) provides
+the pinned download, also available through the dependency bootstrap. A similarly
+named or different-hash APK is not a substitute.
 There is no hash override, alternate ABI, force option, or already-patched-input
 mode. Keep the originals and generated stage private, outside the source export.
 No APK, boot image, extracted binary or upstream script is redistributed here.

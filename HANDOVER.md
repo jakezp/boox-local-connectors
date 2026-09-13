@@ -2,6 +2,41 @@
 
 Updated 2026-09-13. This file is the current state; older investigation notes contain superseded recommendations.
 
+## Final source-preparation checkpoint — 2026-09-13
+
+Mac v0.6/build7 corrects repeated ancestor metadata and removes personal OAuth
+project/client/folder defaults. Its credential-free candidate is
+`notes-drive/macos/build/portable-runtime-0.6-checkpoint-3221cd0b/BOOX Notes Reader.app`,
+executable SHA `fc19e074c3dab9f9b19a0a6125c577042cc066f5ddbd3cf4f2a56eb4e6996890`.
+Source-only tests:162 Mac;57 Android;115 host (+1 optional skipped);
+19 portable prototype (+21 private skipped). All five Android APKs and the Mac
+app built from a separate local Git clone with newly downloaded SDK/Gradle,
+empty Gradle cache and fresh signing keys. Added Gradle verification metadata:
+501 SHA-256 entries/291 components; strict offline build passed.
+
+Installed Notes APK now `fce3cc2727b64f139796ae4f45d2dab48a4a5c41ce1f2fdf02bd3fb432bf42e6`,
+same hook `1b35137b83528a78`, current-process load verified. Actual GUI erase,
+undo/redo and recoverable notebook delete/restore passed native readback as well
+as the prior pen round trip. Root staging has27 mandatory +1 actual private-input
+test; all15 assets match. Official Magisk v30.2 APK download matches the original.
+No root, framework or partition write was repeated.
+
+**Remaining user action:** the v0.6 app imported the existing Desktop JSON through
+its UI, then Reconnect opened macOS Keychain authorization. SecurityAgent access
+is blocked to computer-use tools. The user must complete that prompt directly.
+The new app remains running; do not extract/reuse tokens or bypass the prompt.
+Then verify nested notebook `38b21fb7a1d34a99936cd84dbe5f29a5` using its CURRENT
+head, add a pen through Mac UI, verify BOOX and return, and finish final acceptance.
+Earlier v0.5 own-OAuth round trips are already verified; don't redo them wholesale.
+
+Clean source repository is staged separately at `../boox-local-connectors` with
+branch `codex/initial-import`; original evidence/keys remain here. A local source
+clone is `../boox-clean-checkout-20260913`; dependencies are separately in
+`../boox-clean-dependencies-20260913`. GitHub repository creation/push remains
+pending final live acceptance. Authenticated account is available; intended
+private repo name `boox-local-connectors` was unoccupied. Keep current docs,
+source inventory and exact upload scan synchronized before publishing.
+
 ## Live continuation — 2026-09-13, Mac unlocked
 
 Mac own-OAuth UI round trip now PASSED. Frozen lifecycle v0.5 app reconnected

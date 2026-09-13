@@ -23,6 +23,7 @@ GROUPS = {
     "notes_android": [
         "notes-drive/android/*.gradle", "notes-drive/android/gradle.properties",
         "notes-drive/android/build.py", "notes-drive/android/app/build.gradle",
+        "notes-drive/android/gradle/verification-metadata.xml",
         "notes-drive/android/app/src/**/*.java",
         "notes-drive/android/app/src/**/*.xml",
         "notes-drive/android/app/src/main/assets/xposed_init",

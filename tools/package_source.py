@@ -65,6 +65,7 @@ EXACT = {
     "notes-drive/android/build.py", "notes-drive/android/gradle.properties",
     "notes-drive/android/build.gradle", "notes-drive/android/settings.gradle",
     "notes-drive/android/app/build.gradle",
+    "notes-drive/android/gradle/verification-metadata.xml",
     "notes-drive/android/xposed-stubs/build.gradle",
     "notes-drive/android/app/src/main/assets/xposed_init",
     "notes-drive/macos/Tests/protocol-vectors.json",

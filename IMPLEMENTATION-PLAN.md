@@ -66,3 +66,12 @@ Do not conflate transport verification with native application verification,
 overwrite concurrent edits, or claim full renderer/content parity from pen tests.
 Do not restore old whole-library snapshots over newer edits. OAuth grants remain
 app-owned; secret configuration/signing keys stay in private local storage.
+
+## Current continuation gate
+
+Source implementation and clean local checkout builds pass, including Mac v0.6
+ancestor handling and generic OAuth binding. Actual v0.5 own-grant UI pen and
+notebook lifecycle round trips passed. The rebuilt v0.6 app is awaiting user
+authorization in macOS Keychain; SecurityAgent is blocked to computer-use tools.
+After that, finish the nested-note live check, update acceptance, and publish the
+private repo from the cleaned sibling source directory. No GitHub push yet.

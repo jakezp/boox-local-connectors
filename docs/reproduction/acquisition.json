@@ -5,7 +5,12 @@
   "parent_network_bootstrap": {
     "date": "2026-09-13",
     "status": "dependencies_materialized_not_executed",
-    "artifacts": ["platform_tools", "android_build_tools", "android_platform", "gradle"],
+    "artifacts": [
+      "platform_tools",
+      "android_build_tools",
+      "android_platform",
+      "gradle"
+    ],
     "exact_sha256_verified": true,
     "extraction_completed": true,
     "private_evidence_filename": "clean-dependencies-bootstrap.json",
@@ -23,7 +28,10 @@
       "required_layout": "tools/platform-tools",
       "bootstrap": {
         "zip_layouts": [
-          {"archive_prefix": "platform-tools/", "destination": "tools/platform-tools"}
+          {
+            "archive_prefix": "platform-tools/",
+            "destination": "tools/platform-tools"
+          }
         ]
       },
       "evidence": "Saved android-repository.xml archive URL/size; installed source.properties"
@@ -38,8 +46,14 @@
       "required_layout": "tools/android-sdk/android-15 AND tools/android-sdk/build-tools/35.0.0",
       "bootstrap": {
         "zip_layouts": [
-          {"archive_prefix": "android-15/", "destination": "tools/android-sdk/android-15"},
-          {"archive_prefix": "android-15/", "destination": "tools/android-sdk/build-tools/35.0.0"}
+          {
+            "archive_prefix": "android-15/",
+            "destination": "tools/android-sdk/android-15"
+          },
+          {
+            "archive_prefix": "android-15/",
+            "destination": "tools/android-sdk/build-tools/35.0.0"
+          }
         ]
       },
       "evidence": "Saved android-repository.xml; historical flat extraction and normal Gradle layout both needed"
@@ -54,8 +68,14 @@
       "required_layout": "tools/android-sdk/android-35 AND tools/android-sdk/platforms/android-35",
       "bootstrap": {
         "zip_layouts": [
-          {"archive_prefix": "android-35/", "destination": "tools/android-sdk/android-35"},
-          {"archive_prefix": "android-35/", "destination": "tools/android-sdk/platforms/android-35"}
+          {
+            "archive_prefix": "android-35/",
+            "destination": "tools/android-sdk/android-35"
+          },
+          {
+            "archive_prefix": "android-35/",
+            "destination": "tools/android-sdk/platforms/android-35"
+          }
         ]
       },
       "evidence": "Saved android-repository.xml archive URL/size; installed source.properties"
@@ -70,7 +90,10 @@
       "required_layout": "tools/gradle-8.11.1",
       "bootstrap": {
         "zip_layouts": [
-          {"archive_prefix": "gradle-8.11.1/", "destination": "tools/gradle-8.11.1"}
+          {
+            "archive_prefix": "gradle-8.11.1/",
+            "destination": "tools/gradle-8.11.1"
+          }
         ]
       },
       "evidence": "Local named archive; upstream versioned distribution URL supplied for reproduction, not a retained download receipt"
@@ -83,7 +106,9 @@
       "sha256": "9ee8323575d615f7b3f1076ff60b2a63a49390ef11881b52632311a37f6f79cc",
       "source_url": "https://github.com/JingMatrix/Vector/releases/download/v2.2/Vector-v2.2-3080-Release.zip",
       "required_layout": "tools/vector.zip",
-      "bootstrap": {"zip_layouts": []},
+      "bootstrap": {
+        "zip_layouts": []
+      },
       "evidence": "Saved vector-release.json includes matching upstream sha256 digest"
     },
     {
@@ -96,7 +121,10 @@
       "required_layout": "tools/jadx",
       "bootstrap": {
         "zip_layouts": [
-          {"archive_prefix": "", "destination": "tools/jadx"}
+          {
+            "archive_prefix": "",
+            "destination": "tools/jadx"
+          }
         ]
       },
       "evidence": "Saved jadx-release.json includes matching upstream sha256 digest"
@@ -109,7 +137,9 @@
       "sha256": "1eadbcd4c5e64d7f7ae6b13f51f548148d53c7163fe960e50840e03daa742e73",
       "source_url": "https://raw.githubusercontent.com/bkerler/Loaders/2fe9ee42e2135c8db5005cb542472eda16d81473/lenovo_motorola/0000000000000000_bdaf51b59ba21d8a_fhprg.bin",
       "required_layout": "tools/noteair4c-loader.bin",
-      "bootstrap": {"zip_layouts": []},
+      "bootstrap": {
+        "zip_layouts": []
+      },
       "evidence": "Parent verified the pinned raw download and exact local SHA-256; notes-drive/research/incoming/loader-provenance.json. This establishes a reproducible source for the identical binary, not the original historical checkout commit.",
       "source_repository": "bkerler/Loaders",
       "source_commit": "2fe9ee42e2135c8db5005cb542472eda16d81473",
@@ -129,6 +159,19 @@
       "source_url": null,
       "required_layout": "patch/boox-ams-fix-noteair4c-4.2.zip",
       "evidence": "Locally built by tools/build_ams_fix.py; firmware-derived, not distributable authored source"
+    },
+    {
+      "name": "magisk_30_2",
+      "version": "v30.2 / 30200",
+      "local_archive": "tools/Magisk-v30.2.apk",
+      "bytes": 12339254,
+      "sha256": "123093f51eeb1aa459ac188a22ac3e775e8243293d48df2ceda9ca9dad22d2d6",
+      "source_url": "https://github.com/topjohnwu/Magisk/releases/download/v30.2/Magisk-v30.2.apk",
+      "required_layout": "tools/Magisk-v30.2.apk",
+      "bootstrap": {
+        "zip_layouts": []
+      },
+      "evidence": "Official release API asset digest and fresh 2026-09-13 download match the saved installed APK byte-for-byte; not executed or installed during this verification."
     }
   ],
   "source_checkouts": [

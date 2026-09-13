@@ -61,6 +61,21 @@ historical outbound sync. Their unfinished-feature lists are not authoritative
 for the active v0.4 source. Consult `notes-drive/INCOMING-VALIDATION.md` and the
 parent's final report for subsequent evidence.
 
+## Clean-source continuation
+
+A separate local Git clone now builds all five authored Android APKs and the Mac
+app. The SDK and Gradle were freshly downloaded and hash-verified, Gradle used an
+empty cache, and build signing keys were newly generated. No private notebook or
+Google configuration was needed. The existing installed JDK/Xcode/Python were used.
+Mandatory checks passed: Mac 162, Android 57, host 115 and portable prototype 19.
+Final v0.6 interactive acceptance awaits its macOS Keychain prompt; GitHub/remote
+clone remain pending. See [current limits](GAPS.md) for the concise current status.
+
+The new [Magisk staging guide](../ROOT-STAGING.md) closes the host extraction gap:
+15 individually verified assets reproduce the retained environment. The exact
+Magisk 30.2 APK is now obtainable from its verified official release URL. No new
+root/flash or support-directory repair was performed.
+
 ## Read first
 
 | File | Purpose |

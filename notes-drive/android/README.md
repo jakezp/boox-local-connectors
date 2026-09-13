@@ -1,18 +1,30 @@
-# BOOX Notes Drive — automatic publishing v0.3
+# BOOX Notes Drive — automatic native synchronization v0.4
 
-Installed with automatic publishing enabled. The native save adapter and private
-bridge feed durable captures to immediate/network-reconnection attempts and
-persisted retry jobs. Google credentials stay in the companion. The module is
-scoped only to Notes45326; Xposed min API82 preserves existing private preferences.
-The connector was unfrozen persistently through the BOOX launcher.
+Current connector: automatic captures/uploads, verified incoming updates with
+per-notebook rollback journals, same native identities, folder and notebook
+lifecycle, explicit conflict selection and native library/editor sync controls.
+The hook is scoped only to Notes45326 and uses a UID-checked private bridge;
+Google credentials remain in the companion.
 
-30 tests pass, including offline/ancestry recovery, completed-receipt compaction
-and immutable cache validation. Live library and offline edit tests:
-[AUTOMATIC-VALIDATION.md](../AUTOMATIC-VALIDATION.md).
+All 57 mandatory Android unit tests pass using generated synthetic inputs.
+The source-only asset build is installed with actual current-process hook build
+`1b35137b83528a78` verified. Both automatic settings remain enabled. Mac UI and
+native readback/return tests passed on the lifecycle build; Mac v0.6's final
+interactive nested-export acceptance awaits its Keychain prompt.
 
-Current limits: 4 MiB per notebook; Mac is read-only; native incoming application,
-folder/deletion propagation and native ONYX sync-control routing remain unfinished.
-Earlier v0.1/v0.2 connection and fixture instructions below are historical.
+Build with `python3 notes-drive/android/build.py` from the repository root after
+acquiring declared dependencies. The builder prints the local certificate SHA-1
+for Google Android registration. Keep your existing signing key for updates;
+new checkouts generate a new local identity. No private fixture is required.
+
+Follow the [end-to-end setup](../../docs/reproduction/README.md),
+[setup CLI](../../docs/reproduction/SETUP-CLI.md), [protocol](../PROTOCOL.md) and
+[current native validation](../INCOMING-VALIDATION.md). Limits include 4 MiB
+notebooks,200 managed items,1,000 Drive objects and64 MiBverified catalogs. Native
+application waits until editors close and may defer during sleep.
+
+The connection/transport checkpoints below retain historical versions and their
+original unfinished-work statements; they do not describe current v0.4 support.
 
 ## Earlier v0.2 transport milestone
 

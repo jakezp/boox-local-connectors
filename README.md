@@ -28,6 +28,8 @@ what was actually tested from steps that still require rehearsal.
 | Dependency provenance and authored file inventory | [Source inventory](docs/reproduction/SOURCE-INVENTORY.md) |
 | Active continuation | [Implementation plan](IMPLEMENTATION-PLAN.md), [handover](HANDOVER.md) |
 
+See [the current validation record](docs/VALIDATION.md) for source/build evidence.
+
 ## Validation checkpoint
 
 Android currently passes 57 unit tests. Live disposable tests have verified
@@ -46,8 +48,9 @@ notebook created and renamed/moved in the Mac UI also appeared in BOOX. Whole-st
 erase, undo/redo, recoverable deletion and restoration passed through the Mac UI
 and native readback. Testing found a Mac decoder issue with ancestor folder
 records in native exports; v0.6 corrects it and preserves those records during
-edits. Live acceptance of that rebuilt app and clean-checkout packaging are in
-progress. Earlier Android-grant
+edits. The source-only checkout builds all five Android APKs and the Mac app, with
+162 Mac checks, 57 Android checks and 115 host checks passing. Live acceptance
+of that rebuilt Mac app is awaiting its macOS Keychain access prompt. Earlier Android-grant
 fixture tests remain separately identified from this own-OAuth round trip.
 
 ## Supported boundary
