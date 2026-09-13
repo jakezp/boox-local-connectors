@@ -6,35 +6,12 @@ checks; `--apply` performs the selected installation. Neither phase roots, flash
 installs AMS/Vector, changes Magisk grants, performs OAuth, creates backups or
 configures the Mac.
 
-The parent has now validated the **existing-install NotesDrive update path** with
-a guarded same-APK reinstall. Read-only preflight, delegated installer, and
-post-install signature/hash/scope checks all completed. The apply report says
-`installed_pending_acceptance` with `notes_hook_verified=true`. Subsequent parent
-post-reinstall acceptance passed: Notes reopened the new Mac-created blank
-notebook with its canvas visible and closed normally; both latest fixture heads
-were verified in Drive, pending uploads were zero, and both automatic settings
-were on. This later evidence is in
-`notes-drive/research/incoming/latest-checkpoint.json`; it does not rewrite the
-installer's original status. The parent subsequently passed the Mac own UI/OAuth
-pen/save/native-commit/follow-back round trip, preserving page/zoom. Final Mac
-acceptance now awaits a decoder ancestor-row fix found during additional UI
-notebook creation/rename/move testing. Physical BOOX stylus validation is not
-established by the Mac GUI pen test.
-
-Evidence: `notes-drive/research/incoming/setup-preflight.json` and
-`notes-drive/research/incoming/setup-apply.json`, plan
-`2d4531791aadf0796405372e3d2386727ccab53c01fc1a8a44503393b8edcfbf`.
-The tested APK is
-`f15a19bb5de6652c14b4f3b08bff23229adb4308af0f34bc06d7012a157f6f4f`,
-hook build `1b35137b83528a78`. Receipt/plan remain in the private
-`backups/notes-drive-native-v0.4-20260913/` checkpoint.
-
-The parent also reran all56 doctor/setup/AMS tests successfully. The OpenAI
-wrapper path and all first-install paths still have only offline validation;
-OpenAI's earlier native feature tests do not validate its wrapper installation.
-Rooting/flashing remain manual and outside this CLI; no new live reproduction of
-those steps is established by this reinstall. **This sidecar ran no live phase.**
-Neither installation nor hook activation establishes full sync acceptance.
+Start with the [first-time setup walkthrough](../../README.md#5-install-the-android-companions).
+This reference explains the CLI's exact contract and backup requirements.
+The existing NotesDrive update route has live validation; OpenAI, first-install
+and combined wrapper routes have offline tests. Installation and hook loading
+are separate from account setup and the native notebook round trip.
+Recorded results belong in [validation evidence](../VALIDATION.md).
 
 ## Preconditions and supported operations
 
@@ -65,7 +42,7 @@ downgrades and unsupported formats fail closed rather than being silently repair
 
 Run from the workspace root. Paths under `/PRIVATE/REVIEW` must be a pre-existing
 private local directory. These are command templates for the validated existing
-NotesDrive route, not a literal transcript of the parent's private paths.
+NotesDrive route, replace them with your own local paths.
 
 ```sh
 # Host-only: validates APK signatures/package metadata and emits a proposed plan.

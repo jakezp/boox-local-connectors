@@ -34,8 +34,6 @@ fields in three notebook rows.
 | Area | Boundary |
 | --- | --- |
 | Build environment | The clean clone used existing Python/JDK/Xcode installations. Fresh operating-system provisioning was not tested; original host-tool archive provenance and the complete EDL/AMS Python dependency lock remain incomplete. |
-| GitHub distribution | Public `jakezp/boox-local-connectors` contains reviewed reproducible source; private `jakezp/boox-private-archive` retains the recovery collection. The private snapshot manifest and receipts identify exact archive coverage and checksums. |
-| Private archive | The collection includes the original workspace and related clean-build artifacts, including firmware, project keys, notebooks, backups and evidence. POSIX metadata is preserved; ACLs/resource forks and external symlink referents are outside this tar format. Keychain-backed grants require normal sign-in on a restored Mac. |
 | Companion installer | Existing NotesDrive wrapper preflight/apply passed, and the synthetic-asset APK passed current-process hook verification. First-install, OpenAI wrapper and combined wrapper routes have offline tests only. The installer does not create backups, provision root/AMS/Vector, perform OAuth or configure the Mac. |
 | Root staging | Exact original boot/APK guards and 15 asset comparisons passed; all 28 staging tests passed with the optional originals enabled. The official Magisk v30.2 APK download matches the saved installed APK. No new device patch or flash was performed. |
 | Firmware and unlock | The demonstrated root path starts with an already-unlocked NoteAir4C on the exact recorded firmware, active B. Other firmware/devices and bootloader unlocking are outside the validated procedure. |

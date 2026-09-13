@@ -17,7 +17,7 @@
     "notes_macos": 45,
     "historical_probes": 9,
     "prototype_and_validation": 20,
-    "legacy_documentation_review_required": 38,
+    "legacy_documentation_review_required": 40,
     "reproduction": 10
   },
   "files": [
@@ -45,22 +45,22 @@
     {
       "path": "HANDOVER.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 59056,
-      "sha256": "46d3d7256f10027265722296149ca2c642d09afb3efa9424e62d722e7de05e74",
+      "bytes": 2074,
+      "sha256": "2ba03fdcf7bb0e4f37f5bbaec2262ea868a8e756e66564da32f21601c4c4ce08",
       "publication_review_required": true
     },
     {
       "path": "IMPLEMENTATION-PLAN.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 3911,
-      "sha256": "7a1dc3338fa44f68b39c7653ca126111da5ef8744db4508e970f592b2719c4df",
+      "bytes": 2404,
+      "sha256": "19176d82f25af5991c98b7680a7c0e4c4bddc03b57b45dff2e9422280f8b1ff9",
       "publication_review_required": true
     },
     {
       "path": "README.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 7064,
-      "sha256": "75bb34cf6a59f295872abef60937c5e9b1071a9700db5acfb403bd7d718c1304",
+      "bytes": 23381,
+      "sha256": "b906d73792ac1824a7cccc4407cbf4b3d18c42c635bb76bed44687d840eed427",
       "publication_review_required": true
     },
     {
@@ -71,10 +71,17 @@
       "publication_review_required": true
     },
     {
+      "path": "docs/GOOGLE-DRIVE-SETUP.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 5955,
+      "sha256": "80e88baa929e0f75a3f903bd7e1480f05eba150580190a71d2c3ec88db965ba9",
+      "publication_review_required": true
+    },
+    {
       "path": "docs/PRIVATE-ARCHIVE.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 7288,
-      "sha256": "4b50ef2f2deff68285d82e23ff7c376603f170da4a8b47f236ffa0970382e1da",
+      "bytes": 2698,
+      "sha256": "4a108a7009f0fde7ccb599b92cb0c9de80ed0ddde1d134804f763ecdd6a59517",
       "publication_review_required": true
     },
     {
@@ -82,6 +89,13 @@
       "group": "legacy_documentation_review_required",
       "bytes": 13610,
       "sha256": "f488f309e3eb522945556a745ea3a6542294a6480fc1104386af9b280f7e2f8f",
+      "publication_review_required": true
+    },
+    {
+      "path": "docs/TECHNICAL-BRIEF.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 10185,
+      "sha256": "7f67f3bde21078ff19834012edeba667daa446bfd7684fd18260b7cf6808faf6",
       "publication_review_required": true
     },
     {
@@ -108,8 +122,8 @@
     {
       "path": "docs/reproduction/GAPS.md",
       "group": "reproduction",
-      "bytes": 5784,
-      "sha256": "7d4c267aec78674cd1804f57485e5181c3d1d2934465ef155a30559e192a7816",
+      "bytes": 5175,
+      "sha256": "51a1601592df3e8bafc1884f01794ffceb4e7d3f1b822202c74c8a1e03d0287f",
       "publication_review_required": false
     },
     {
@@ -122,8 +136,8 @@
     {
       "path": "docs/reproduction/README.md",
       "group": "reproduction",
-      "bytes": 19394,
-      "sha256": "1d3054ece0473b78c205be664286e8b1fba56a936e1ed598f721a5706fc5169f",
+      "bytes": 16868,
+      "sha256": "110714d9cbebb146bbbbc2de76e43fe4b1ba39e3dd7033dd40fcd6c0aeee4aad",
       "publication_review_required": false
     },
     {
@@ -136,8 +150,8 @@
     {
       "path": "docs/reproduction/SETUP-CLI.md",
       "group": "reproduction",
-      "bytes": 12838,
-      "sha256": "0fc9607f02994d9018f09565e2973202eec05d2af399ae060b465b3db42fc8de",
+      "bytes": 11398,
+      "sha256": "07cc6310aa2ab6d37be0e1d25692de57390eca5b10eb09a605062870239d31f9",
       "publication_review_required": false
     },
     {
@@ -241,8 +255,8 @@
     {
       "path": "notes-drive/android/README.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 10063,
-      "sha256": "b5db7cefb54d21b54805e0dbe8b92dd376471c4abfac01cd44094796767a2b64",
+      "bytes": 2915,
+      "sha256": "79ed56744d6fcebeeb61ed9170869bf166ea764f134c27deadfe8785ef492ac2",
       "publication_review_required": true
     },
     {
@@ -619,8 +633,8 @@
     {
       "path": "notes-drive/macos/README.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 37312,
-      "sha256": "beaa2a5fb9e79cf6d5cf6c1ecce9eb7b76fe94a354e7a2dc8ede4e70fdf8b317",
+      "bytes": 8601,
+      "sha256": "f68611f4f5bbb28999a72435fef110cce87b64809aea5a802df0e8fd9e58c6b4",
       "publication_review_required": true
     },
     {

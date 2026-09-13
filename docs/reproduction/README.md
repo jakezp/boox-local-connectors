@@ -14,37 +14,21 @@ The supported device is **NoteAir4C**, Android 13/API 33, firmware
 framework overlay and Vector **2.2 / 3080**. Magisk codes **30200** and **30700**
 are accepted by the installer; the recorded root procedure originally used 30.2.
 
-The source-only build checkpoint (`113c0fe`) produced all five Android APKs and
-the Mac app without private notebooks, account configuration or existing signing
-keys. Android 57, Mac 162, host 115 and portable prototype 19 checks passed. The
-pre-publication documentation baseline is `3fa9050`; dependency verification
-records 501 SHA-256 entries across 291 components and a passing strict offline
-Android build. This used an existing Mac toolchain, not a fresh operating-system
-installation. [Build evidence](../VALIDATION.md) records the artifacts.
+For a first-time walkthrough, start with the [project README](../../README.md).
+This reference provides the longer commands and exact prerequisite boundaries.
+Root flashing, module provisioning, backups and account authorization are
+separate steps; the companion installer does not automate them.
 
-Mac v0.6 live acceptance now includes a nested native notebook: GUI
-draw/undo/redo/save through its own OAuth grant published `dc3b267a8ea4…`, Android
-committed one pen under the same ID, and stock Notes displayed the result.
-Normal native close produced `2cab97843ab9…`, which the Mac automatically
-downloaded and then opened from the library. A subsequent native UI rename
-produced `009b9ae05cad…`; the already-open Mac document automatically adopted the
-new title while retaining page, zoom, one pen and two samples, without refresh
-or reopening. The bundled test notebook loaded through the GUI with two pages
-and 343 samples. All v0.6 live acceptance gates are complete. These abbreviated
-historical evidence IDs are not revision bases for a new test.
-
-| Automated stage | Operator-supplied prerequisites / acceptance |
+| Automated stage | What you supply |
 | --- | --- |
-| Hash-pinned dependency bootstrap and source builds | Installed Python/JDK/Xcode; initial dependency network access |
-| Host-only Magisk input staging and AMS builder | Exact original boot/framework inputs; separate root/recovery procedure |
-| Offline setup plan, read-only preflight, guarded APK apply | Root/AMS/Vector, current backup receipt, closed editors, correct signing identities |
-| App revision queues and verified native application | Each app's own OAuth setup, matching Drive destination, supported notebooks |
+| Hash-pinned dependency bootstrap and app builds | Python/JDK/Xcode and initial network access |
+| Magisk input staging and AMS builder | Exact original firmware inputs and a reviewed root/recovery procedure |
+| Plan, preflight and guarded APK installation | Supported root/AMS/Vector, signing identities, current backups and closed editors |
+| Automatic notebook publication/application | Each app's own authorization, a matching managed Drive destination and supported notebooks |
 
-A clean local clone and an existing NotesDrive update have passed. First-install
-and OpenAI wrapper paths are offline-tested but have no fresh-device live
-acceptance. Root flashing, module provisioning, backups and OAuth are outside
-the companion installer's automation. [GAPS.md](GAPS.md) lists the remaining
-boundaries without requiring the historical handover chronology.
+First-install and OpenAI wrapper routes have offline tests. The existing Notes
+update route has live validation. See [supported scope](GAPS.md) and
+[validation evidence](../VALIDATION.md) for what was actually tested.
 
 ## 1. Acquire the host tools
 
@@ -215,11 +199,9 @@ Its successful exit is an inventory result, not proof of loaded hooks or sync.
 
 ## 4. Register clients and install the companions
 
-For Notes Drive, enable the Drive API in your Google project and register an
-Android OAuth client for `local.boox.notesdrive` and the certificate SHA-1 in
-`registration.json`. Configure the consent audience/test users and `drive.file`
-scope. Register a Desktop OAuth client in the same project for the Mac. Existing
-deployments retain their own project, signing identities and app-owned grants.
+For Notes Drive, follow [Google registration](../GOOGLE-DRIVE-SETUP.md).
+Register the Android package/certificate from your build and a Desktop client in
+the same project. Keep existing signing identities for updates.
 
 The installer requires saved/closed Notes, Assistant and NeoReader editors, the
 supported rooted baseline, reviewed APK identities and a current device-bound
@@ -347,39 +329,22 @@ to the same intended destination:
 5. Exercise the supported lifecycle operations needed for your deployment and
    retain revision/queue evidence for interruptions or conflicts.
 
-The v0.6 nested-notebook round trip passed steps 2–4, including automatic
-return download and a library open, followed by a separate native rename that
-updated the already-open Mac document without refresh or reopening. The bundled
-fixture GUI check also passed. Earlier live validation covers add/erase,
-notebook/folder lifecycle, all seven native crash checkpoints and Android
-conflict selection with both heads retained. Long-term renewal, large-library
-scale and complete rendering parity remain separate boundaries. Physical BOOX stylus entry on a freshly Mac-created blank
-has not been established by the Mac mouse-drawn pen test.
+A passing connection test establishes transport only. Your acceptance check must
+also establish native application and return sync. See [validation evidence](../VALIDATION.md)
+for recorded project results and [supported scope](GAPS.md) for limits.
 
-## 7. Source export and repository status
+## 7. Development and source packaging
 
-The intended public repository is `jakezp/boox-local-connectors`. Its content is
-reviewed authored source, documentation, synthetic fixtures and dependency
-verification metadata. Planned `jakezp/boox-private-archive` holds the complete
-private workspace archive, including firmware, keys, notebooks, backups and
-historical evidence. Neither GitHub repository has been created or published at
-this checkpoint; a clone from the published remote has therefore not been
-verified. The source-only local clone/build has passed independently.
-
-The public build does not require access to the private archive. Existing-device
-updates and root repair still need the matching private signing/firmware inputs.
-Private archive completeness and publication are separately verified operations;
-no complete archive is claimed here.
-
-For public source review, use the [source inventory](SOURCE-INVENTORY.md) and
-[packaging CLI](PACKAGING.md):
+For architecture and the work behind the integrations, read the
+[technical brief](../TECHNICAL-BRIEF.md). For public source review, use the
+[source inventory](SOURCE-INVENTORY.md) and [packaging CLI](PACKAGING.md):
 
 ```sh
 python3 docs/reproduction/inventory_sources.py
 python3 tools/package_source.py
 ```
 
-Regenerate the inventory after final source/documentation edits, review the exact
-allowlisted bytes and use the packaging tool's reviewed-plan export flow. The
-public export excludes private runtime inputs and generated/acquired artifacts.
-Preserve the original private workspace when preparing either repository.
+Regenerate the inventory after source/documentation edits and review the exact
+allowlisted bytes before exporting. Generated signing keys, account configuration,
+notebooks, device backups and firmware inputs are local setup data, not files to
+publish with a fork. Preserve your own update/recovery inputs separately.
