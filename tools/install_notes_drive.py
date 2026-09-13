@@ -15,6 +15,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 VECTOR = "/data/adb/modules/zygisk_vector/cli"
 LIBRARY = "com.onyx.android.note/com.onyx.android.sdk.note.ui.library.ui.LibraryActivity"
+LAUNCHER = "com.onyx/com.onyx.tablet.main.ui.TabletMainActivity"
 
 
 def main():
@@ -36,6 +37,12 @@ def main():
     assert root("id -u").strip() == "0", "Root is required"
     info = root("dumpsys package com.onyx.android.note")
     assert re.search(r"versionCode=45326\b", info), "Only inspected Notes45326 is supported"
+    launcher_info = root("dumpsys package com.onyx")
+    assert re.search(r"versionCode=56737\b", launcher_info), "Only inspected launcher56737 is supported"
+    scopes = set(re.findall(r"^([A-Za-z][\w.]+)\s+(\d+)\s*$",
+                            root(VECTOR + " scope ls local.boox.notesdrive"), re.MULTILINE))
+    assert scopes == {("com.onyx.android.note", "0"), ("com.onyx", "0")}, \
+        "Notes Drive requires editor and launcher Settings scopes; review the scope migration first"
     root("am force-stop com.onyx.android.note")
     disabled = root(VECTOR + " modules disable local.boox.notesdrive")
     assert "Failed: []" in disabled, disabled
@@ -68,8 +75,22 @@ def main():
         assert "ready for Notes 45326" not in logs, "A stale hook loaded; keep its recovery state and investigate"
         root("am force-stop com.onyx.android.note")
     assert marker in logs, "Installed APK verified, but expected native hook did not load; do not assume success"
+    launcher_marker = "Launcher Notes Settings build " + expected + " ready for launcher 56737"
+    root("am force-stop com.onyx")
+    root("am start -n " + LAUNCHER)
+    launcher_logs = ""
+    for attempt in range(40):
+        launcher_pid = root("pidof com.onyx").strip()
+        if launcher_pid.isdigit():
+            launcher_logs = subprocess.check_output(
+                adb + ["logcat", "-d", "--pid=" + launcher_pid, "-s", "BooxNotesDrive:I"], text=True)
+            if launcher_marker in launcher_logs:
+                break
+        time.sleep(0.5)
+    assert launcher_marker in launcher_logs, "Updated launcher Settings hook did not load"
     report = dict(schema=1, apk_sha256=registration["apk_sha256"], hook_build=expected,
                   native_pid=pid, loaded_marker=marker, notes_version=45326,
+                  launcher_pid=launcher_pid, launcher_version=56737, launcher_marker=launcher_marker,
                   grants_preserved=True, other_modules_changed=False)
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)

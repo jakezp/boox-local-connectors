@@ -40,6 +40,11 @@ downgrades and unsupported formats fail closed rather than being silently repair
 
 ## Plan, review, preflight, apply
 
+Existing installations from before the native Settings section need the
+[explicit scope migration](../NOTES-SETTINGS.md#firmware-and-installation-details)
+first. The Notes update helper now restarts the BOOX launcher and verifies its
+settings-only hook as well as the editor hook. Launcher version 56737 is required.
+
 Run from the workspace root. Paths under `/PRIVATE/REVIEW` must be a pre-existing
 private local directory. These are command templates for the validated existing
 NotesDrive route, replace them with your own local paths.
@@ -138,7 +143,7 @@ then verifies registration. Expected scopes:
 | Package | Scope |
 | --- | --- |
 | `local.boox.openai` | `com.onyx.aiassistant/0`, `com.onyx.kreader/0` |
-| `local.boox.notesdrive` | `com.onyx.android.note/0` |
+| `local.boox.notesdrive` | `com.onyx.android.note/0`, `com.onyx/0` |
 
 A first Notes install additionally requires `--registration-confirmed` for a
 live phase: the operator confirms that the local package/certificate is registered

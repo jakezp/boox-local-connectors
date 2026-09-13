@@ -22,11 +22,11 @@ PATCHED_FRAMEWORK = "e2bad92800231d1ad86179202f42dd5f89d830114a7bc6273d25ce9c2c9
 VECTOR = "/data/adb/modules/zygisk_vector/cli"
 PACKAGES = (
     "com.topjohnwu.magisk", "com.onyx.aiassistant", "com.onyx.kreader",
-    "com.onyx.android.note", "local.boox.openai", "local.boox.notesdrive",
+    "com.onyx.android.note", "com.onyx", "local.boox.openai", "local.boox.notesdrive",
 )
 SCOPES = {
     "local.boox.openai": ("com.onyx.aiassistant/0", "com.onyx.kreader/0"),
-    "local.boox.notesdrive": ("com.onyx.android.note/0",),
+    "local.boox.notesdrive": ("com.onyx.android.note/0", "com.onyx/0"),
 }
 PROPERTIES = {
     "model": ("ro.product.model", r"[A-Za-z0-9 ._-]{1,60}"),

@@ -82,6 +82,10 @@ public final class NativeNotesHook implements IXposedHookLoadPackage {
     };
 
     @Override public void handleLoadPackage(XC_LoadPackage.LoadPackageParam info) throws Throwable {
+        if ("com.onyx".equals(info.packageName) && "com.onyx".equals(info.processName)) {
+            NativeLauncherSettings.install(info.classLoader);
+            return;
+        }
         if (!NOTES.equals(info.packageName) || !NOTES.equals(info.processName)) return;
         loader = info.classLoader;
         XposedBridge.hookAllMethods(Application.class, "attach", new XC_MethodHook() {
@@ -137,6 +141,11 @@ public final class NativeNotesHook implements IXposedHookLoadPackage {
             public boolean automatic() { return enabled; }
             public String status() { return displayStatus; }
             public Context context() { return context; }
+            public Bundle syncSettings(Boolean enabled) throws Exception {
+                Bundle request = new Bundle();
+                if (enabled != null) request.putBoolean("enabled", enabled);
+                return bridge("syncSettings", null, request);
+            }
             public void sync() throws Exception {
                 lastScan = 0;
                 bridge("sync", null, null);

@@ -3,7 +3,10 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <queries><package android:name="com.onyx.android.note"/></queries>
+    <queries>
+        <package android:name="com.onyx.android.note"/>
+        <package android:name="com.onyx"/>
+    </queries>
     <application android:name=".DriveSession" android:label="BOOX Notes Drive"
         android:allowBackup="false" android:usesCleartextTraffic="false"
         android:theme="@android:style/Theme.Material.Light.NoActionBar">

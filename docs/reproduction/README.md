@@ -259,8 +259,10 @@ The intended scopes are fixed:
 | Companion | Native scope |
 | --- | --- |
 | `local.boox.openai` | `com.onyx.aiassistant/0`, `com.onyx.kreader/0` |
-| `local.boox.notesdrive` | `com.onyx.android.note/0` |
+| `local.boox.notesdrive` | `com.onyx.android.note/0`, `com.onyx/0` |
 
+For existing editor-only installations, first follow the explicit
+[launcher settings scope migration](../NOTES-SETTINGS.md#firmware-and-installation-details).
 The wrapper sets scopes only for explicit first installs. Updates require the
 existing scopes to match. It does not provision root, AMS/Vector, backups, Google
 registration or credentials. See [SETUP-CLI.md](SETUP-CLI.md) for exact guards,

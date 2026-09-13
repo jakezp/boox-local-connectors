@@ -30,7 +30,7 @@ public final class DriveSession extends Application {
     private String accountId = "";
     String accountLabel = "", folderId = "";
     String status = "Connect Google Drive to set up a sync directory.";
-    String revisionStatus = "Refresh revisions to begin the Mac interoperability test.";
+    String revisionStatus = "Refresh to check the notebooks stored in your Drive sync directory.";
     RevisionCatalog catalog;
     static final String VALIDATION_NOTEBOOK = "boox-validation-notebook-v1";
     boolean busy;
@@ -74,6 +74,36 @@ public final class DriveSession extends Application {
 
     boolean automaticEnabled() { return preferences().getBoolean("automatic", false); }
     boolean incomingEnabled() { return preferences().getBoolean("automaticIncoming", false); }
+    android.os.Bundle nativeSyncSettings(android.os.Bundle request) throws Exception {
+        // Binder calls may arrive off-main; keep configuration changes serialized with normal app actions.
+        java.util.concurrent.FutureTask<android.os.Bundle> task = new java.util.concurrent.FutureTask<>(() -> {
+            android.os.Bundle result = new android.os.Bundle();
+            if (request != null && request.containsKey("enabled")) {
+                boolean enable = request.getBoolean("enabled");
+                if (busy) result.putString("error", "Sync is busy. Try the switch again when the current check finishes.");
+                else if (enable && (!connected() || folderId.isEmpty()))
+                    result.putBoolean("setupRequired", true);
+                else {
+                    if (enable) {
+                        setAutomatic(true);
+                        setIncoming(true);
+                    } else {
+                        setIncoming(false);
+                        setAutomatic(false);
+                    }
+                }
+            }
+            result.putBoolean("enabled", automaticEnabled() && incomingEnabled());
+            return result;
+        });
+        if (Looper.myLooper() == Looper.getMainLooper()) task.run();
+        else main.post(task);
+        try { return task.get(3, java.util.concurrent.TimeUnit.SECONDS); }
+        catch (java.util.concurrent.TimeoutException error) {
+            task.cancel(false);
+            throw new IOException("Drive settings did not respond. Open setup to check their state.", error);
+        }
+    }
     void setIncoming(boolean enabled) {
         if (busy || !automaticEnabled()) return;
         preferences().edit().putBoolean("automaticIncoming", enabled).commit();
@@ -493,7 +523,7 @@ public final class DriveSession extends Application {
             catalog = result;
             revisionStatus = summary;
             busy = false;
-            status = published + " saved revision(s) published and verified. Ready for the Mac reader.";
+            status = published + " saved revision(s) published and verified. Linked BOOX devices can download them.";
             changed();
         });
     }
@@ -527,18 +557,22 @@ public final class DriveSession extends Application {
             snapshot.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
     }
 
-    private String catalogSummary(RevisionCatalog result, int pending) {
-        List<String> heads = result.heads(VALIDATION_NOTEBOOK);
-        StringBuilder out = new StringBuilder("Verified revisions: ").append(result.revisions.size())
-            .append(" · Pending uploads: ").append(pending)
-            .append("\nTest notebook heads: ").append(heads.size());
-        for (String id : heads) {
-            Revision revision = result.revisions.get(id);
-            out.append("\n").append(id.substring(0, 12)).append(" · ").append(revision.device)
-                .append(revision.payload == null ? " · deletion awaiting review" : "");
+    static String catalogSummary(RevisionCatalog result, int pending) {
+        java.util.Set<String> items = new java.util.HashSet<>();
+        for (Revision revision : result.revisions.values())
+            if (!VALIDATION_NOTEBOOK.equals(revision.notebook)) items.add(revision.notebook);
+        int notebooks = 0, folders = 0, conflicts = 0;
+        for (String item : items) {
+            List<String> heads = result.heads(item);
+            if (heads.size() > 1) conflicts++;
+            boolean live = false;
+            for (String head : heads) if (result.revisions.get(head).payload != null) live = true;
+            if (!live) continue;
+            if (item.startsWith("folder-")) folders++;
+            else if (item.startsWith("boox-")) notebooks++;
         }
-        if (heads.size() > 1) out.append("\nConflict: all versions retained.");
-        return out.toString();
+        return "Stored notebooks: " + notebooks + " · Folders: " + folders +
+            "\nPending uploads: " + pending + " · Items needing conflict review: " + conflicts;
     }
 
     private void revisionFailed(Exception error) {

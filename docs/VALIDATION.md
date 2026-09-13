@@ -4,6 +4,20 @@ Checkpoint: 2026-09-13. Private notebook captures and device credentials remain 
 the original workspace; the source repository contains the reproducible tests,
 synthetic fixture generators and validation scripts.
 
+## Native Settings update — 2026-09-13
+
+The Notes Drive editor hook and settings-only launcher hook are verified on
+Notes45326 / launcher56737. The native Google Drive section appears below ONYX
+Cloud, its info icon opens setup, and its switch controls both automatic directions.
+The setup UI now describes BOOX-to-BOOX sync and shows library counts rather than
+Mac validation records. Optional fixture publication is collapsed under diagnostics.
+
+Current Android suite:58 tests. An added empty-local-state case discovers current
+remote notebook/folder heads without a pre-existing branch. This does not replace
+physical second-BOOX acceptance. The host suite adds a launcher-version guard test
+and verifies the two-scope installation contract. Earlier Mac and root results
+below are historical checkpoints and were not rerun for this UI change.
+
 ## Clean-checkout results
 
 A separate Git clone of source commit `113c0fe` built:

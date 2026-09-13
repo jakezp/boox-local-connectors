@@ -74,6 +74,10 @@ lower-level coverage and historical changes.
 
 `NativeNotesHook.java` observes native save/export and library operations.
 `NativeSyncUi.java` routes the supported native sync controls into the companion.
+`NativeDriveSettings.java` adds the native Settings section using vendor adapter
+models. `NativeLauncherSettings.java` installs that settings-only integration in
+launcher version 56737. The editor and launcher have separate Vector scopes; see
+[native settings](NOTES-SETTINGS.md) for the narrow system-UID bridge boundary.
 `NotesBridge.java` provides the boundary between the native process and
 `BOOX Notes Drive`, where Google authorization and network work live.
 

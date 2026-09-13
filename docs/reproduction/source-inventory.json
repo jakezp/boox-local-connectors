@@ -13,11 +13,11 @@
   "counts": {
     "host_tools": 20,
     "ai_android": 26,
-    "notes_android": 38,
+    "notes_android": 40,
     "notes_macos": 45,
     "historical_probes": 9,
     "prototype_and_validation": 20,
-    "legacy_documentation_review_required": 40,
+    "legacy_documentation_review_required": 41,
     "reproduction": 10
   },
   "files": [
@@ -59,8 +59,8 @@
     {
       "path": "README.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 23381,
-      "sha256": "b906d73792ac1824a7cccc4407cbf4b3d18c42c635bb76bed44687d840eed427",
+      "bytes": 24981,
+      "sha256": "215b8af543f2d9f0ea7c30ad50b82b95beebf81bab5daaa29469b3d90b266b1d",
       "publication_review_required": true
     },
     {
@@ -73,8 +73,15 @@
     {
       "path": "docs/GOOGLE-DRIVE-SETUP.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 5955,
-      "sha256": "80e88baa929e0f75a3f903bd7e1480f05eba150580190a71d2c3ec88db965ba9",
+      "bytes": 6137,
+      "sha256": "9576cfe3ce527977fbff1f7afdf18a64660dfb839aa86222eba063bb3354177e",
+      "publication_review_required": true
+    },
+    {
+      "path": "docs/NOTES-SETTINGS.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 5805,
+      "sha256": "5cb6afd42983e036facc133261d37b52e2528ae2ffde84d3368f0d388c120e61",
       "publication_review_required": true
     },
     {
@@ -94,8 +101,8 @@
     {
       "path": "docs/TECHNICAL-BRIEF.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 10185,
-      "sha256": "7f67f3bde21078ff19834012edeba667daa446bfd7684fd18260b7cf6808faf6",
+      "bytes": 10508,
+      "sha256": "2aa1245383a86cc9460c8f9b7cbfddb53c8025a7b43ccdc8c66239358ea452d5",
       "publication_review_required": true
     },
     {
@@ -108,8 +115,8 @@
     {
       "path": "docs/VALIDATION.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 6115,
-      "sha256": "3aadfec759eb7053f93d117327fe56ff939f1d41d9d71a9aed236fe836baeed4",
+      "bytes": 6964,
+      "sha256": "4d1c0cebe7622c592e45f480cdd3a6558941fa913fab71fe4627fbc88a60e94a",
       "publication_review_required": true
     },
     {
@@ -136,8 +143,8 @@
     {
       "path": "docs/reproduction/README.md",
       "group": "reproduction",
-      "bytes": 16868,
-      "sha256": "110714d9cbebb146bbbbc2de76e43fe4b1ba39e3dd7033dd40fcd6c0aeee4aad",
+      "bytes": 17041,
+      "sha256": "9aaf5460404041af001b626ff603451139d469173aedd51eed3afbbfaf79d2d7",
       "publication_review_required": false
     },
     {
@@ -150,8 +157,8 @@
     {
       "path": "docs/reproduction/SETUP-CLI.md",
       "group": "reproduction",
-      "bytes": 11398,
-      "sha256": "07cc6310aa2ab6d37be0e1d25692de57390eca5b10eb09a605062870239d31f9",
+      "bytes": 11730,
+      "sha256": "4743c7a5f680417e27a7dc0d848ac4a0d00436c9777343e17c1adde038b0cb22",
       "publication_review_required": false
     },
     {
@@ -255,8 +262,8 @@
     {
       "path": "notes-drive/android/README.md",
       "group": "legacy_documentation_review_required",
-      "bytes": 2915,
-      "sha256": "79ed56744d6fcebeeb61ed9170869bf166ea764f134c27deadfe8785ef492ac2",
+      "bytes": 3207,
+      "sha256": "d7a9f60e2807272d85b66f2d1e49de16844ac77c311f2b1ebad6d0f32e8be14e",
       "publication_review_required": true
     },
     {
@@ -269,8 +276,8 @@
     {
       "path": "notes-drive/android/app/src/main/AndroidManifest.xml",
       "group": "notes_android",
-      "bytes": 1619,
-      "sha256": "dc54076a09424c5b855c0960d0c9ea4f3c127b0da35d2ecd5afeda0aafb68bf2",
+      "bytes": 1676,
+      "sha256": "f8bd4afe6c2868eda0ce6985f406d186839e4809d85343f56e2042637727b580",
       "publication_review_required": true
     },
     {
@@ -311,8 +318,8 @@
     {
       "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/DriveSession.java",
       "group": "notes_android",
-      "bytes": 28627,
-      "sha256": "9ac32c255283408463b4213ed84e1420cd87bca28b1676565f7a121ab6338a0e",
+      "bytes": 30426,
+      "sha256": "b291df8fe6af2500c963a4d2753631162ac814c18bffa4cf4c79359d082704d5",
       "publication_review_required": true
     },
     {
@@ -351,10 +358,24 @@
       "publication_review_required": true
     },
     {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeDriveSettings.java",
+      "group": "notes_android",
+      "bytes": 6216,
+      "sha256": "2b1f11d117b2037f0cceec78acae9413109c74c93325583ba0c56bacdf08aeff",
+      "publication_review_required": true
+    },
+    {
       "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeInbox.java",
       "group": "notes_android",
       "bytes": 5151,
       "sha256": "5fffc33b94d82145c21f7470636f91b6a3e7da3cea94495e0e6877e048d0f947",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeLauncherSettings.java",
+      "group": "notes_android",
+      "bytes": 2043,
+      "sha256": "6e2b4c028b7fb1efbf4b8a31139d35d3bfbf44ea191714e524da2f31ffd68a06",
       "publication_review_required": true
     },
     {
@@ -367,8 +388,8 @@
     {
       "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeNotesHook.java",
       "group": "notes_android",
-      "bytes": 26513,
-      "sha256": "5b813e790f439f93ef9a785f229db0246096c5aee8536f13146ed7398608bb96",
+      "bytes": 26970,
+      "sha256": "686dea7283f5698effacc223f8356e18ad7d47e2ceb44ce2c2a6ad0129f0a9f5",
       "publication_review_required": true
     },
     {
@@ -388,15 +409,15 @@
     {
       "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeSyncUi.java",
       "group": "notes_android",
-      "bytes": 8396,
-      "sha256": "ab1e29960d24da554724be7f8f64094d2250de5c2abe88060f064e8ea823b65f",
+      "bytes": 8472,
+      "sha256": "d6b7a675db8fe19143362d28f647f6ce6576aadf95f0f3af8933b49458b9430b",
       "publication_review_required": true
     },
     {
       "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NotesBridge.java",
       "group": "notes_android",
-      "bytes": 14080,
-      "sha256": "d288ddc929f723b5bc70decbb04250171e8447635fc9031e8882076431b17edb",
+      "bytes": 15208,
+      "sha256": "b9a8bbf951f8fbfc81d07de50a67efbd3847db1689411966045ec95e2babcb03",
       "publication_review_required": true
     },
     {
@@ -430,8 +451,8 @@
     {
       "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/SetupActivity.java",
       "group": "notes_android",
-      "bytes": 9993,
-      "sha256": "f4e548e0865fe078bfbeb7792530db93f517fd352874cb224ce54d8ace1b9c9f",
+      "bytes": 10779,
+      "sha256": "5ffb58a56ee6827868692d8f29dce4ccf16378dea6aa29c584dcf6c0d73d443f",
       "publication_review_required": true
     },
     {
@@ -472,8 +493,8 @@
     {
       "path": "notes-drive/android/app/src/test/java/local/boox/notesdrive/NativeInboxTest.java",
       "group": "notes_android",
-      "bytes": 7141,
-      "sha256": "188431bd35dadeb59eba4dcdff46fabb576fb227fabdcf57fcce225468c4354c",
+      "bytes": 8673,
+      "sha256": "16f237ca313a8b3a1b6298cc97e52e98142ca78bc6a563fac3c0f5d8fc38c36b",
       "publication_review_required": true
     },
     {
@@ -1361,15 +1382,15 @@
     {
       "path": "tools/boox_doctor.py",
       "group": "host_tools",
-      "bytes": 12910,
-      "sha256": "9811764fd9479fd94b78e370df6ef13d2b446b1fbdacf1e30e7a9e999cb9760e",
+      "bytes": 12935,
+      "sha256": "8dd883dbbd88e4932e5458987b9b595712a865e61a2986be9994ff92218fea49",
       "publication_review_required": true
     },
     {
       "path": "tools/boox_setup.py",
       "group": "host_tools",
-      "bytes": 26195,
-      "sha256": "d7aed886f3a25f179a59e315c2615d343ab3dd0ac4fe855ae181d48320ec55ea",
+      "bytes": 26762,
+      "sha256": "eedb7866dcfdc31d5e2328af5cfd6a57e4310cd90c33a99423ea2f20d9a04f89",
       "publication_review_required": true
     },
     {
@@ -1389,8 +1410,8 @@
     {
       "path": "tools/install_notes_drive.py",
       "group": "host_tools",
-      "bytes": 3878,
-      "sha256": "517281e0cfce63f543d4c7d49cc54d28acf51395238ad657008be5aecd09b035",
+      "bytes": 5185,
+      "sha256": "d1a215bb2512141dd15ab173b46e12945805fe58730ffd4db220c007922d1d0f",
       "publication_review_required": true
     },
     {
@@ -1438,15 +1459,15 @@
     {
       "path": "tools/test_boox_doctor.py",
       "group": "host_tools",
-      "bytes": 9019,
-      "sha256": "1a6c0efcb7f1058cb718d85024d4ffd7affba2753af65455e955cbeafbc85a59",
+      "bytes": 9145,
+      "sha256": "f6f0272bbc782bc1e971b7b26ccf146d55cc8f43b97c13c019a83143e1509d29",
       "publication_review_required": true
     },
     {
       "path": "tools/test_boox_setup.py",
       "group": "host_tools",
-      "bytes": 26997,
-      "sha256": "b982b8318cb88cd32ff6d77f081d138e8dc4ff044aa5816003fd219f102d58a6",
+      "bytes": 27883,
+      "sha256": "ad76d7df273e852782ed9d15afa4a4b4352360c5e65103de631a739390a9232e",
       "publication_review_required": true
     },
     {

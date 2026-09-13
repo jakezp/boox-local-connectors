@@ -7,7 +7,7 @@ import de.robv.android.xposed.XposedBridge;
 
 /** Reuses the inspected native sync entry points without impersonating an ONYX account. */
 final class NativeSyncUi {
-    interface Host {
+    interface Host extends NativeDriveSettings.Host {
         boolean replacesOnyx();
         boolean automatic();
         String status();
@@ -16,6 +16,7 @@ final class NativeSyncUi {
     }
     static void install(ClassLoader loader, Host host) throws Exception {
         NativeAccess api = new NativeAccess(loader);
+        NativeDriveSettings.install(loader, host);
         XposedBridge.hookAllMethods(api.type(
             "com.onyx.android.sdk.note.ui.library.viewmodel.LibraryViewModel"),
             "onSyncFolderTree", new XC_MethodHook() {
@@ -135,7 +136,7 @@ final class NativeSyncUi {
     private static void field(NativeAccess api, Object model, String field, Object value) throws Exception {
         api.invoke(model.getClass().getField(field).get(model), "set", value);
     }
-    private static void openSettings(Host host) {
+    static void openSettings(Host host) {
         host.context().startActivity(new Intent().setClassName("local.boox.notesdrive",
             "local.boox.notesdrive.SetupActivity").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }

@@ -4,6 +4,7 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Binder;
@@ -41,10 +42,16 @@ public final class NotesBridge extends ContentProvider {
     }
 
     @Override public synchronized Bundle call(String method, String argument, Bundle extras) {
-        authorize();
+        // The inspected launcher shares Android's system UID. That UID receives only
+        // the settings operation (two booleans / a switch), never the notebook bridge.
+        if (!"syncSettings".equals(method) || !settingsSystemCaller()) authorize();
         SharedPreferences prefs = getContext().getSharedPreferences("drive", 0);
         Bundle result = new Bundle();
         try {
+            if ("syncSettings".equals(method)) {
+                DriveSession session = (DriveSession) getContext().getApplicationContext();
+                return session.nativeSyncSettings(extras);
+            }
             if ("config".equals(method)) {
                 prefs.edit().putLong("hookSeen", System.currentTimeMillis()).apply();
                 result.putBoolean("enabled", prefs.getBoolean("automatic", false));
@@ -186,6 +193,18 @@ public final class NotesBridge extends ContentProvider {
         } catch (Exception error) {
             result.putString("error", error.getMessage() == null ? error.getClass().getSimpleName() : error.getMessage());
             return result;
+        }
+    }
+
+    private boolean settingsSystemCaller() {
+        if (Binder.getCallingUid() != android.os.Process.SYSTEM_UID) return false;
+        try {
+            PackageInfo launcher = getContext().getPackageManager().getPackageInfo("com.onyx", 0);
+            PackageInfo notes = getContext().getPackageManager().getPackageInfo("com.onyx.android.note", 0);
+            return launcher.applicationInfo.uid == android.os.Process.SYSTEM_UID &&
+                launcher.getLongVersionCode() == 56737 && notes.getLongVersionCode() == 45326;
+        } catch (PackageManager.NameNotFoundException error) {
+            return false;
         }
     }
 

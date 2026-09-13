@@ -57,7 +57,10 @@ key changes the certificate identity, breaks ordinary updates, and requires a
 matching Google registration. Other tablets using your same signed APK use the
 same package/certificate registration; each still signs in normally.
 
-## 3. Create the Mac client
+## 3. Create the Mac client (optional)
+
+Skip this section for BOOX-to-BOOX sync. A Desktop client is needed only for the
+optional Mac reader/editor. Each BOOX uses the Android registration and its own sign-in.
 
 In the **same Google Cloud project**:
 

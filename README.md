@@ -2,13 +2,16 @@
 
 Use your own OpenAI API or ChatGPT/Codex subscription instead of the default BOOX AI model in the native reading apps, and set up a replacement Google Drive sync inside the Native Notes app as an alternative to the ONYX Cloud sync.
 
+Notebooks synchronize between linked BOOX devices through the same managed Drive
+directory. The optional Mac app is a validation/client tool, not a sync server.
+
 The project provides three apps:
 
 | App | What it adds |
 | --- | --- |
 | **BOOX OpenAI Setup** · Android | Connects the native AI Assistant and NeoReader AI panel to your OpenAI API account or the connector's ChatGPT sign-in mode. |
 | **BOOX Notes Drive** · Android | Publishes saved native notebooks to Google Drive and applies incoming changes when the Notes editor is closed. |
-| **BOOX Notes Reader** · macOS | Opens BOOX notebooks, supports pen editing, and follows the same Drive library automatically while the app is running. |
+| **BOOX Notes Reader** · macOS, optional | Opens BOOX notebooks, supports pen editing, and follows the same Drive library automatically while the app is running. |
 
 You continue reading and writing in the native BOOX apps. The Android companions
 use runtime hooks to change their integration points; they do not replace the
@@ -43,6 +46,7 @@ compatibility below; do not apply its firmware-specific changes to another devic
 | BOOX hardware | **Note Air4 C**, reported by Android as `NoteAir4C` |
 | Firmware | **`2026-04-28_17-50_4.2-rel_04282_555977efe`** |
 | Android / native Notes | Android 13, API 33; Notes version code **45326** |
+| Notes Settings host | BOOX launcher `com.onyx`, version code **56737** |
 | Root and framework | Working Magisk root, the matching AMS fix, and Vector **2.2 / 3080** |
 | Installer checks | Active slot `_b`; Magisk version code **30200 or 30700** |
 | Build computer | Apple Silicon Mac; macOS 13+; Python 3.10+, JDK 17 and Xcode command-line tools with Swift |
@@ -315,16 +319,27 @@ This changes the static interface text; it does not remove words from AI replies
 
 ### On BOOX
 
-1. Open **BOOX Notes Drive** and tap **Connect Google Drive**.
+1. Open **Notes Settings → Google Drive Sync → ⓘ** to launch **BOOX Notes Drive**,
+   then tap **Connect Google Drive**.
 2. Sign into the Google account you configured as an allowed user.
 3. Tap **Create BOOX Notes Sync directory**, or select an existing managed
    directory returned by the app. Reuse that same destination on other clients.
 4. Tap **Test Drive round trip**. This checks transport using disposable data;
    it does not yet prove native notebook synchronization.
-5. Enable **Automatically publish saved notebooks** and
+5. Return to **Notes Settings → Google Drive Sync** and enable **Sync Switch**.
+   It controls both **Automatically publish saved notebooks** and
    **Automatically apply incoming notebook edits**.
 
-### On the Mac
+### On another BOOX
+
+Install the same signed APK on another supported tablet, sign into the same Google
+account and select the existing managed directory. Enable **Google Drive Sync →
+Sync Switch**, open Notes and leave its editors closed while stored notebooks
+and folders download. Keep the device awake and online during initial sync.
+A Mac is not required. See [linking another BOOX](docs/NOTES-SETTINGS.md#link-another-boox)
+for limits and the first-pairing check.
+
+### On the Mac (optional validation/client app)
 
 1. Open the built **BOOX Notes Reader** app.
 2. Expand **Google Drive connection** and choose **Import OAuth configuration…**.
@@ -340,6 +355,12 @@ grant in Keychain. If a rebuilt app needs access again, use **Reconnect saved
 grant** rather than importing tokens manually.
 
 ## 8. Check your first notebook round trip
+
+With two BOOX tablets, create a disposable notebook on the first, save/close it,
+verify it downloads to the second, then edit/save/close on the second and verify
+the return change on the first. The complete physical second-BOOX pairing still
+needs acceptance on your devices. The previously exercised Mac client workflow
+below is optional and is not required for routine BOOX-to-BOOX sync.
 
 Use a new notebook named something obvious such as **Sync test**:
 
@@ -412,6 +433,10 @@ first troubleshooting step.
 
 ## Technical brief
 
+The [native settings and sync design](docs/NOTES-SETTINGS.md) explains how the
+Google Drive section is integrated and why third-party export alone does not
+provide bidirectional notebook sync.
+
 The implementation has three layers:
 
 1. **Native integration.** Vector loads the Android hooks into Assistant,
@@ -431,7 +456,7 @@ work, AI and NeoReader changes, Notes transaction design, Mac editor and
 reproducible build tooling. [Validation evidence](docs/VALIDATION.md) records the
 specific tests and historical checkpoints separately from these setup instructions.
 
-The recorded automated suites pass **57 Android**, **162 Mac**, **137 host-tool**
+The recorded automated suites pass **58 Android**, **162 Mac**, **138 host-tool**
 and **19 protocol/prototype** checks. Separate source clones built the Android
 APKs and Mac app. Live checks covered bidirectional pen edits, library lifecycle,
 conflict handling, crash recovery and automatic Mac following. This does not

@@ -46,8 +46,10 @@ public final class SetupActivity extends Activity {
         scroll.addView(body);
         text(body, "BOOX Notes Drive", 28);
         text(body, "Automatic library sync · v0.4", 17);
-        text(body, "Saved BOOX notebooks publish to Drive and refresh in the Mac reader. " +
-            "Incoming edits apply after the native editor closes. Conflicting versions are retained. " +
+        text(body, "Keep your notebooks and folders in sync across linked BOOX devices. " +
+            "Use the same Google account and sync directory on each device. " +
+            "Saved notebooks upload automatically; incoming edits apply after the editor closes. " +
+            "Conflicting versions are retained. " +
             "Synced deletions move items to the Notes Recycle Bin.", 18);
         account = text(body, "", 18);
         status = text(body, "", 20);
@@ -88,13 +90,22 @@ public final class SetupActivity extends Activity {
         test = button(body, "Test Drive round trip", v -> session.testRoundTrip());
         text(body, "The test uploads only a bundled disposable notebook, verifies the download, " +
             "then moves that test file to Drive Trash.", 16);
-        text(body, "Mac reader validation", 22);
+        text(body, "Library sync status", 22);
         revisions = text(body, "", 17);
         refresh = button(body, "Refresh verified revisions", v -> session.refreshRevisions());
-        publish = button(body, "Publish disposable notebook revision", v -> session.publishFixture());
         retry = button(body, "Retry pending revision uploads", v -> session.retryRevisions());
-        text(body, "Revision tests retain the bundled fixture in your sync folder for the Mac reader. " +
-            "Conflicts are kept alongside your library.", 16);
+        text(body, "On a new BOOX, connect to the existing directory and enable both automatic settings. " +
+            "Open Notes and leave its editors closed while stored notebooks download. " +
+            "Keep the device awake and connected during the first sync.", 16);
+        LinearLayout diagnostics = new LinearLayout(this);
+        diagnostics.setOrientation(LinearLayout.VERTICAL);
+        diagnostics.setVisibility(View.GONE);
+        button(body, "Show / hide sync diagnostics", v ->
+            diagnostics.setVisibility(diagnostics.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE));
+        body.addView(diagnostics);
+        publish = button(diagnostics, "Publish disposable notebook revision", v -> session.publishFixture());
+        text(diagnostics, "This optional diagnostic retains a generated test revision in the sync directory. " +
+            "It is not needed for normal notebook sync.", 16);
         button(body, "Copy Google registration details", v -> {
             ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
             clipboard.setPrimaryClip(ClipData.newPlainText("Google Android app registration", registration()));

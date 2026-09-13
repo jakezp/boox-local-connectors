@@ -17,7 +17,7 @@ After preparing the pinned Android tools and JDK 17:
 python3 notes-drive/android/build.py
 ```
 
-Run from the repository root. The builder runs the 57 mandatory unit tests,
+Run from the repository root. The builder runs the 58 mandatory unit tests,
 generates synthetic fixtures, signs the APK and writes `registration.json` in
 this directory. Output: `app/build/outputs/apk/release/app-release.apk`.
 
@@ -32,12 +32,13 @@ OAuth JSON or client secret needs to be embedded in this Android app.
 Use the [guarded installer](../../docs/reproduction/SETUP-CLI.md) with the required
 root/framework baseline and your current backup receipt. Then:
 
-1. Open **BOOX Notes Drive → Connect Google Drive** and authorize your account.
+1. Open **Notes Settings → Google Drive Sync → ⓘ**, then **Connect Google Drive**
+   and authorize your account.
 2. Create a managed directory with **Create BOOX Notes Sync directory**, or
    select an existing authorized one for the same library.
 3. Run **Test Drive round trip**.
-4. Enable **Automatically publish saved notebooks** and
-   **Automatically apply incoming notebook edits**.
+4. Enable **Google Drive Sync → Sync Switch** in native Notes Settings; it controls
+   both automatic directions.
 5. Complete the [native notebook round trip](../../README.md#8-check-your-first-notebook-round-trip).
 
 Google Play services manages Android authorization. The requested scope is
@@ -45,6 +46,10 @@ Google Play services manages Android authorization. The requested scope is
 registration details** to compare the installed app with your OAuth registration.
 
 ## Use and troubleshoot
+
+For another BOOX, install the same signed APK, connect to the same managed directory,
+and enable the native switch. Keep Notes open with its editors closed during initial
+download. See [native settings and pairing](../../docs/NOTES-SETTINGS.md).
 
 Save and leave a native notebook's editor to publish it and permit incoming
 application. Sleep can defer scheduled work. **Retry pending revision uploads**

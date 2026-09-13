@@ -54,6 +54,29 @@ public class NativeInboxTest {
         assertEquals(base.id(), offer.getString("base"));
         assertEquals(head.id(), offer.getString("revision"));
     }
+    @Test public void emptyDeviceOffersEveryStoredNotebookAndFolderWithoutLocalHistory() throws Exception {
+        File files = temp.newFolder();
+        byte[] first = archive("first"), second = archive("second");
+        byte[] folder = new FolderRecord("parent", null, "Notebooks").encode();
+        Revision old = revision(first);
+        Revision current = revision(second, old.id());
+        Revision other = new Revision("boox-other", "other-boox",
+            DriveClient.digest("SHA-256", first), Collections.emptyList());
+        Revision directory = new Revision("folder-parent", "other-boox",
+            DriveClient.digest("SHA-256", folder), Collections.emptyList());
+        catalog(files, Arrays.asList(old, current, other, directory), first, second, folder);
+        List<JSONObject> offers = new NativeInbox(files, "account", "folder").offers();
+        assertEquals(3, offers.size());
+        java.util.Set<String> revisions = new java.util.HashSet<>();
+        for (JSONObject offer : offers) {
+            assertEquals("ready", offer.getString("status"));
+            assertEquals("", offer.getString("base"));
+            revisions.add(offer.getString("revision"));
+        }
+        assertEquals(new java.util.HashSet<>(Arrays.asList(current.id(), other.id(), directory.id())), revisions);
+        assertEquals("Stored notebooks: 2 · Folders: 1\nPending uploads: 0 · Items needing conflict review: 0",
+            DriveSession.catalogSummary(new NativeInbox(files, "account", "folder").catalog, 0));
+    }
     @Test public void pendingLocalCaptureIsNeverOverwritten() throws Exception {
         File files = temp.newFolder();
         byte[] first = archive("first"), next = archive("next");
