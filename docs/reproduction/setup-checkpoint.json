@@ -1,0 +1,212 @@
+{
+  "schema": 1,
+  "date": "2026-09-13",
+  "status": "stable_tools_notesdrive_update_and_mac_ui_roundtrip_passed_decoder_fix_pending",
+  "tool_sha256": {
+    "tools/boox_setup.py": "d7aed886f3a25f179a59e315c2615d343ab3dd0ac4fe855ae181d48320ec55ea",
+    "tools/boox_doctor.py": "9811764fd9479fd94b78e370df6ef13d2b446b1fbdacf1e30e7a9e999cb9760e",
+    "tools/test_boox_setup.py": "b982b8318cb88cd32ff6d77f081d138e8dc4ff044aa5816003fd219f102d58a6",
+    "tools/test_boox_doctor.py": "1a6c0efcb7f1058cb718d85024d4ffd7affba2753af65455e955cbeafbc85a59",
+    "tools/install_notes_drive.py": "517281e0cfce63f543d4c7d49cc54d28acf51395238ad657008be5aecd09b035",
+    "tools/build_ams_fix.py": "b4f43028d0af013e028ea44ff9a717508f44883e15b9850435b286bb30e1f8ab"
+  },
+  "offline_plan": {
+    "components": [
+      "notesdrive",
+      "openai"
+    ],
+    "mode": "update",
+    "plan_id": "216bc01cfbfc6ed94de8aee4b9ad54da4afbeebfb2d568e79caf922cde13cd3c",
+    "signature_package_registration_source_checks": "passed",
+    "notes_apk_sha256": "f15a19bb5de6652c14b4f3b08bff23229adb4308af0f34bc06d7012a157f6f4f",
+    "notes_hook_build": "1b35137b83528a78",
+    "openai_apk_sha256": "aab74d3be5bd44ece6674bd0645304cfa9bf09da85b8ab4ed99b199bfce25331"
+  },
+  "offline_tests": {
+    "total_passed": 56,
+    "doctor": 21,
+    "setup_and_ams": 35,
+    "note": "Previously passed tests; tool/test files unchanged at this checkpoint.",
+    "parent_rerun_passed": 56
+  },
+  "parent_reported_native_status": {
+    "android_checks": 57,
+    "crash_checkpoints": 7,
+    "passed": [
+      "folder_lifecycle",
+      "notebook_delete_restore",
+      "conflict_ui_all_parents",
+      "mac_created_blank_native_apply",
+      "toolbar_drive_panel",
+      "editor_sync_actual_save"
+    ],
+    "original_preservation_snapshot": "passed_original_3_rows_and_182_files_unchanged",
+    "final_mac_ui_validation": "own_oauth_roundtrip_passed_followup_decoder_fix_acceptance_pending",
+    "original_preservation": {
+      "notebook_rows_unchanged": 3,
+      "associated_files_unchanged": 182,
+      "verified_by": "parent",
+      "timing": "Completed before wrapper reinstall; subsequent native/Drive post-reinstall acceptance is recorded separately."
+    },
+    "native_final_snapshot": {
+      "path": "backups/notes-drive-native-v0.4-20260913/native-after.tar",
+      "sha256": "99f4b4576fcb0dd3350f8e88246bfa334d27816c90c37d346dd9f981870616a9",
+      "basis": "Parent-provided archive hash; no notebook archive extracted or reread by sidecar."
+    }
+  },
+  "integration_requirements": [
+    "Parent native/Drive post-reinstall acceptance and later Mac own-OAuth UI round trip passed; preserve original installer report fields.",
+    "Keep setup, doctor and the install helper unchanged until parent releases the freeze.",
+    "Complete the Mac decoder ancestor-row fix, fixed-build acceptance and source review before final packaging/fresh-clone build; no Git work by this sidecar.",
+    "Keep 129 synthetic, five explicit private checks, frozen v0.5 app 125-check checkpoint and later successful Mac interactive round trip distinct.",
+    "Future live reruns still require a current complete device-bound backup receipt, reviewed matching plan and saved/closed editors.",
+    "OpenAI wrapper and first-install paths still need their own live validation; root/flashing remain manual/outside the wrapper and have no new live reproduction from this run."
+  ],
+  "inventory": {
+    "snapshot": "source-inventory.json",
+    "regeneration_policy": "One regeneration after current documentation updates at parent's request; not a final-release attestation.",
+    "root_readme_covered_by_generator": true,
+    "pattern": "*.md",
+    "patterns_added": [
+      "openai-adapter/res/**/*.xml",
+      "notes-drive/macos/Tests/protocol-vectors.json",
+      "notes-drive/macos/Tests/synthetic-manifest.json"
+    ],
+    "cleanup_git_allowed": false,
+    "reason": "Mac own UI round trip passed; follow-up decoder fix acceptance and source review remain pending."
+  },
+  "boundaries": {
+    "device_operations_performed": false,
+    "live_evidence_changed": false,
+    "root_readme_changed": false,
+    "cleanup_or_git_performed": false,
+    "full_sync_completion_claimed": false
+  },
+  "later_packaging_continuation": {
+    "date": "2026-09-13",
+    "parent_android_synthetic_build": {
+      "status": "source_only_synthetic_build_passed_parent_live_install_in_progress",
+      "tests_passed": 57,
+      "release_apk_sha256": "fce3cc2727b64f139796ae4f45d2dab48a4a5c41ce1f2fdf02bd3fb432bf42e6",
+      "hook_build": "1b35137b83528a78",
+      "fixture_generator": "notes-drive/tests/generate_build_fixtures.py",
+      "real_notebook_inputs_required": false,
+      "basis": "Parent-reported build; not rerun or installed by sidecar."
+    },
+    "latest_parent_mac_lifecycle": {
+      "gui_erase_undo_redo_native_five_pens_passed": true,
+      "ui_delete_native_sql_status_zero_verified": true,
+      "restore_acceptance": "passed_native_committed_same_id_blank_zero_pens"
+    },
+    "source_input_audit": {
+      "unhandled_mandatory_private_notebook_paths_found": 0,
+      "basis": "Static inspection of default app builders/tests, Mac packaging/default suite and opt-in prototype corpus guards; not a fresh-clone build.",
+      "all_android_builders_and_preflight_use_shared_resolver": true,
+      "preflight_honors_gradle_user_home": true,
+      "historical_corpora_require_boox_private_workspace": true,
+      "mandatory_shareable_input_added_to_rules": "notes-drive/macos/Tests/native-apply-manifest.json",
+      "inventory_and_plan_refresh": "deferred_until_final_stable_source_checkpoint"
+    },
+    "parent_network_bootstrap": {
+      "status": "dependencies_materialized_not_executed",
+      "default_archives_exact_hashes_and_extraction_passed": 4,
+      "private_evidence_filename": "clean-dependencies-bootstrap.json",
+      "fresh_clone_build_with_new_gradle_cache": "pending",
+      "additional_portable_apk_builder_checks_passed": 4
+    },
+    "mac_ui_status": "own_oauth_ui_roundtrip_passed_decoder_ancestor_row_fix_acceptance_pending",
+    "parent_reported_roundtrip": {
+      "mac_gui_pen_drag_save_auto_publish": true,
+      "boox_native_commit": true,
+      "pens": 6,
+      "samples": 129,
+      "exact_ids_and_visible_diagonal": true,
+      "native_close_save_followed_back_to_mac": true,
+      "mac_page_and_zoom_preserved": true,
+      "ui_notebook_create_rename_move_native_committed_opened": true,
+      "mac_decoder_ancestor_row_fix": "in_progress"
+    },
+    "documentation": "PACKAGING.md",
+    "source_plan": "source-package-plan.json",
+    "parent_build_resolver": "tools/android_build_env.py",
+    "ui_helper_device_selection": "BOOX_SERIAL_required_no_default",
+    "root_readme_or_live_evidence_changed_by_sidecar": false,
+    "real_source_export_or_git_performed": false,
+    "network_bootstrap_performed": false
+  },
+  "parent_reported_final_doctor": {
+    "scope_matches": {
+      "local.boox.notesdrive": true,
+      "local.boox.openai": true
+    },
+    "query_failures": 0,
+    "verified_by": "parent",
+    "live_evidence_changed_by_sidecar": false
+  },
+  "loader_acquisition": {
+    "status": "exact_binary_reproduction_source_verified_by_parent",
+    "manifest": "acquisition.json",
+    "historical_download_commit_established": false
+  },
+  "parent_live_notesdrive_wrapper": {
+    "date": "2026-09-13",
+    "component": "notesdrive",
+    "mode": "existing_install_same_apk_update",
+    "plan_id": "2d4531791aadf0796405372e3d2386727ccab53c01fc1a8a44503393b8edcfbf",
+    "preflight_status": "preflight_passed",
+    "apply_status": "installed_pending_acceptance",
+    "events": [
+      {
+        "action": "preflight",
+        "status": "completed"
+      },
+      {
+        "action": "notesdrive:delegate-verified-installer",
+        "status": "started"
+      },
+      {
+        "action": "notesdrive:delegate-verified-installer",
+        "status": "completed"
+      },
+      {
+        "action": "post-install-identity-and-scopes",
+        "status": "completed"
+      }
+    ],
+    "notes_hook_verified": true,
+    "openai_wrapper_executed": false,
+    "sync_verified": false,
+    "backups_hash_verified": true,
+    "apk_sha256": "f15a19bb5de6652c14b4f3b08bff23229adb4308af0f34bc06d7012a157f6f4f",
+    "hook_build": "1b35137b83528a78",
+    "native_app_reopened": true,
+    "post_reinstall_acceptance": "parent_passed_native_drive_and_later_mac_ui_roundtrip_decoder_followup_pending",
+    "subsequent_acceptance": {
+      "timing": "Initial native/Drive post-reinstall checkpoint, before the separately recorded successful Mac own-OAuth UI round trip.",
+      "new_mac_blank_opened_with_visible_canvas": true,
+      "native_editor_closed_normally": true,
+      "latest_fixture_heads_verified_in_drive": 2,
+      "pending_uploads": 0,
+      "automatic_outgoing_enabled": true,
+      "automatic_incoming_enabled": true,
+      "physical_pen_validation": false,
+      "mac_own_oauth_ui_roundtrip_verified": false,
+      "basis": "Parent-reported post-reinstall acceptance and selected non-personal fields in latest-checkpoint.json; original apply report fields remain unchanged."
+    },
+    "evidence": [
+      "notes-drive/research/incoming/setup-preflight.json",
+      "notes-drive/research/incoming/setup-apply.json",
+      "notes-drive/research/incoming/latest-checkpoint.json"
+    ],
+    "receipt_plan_directory": "backups/notes-drive-native-v0.4-20260913",
+    "basis": "Parent performed the live run and reported reopened app/same expected APK; sidecar inspected reports only."
+  },
+  "mac_test_checkpoints": {
+    "basis": "Parent-reported counts; distinct suites and build checkpoint, not an aggregate frozen-binary claim.",
+    "mandatory_synthetic_checks": 129,
+    "explicit_private_fixture_checks": 5,
+    "frozen_app_version": "0.5",
+    "frozen_app_build_test_checks": 125,
+    "interactive_validation": "own_oauth_ui_roundtrip_passed_followup_decoder_fix_acceptance_pending"
+  }
+}

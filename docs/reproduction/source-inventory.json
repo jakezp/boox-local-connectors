@@ -1,0 +1,1397 @@
+{
+  "schema": 1,
+  "checkpoint_date": "2026-09-13",
+  "atomic_snapshot": false,
+  "warning": "Sources may change concurrently; regenerate after final builds. Listed source/legacy docs still require privacy and licensing review.",
+  "excluded": [
+    "Private signing material, OAuth configuration, grants and account/folder registration",
+    "Personal notebooks, live evidence, screenshots, backups and app state",
+    "Firmware/APKs/JARs/loader archives, decompiled proprietary sources",
+    "Downloaded tools, virtual environments, build outputs and caches",
+    "This generated inventory itself (avoids a self-referential hash)"
+  ],
+  "counts": {
+    "host_tools": 18,
+    "ai_android": 26,
+    "notes_android": 37,
+    "notes_macos": 42,
+    "historical_probes": 9,
+    "prototype_and_validation": 20,
+    "legacy_documentation_review_required": 34,
+    "reproduction": 10
+  },
+  "files": [
+    {
+      "path": ".gitignore",
+      "group": "legacy_documentation_review_required",
+      "bytes": 738,
+      "sha256": "569075ad950e276fadea26df9a1ee94ebe00c817afda6bfe1579f697688abcc0",
+      "publication_review_required": true
+    },
+    {
+      "path": "AGENTS.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 3001,
+      "sha256": "14b2bbbc1c8008c23825c81bd9c2bb60f013af0cb9dd2f504e03ccf6ea4979b4",
+      "publication_review_required": true
+    },
+    {
+      "path": "AI-AND-ONENOTE-FINDINGS.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 5085,
+      "sha256": "2b8a041b6a97ad1991f1810e41e73f1b7c27282798cf2e620995580b371fb232",
+      "publication_review_required": true
+    },
+    {
+      "path": "HANDOVER.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 54771,
+      "sha256": "f9163a4eeeb456c340a954c6908c20d4c94a288d2273a28bd5a3f32edbba576a",
+      "publication_review_required": true
+    },
+    {
+      "path": "IMPLEMENTATION-PLAN.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 4210,
+      "sha256": "5ebfed3d05f737b71d67b462897bb0f6f4c3745a3a790328c1f132bb72506c11",
+      "publication_review_required": true
+    },
+    {
+      "path": "README.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 7093,
+      "sha256": "f09d12f4790c3f1d78e5c0a53245bd74a5133800ac6eda5e76c6e7433ff861d6",
+      "publication_review_required": true
+    },
+    {
+      "path": "STATUS.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 6386,
+      "sha256": "566f301f009ac8a613e340f3236d5ff30a7cd832c06ac73d9e5b084de85e1fb4",
+      "publication_review_required": true
+    },
+    {
+      "path": "docs/ROOT-STAGING.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 13387,
+      "sha256": "930b9777a9260194f2a15437c022063918123a986bd8ec635fe400e42e85d880",
+      "publication_review_required": true
+    },
+    {
+      "path": "docs/reproduction/BACKUP-RECEIPT.example.json",
+      "group": "reproduction",
+      "bytes": 930,
+      "sha256": "26685544af315e625575a5547eb0086b5f882d3eac0debb8e9755a481214bc9f",
+      "publication_review_required": false
+    },
+    {
+      "path": "docs/reproduction/GAPS.md",
+      "group": "reproduction",
+      "bytes": 10827,
+      "sha256": "bad9c969e79c9e21f252f9c11df4491a1eae4296675b4a322898b8cfbeb8e73f",
+      "publication_review_required": false
+    },
+    {
+      "path": "docs/reproduction/PACKAGING.md",
+      "group": "reproduction",
+      "bytes": 16258,
+      "sha256": "085600879698acfca158e0c40fa79aa54ee4be8d64d5f2c61e397c5935bb070b",
+      "publication_review_required": false
+    },
+    {
+      "path": "docs/reproduction/README.md",
+      "group": "reproduction",
+      "bytes": 25188,
+      "sha256": "533b2397c29b09cee9772cf3f5e66ebd92ef677b19f40937245a2eda8b8d3f6b",
+      "publication_review_required": false
+    },
+    {
+      "path": "docs/reproduction/ROOT-RECOVERY.md",
+      "group": "reproduction",
+      "bytes": 11929,
+      "sha256": "7f415f333118965796e856974986de9561eddec04e06c04f0cd42397192a24fb",
+      "publication_review_required": false
+    },
+    {
+      "path": "docs/reproduction/SETUP-CLI.md",
+      "group": "reproduction",
+      "bytes": 12838,
+      "sha256": "0fc9607f02994d9018f09565e2973202eec05d2af399ae060b465b3db42fc8de",
+      "publication_review_required": false
+    },
+    {
+      "path": "docs/reproduction/SOURCE-INVENTORY.md",
+      "group": "reproduction",
+      "bytes": 11279,
+      "sha256": "5cfadffc61d741f92d4219ee10b293607c3538bb70487d4e3655428a094cedc6",
+      "publication_review_required": false
+    },
+    {
+      "path": "docs/reproduction/acquisition.json",
+      "group": "reproduction",
+      "bytes": 14748,
+      "sha256": "ae8a662e5054793a5bbca3d8c9affda774b36b9a603b02960a6d159d32c0e893",
+      "publication_review_required": false
+    },
+    {
+      "path": "docs/reproduction/inventory_sources.py",
+      "group": "reproduction",
+      "bytes": 4704,
+      "sha256": "e3e7a7072e4ea72875b24f3c00f832c0f186482a27a419593db81f336e358908",
+      "publication_review_required": false
+    },
+    {
+      "path": "docs/reproduction/setup-checkpoint.json",
+      "group": "reproduction",
+      "bytes": 9969,
+      "sha256": "a3d2ddf1c481f826e138554606788dfceadbf9246449d53519c6fe9076c34386",
+      "publication_review_required": false
+    },
+    {
+      "path": "notes-drive/.gitignore",
+      "group": "legacy_documentation_review_required",
+      "bytes": 25,
+      "sha256": "5f6beedfdbc68f3ded91fa3b164f0eeef8425ac2ef3e1edbfdb9e9853a3ab185",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/APPLY-VALIDATION.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 6606,
+      "sha256": "834769901fbdc39bbe62727a6a013054b16764191bfa76aff55a74a2f935631e",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/AUTOMATIC-VALIDATION.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 6976,
+      "sha256": "11c0d1d807cb251f54cf94a422e88b253bcc24ddbf82b6184517939d7f06a735",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/FEASIBILITY.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 15717,
+      "sha256": "77232d1024d85bdbbdac548eca32855f9b7bef668a6fa6771eccf315dbc2c6f4",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/INCOMING-VALIDATION.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 12763,
+      "sha256": "c647c36d2a4f738b8354655cd3ac59586ec7b9f0ca59defaa53391f71823c799",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/INTEROPERABILITY-VALIDATION.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 5453,
+      "sha256": "bd8804435839bf720e3768c683952f8ac357250fffa83b5c98f315dc730804ee",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/NATIVE-VALIDATION.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 7804,
+      "sha256": "32ad1b31964809c98a0d7187b738e316a6d0cd3a836fa92004b5d71613c47e94",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/PROTOCOL.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 6565,
+      "sha256": "15d50f44ea877e98c6d50027ac116c681f4a8e14af1d9ec8b4bbfc26c2ee8c8a",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/README.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 2840,
+      "sha256": "3b5a5a03c69814816425008e27e00c90b4d27830d4e47103a05e22022944a1a1",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/.gitignore",
+      "group": "legacy_documentation_review_required",
+      "bytes": 54,
+      "sha256": "756bc55ba0929bb085d49cfa3bd87251b48390af12e8a871c0fbca04215503c8",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/README.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 9243,
+      "sha256": "3246a95731ba1af0a986ab1c914a4e350fb0dce6d3a3c89b01de410a3bb2371a",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/build.gradle",
+      "group": "notes_android",
+      "bytes": 1225,
+      "sha256": "7011707a7548332ccc5b83fac30a1c8c4f681997e9baa092502f7409cca13f82",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/AndroidManifest.xml",
+      "group": "notes_android",
+      "bytes": 1619,
+      "sha256": "dc54076a09424c5b855c0960d0c9ea4f3c127b0da35d2ecd5afeda0aafb68bf2",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/assets/xposed_init",
+      "group": "notes_android",
+      "bytes": 38,
+      "sha256": "2ff3297d05b699809d87e4ab1ce8c8d174c7c7d86270efe13654bef352d7cfbb",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/AutoSyncJob.java",
+      "group": "notes_android",
+      "bytes": 2083,
+      "sha256": "b5e26b2bc3619b272b5532ffebf1f9ec511069c806ac92959cf246c22604b4c7",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/ConflictResolution.java",
+      "group": "notes_android",
+      "bytes": 2282,
+      "sha256": "ef2aa7f859becd45cd3016b9301f6cf1314ade0473d294cbe9e701670691c866",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/ConflictReview.java",
+      "group": "notes_android",
+      "bytes": 2632,
+      "sha256": "055580b72ca40717663a842b21e3b755e798cd141146ed634b98d1f85b796c3e",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/DriveClient.java",
+      "group": "notes_android",
+      "bytes": 10343,
+      "sha256": "d368b4703357167d2f3ffc0544117aa5c145e66f24c7d16db2a2f8d225876d39",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/DriveSession.java",
+      "group": "notes_android",
+      "bytes": 28627,
+      "sha256": "9ac32c255283408463b4213ed84e1420cd87bca28b1676565f7a121ab6338a0e",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/FolderRecord.java",
+      "group": "notes_android",
+      "bytes": 3224,
+      "sha256": "aa2cee684d9f4248b9c43d7890edbeb6308c775aa9614ce4e3998616b93fed46",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/LibraryQueue.java",
+      "group": "notes_android",
+      "bytes": 12876,
+      "sha256": "daab70ba0036b486644525f8a39d3d7088c60fa0df6e3a56908d029f48430c87",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeAccess.java",
+      "group": "notes_android",
+      "bytes": 2079,
+      "sha256": "fbc8e61c22df4db8ee96578c4c7cb5fd6168899baa0a5a3026051787946d4985",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeApply.java",
+      "group": "notes_android",
+      "bytes": 11220,
+      "sha256": "505cae91f2e8dc228756e38003526bcd99eff9bfc4af22e482057fa5c64a455b",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeArchive.java",
+      "group": "notes_android",
+      "bytes": 20554,
+      "sha256": "9fefd637ef1466967b979258a71567a601d1d7cd1708f3ae1832eb578023f2c3",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeInbox.java",
+      "group": "notes_android",
+      "bytes": 5151,
+      "sha256": "5fffc33b94d82145c21f7470636f91b6a3e7da3cea94495e0e6877e048d0f947",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeMetadataApply.java",
+      "group": "notes_android",
+      "bytes": 6019,
+      "sha256": "569fe019b5ac27707aab40c03103d8db7bf567dbff96bfa368555faf093e183a",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeNotesHook.java",
+      "group": "notes_android",
+      "bytes": 26513,
+      "sha256": "5b813e790f439f93ef9a785f229db0246096c5aee8536f13146ed7398608bb96",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeSnapshot.java",
+      "group": "notes_android",
+      "bytes": 2757,
+      "sha256": "ec20e5b21d8a9003862e082529350c19c5d8a8a0fe21b03d272a62cc2c873a51",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeStore.java",
+      "group": "notes_android",
+      "bytes": 19911,
+      "sha256": "eeff83eb49be7c212c0df004774e4603ff927e9b6c4238879cb2749d73e4c8e6",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NativeSyncUi.java",
+      "group": "notes_android",
+      "bytes": 8396,
+      "sha256": "ab1e29960d24da554724be7f8f64094d2250de5c2abe88060f064e8ea823b65f",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/NotesBridge.java",
+      "group": "notes_android",
+      "bytes": 14080,
+      "sha256": "d288ddc929f723b5bc70decbb04250171e8447635fc9031e8882076431b17edb",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/Revision.java",
+      "group": "notes_android",
+      "bytes": 3879,
+      "sha256": "7f59868389779860f24b9eec3c0ceea28cc8397c2748160a775d7b9c6f956323",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/RevisionCatalog.java",
+      "group": "notes_android",
+      "bytes": 2938,
+      "sha256": "c71784544a34df3e849b87cd0ea879a1271fd5404888cdf7a9407da3be8a0101",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/RevisionDriveStore.java",
+      "group": "notes_android",
+      "bytes": 9273,
+      "sha256": "0657e58c81c1b0436433b1b53f82625c5b8e5daa05938c42760a6e44172f651a",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/RevisionQueue.java",
+      "group": "notes_android",
+      "bytes": 8123,
+      "sha256": "0da16630b7a77d751449b1386a0999ee8ee0258a807349d7066e6a0afbe36e3f",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/main/java/local/boox/notesdrive/SetupActivity.java",
+      "group": "notes_android",
+      "bytes": 9993,
+      "sha256": "f4e548e0865fe078bfbeb7792530db93f517fd352874cb224ce54d8ace1b9c9f",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/test/java/local/boox/notesdrive/ConflictResolutionTest.java",
+      "group": "notes_android",
+      "bytes": 3206,
+      "sha256": "19dc0b233b8fd9dfa921ffeb3929086228c72d25933d047f6f036a3701d1b5ab",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/test/java/local/boox/notesdrive/DriveClientTest.java",
+      "group": "notes_android",
+      "bytes": 7163,
+      "sha256": "21669fed8824ef54ada340b90080b78c65037c2f5a24278c95bf07cfac7d4b06",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/test/java/local/boox/notesdrive/FolderSyncTest.java",
+      "group": "notes_android",
+      "bytes": 5667,
+      "sha256": "f0d97c6baa63a234e5d4dda1e934f2c7c95e5053ef03799e6824783b3521e873",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/test/java/local/boox/notesdrive/LibraryQueueTest.java",
+      "group": "notes_android",
+      "bytes": 5729,
+      "sha256": "1d3c7932a4994ab44becc76d9ff186c8e8dce04d5ffd112d737edf91fe656ed7",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/test/java/local/boox/notesdrive/NativeArchiveTest.java",
+      "group": "notes_android",
+      "bytes": 9739,
+      "sha256": "cc29424721d9ea14b1e11078f5a88a1d492e13312deb6296fecf01f6aa5fd9bf",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/test/java/local/boox/notesdrive/NativeInboxTest.java",
+      "group": "notes_android",
+      "bytes": 7141,
+      "sha256": "188431bd35dadeb59eba4dcdff46fabb576fb227fabdcf57fcce225468c4354c",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/app/src/test/java/local/boox/notesdrive/RevisionTest.java",
+      "group": "notes_android",
+      "bytes": 14617,
+      "sha256": "a2fb98a91016bfccfc387b3d5f44436e77caeb3313aa90afc5a1394ba77a8a93",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/build.gradle",
+      "group": "notes_android",
+      "bytes": 73,
+      "sha256": "4b08d3c261d317db5e5a5f7fa8ade50f361690e3b03fa86ee69a678f2a4b3a37",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/build.py",
+      "group": "notes_android",
+      "bytes": 3178,
+      "sha256": "6a45829db13d29d8e737551b150beaab8da4aa638ac0b0176ba45d4731cd9fc5",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/gradle.properties",
+      "group": "notes_android",
+      "bytes": 76,
+      "sha256": "67eefa02d084d8fd6e2698683ca4d007a344395ca89eed9012a79bac373ba359",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/settings.gradle",
+      "group": "notes_android",
+      "bytes": 355,
+      "sha256": "872072ec0e88daaf51f56e4103777e878375ccc5f67b5d2165d481de539afcff",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/android/xposed-stubs/build.gradle",
+      "group": "notes_android",
+      "bytes": 95,
+      "sha256": "f97c9feae0e4e3ba80006c18b5c2ce0ad82a276ab31463c9df386ec1f0a5ba95",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/apply-probe/AndroidManifest.xml",
+      "group": "historical_probes",
+      "bytes": 565,
+      "sha256": "6140e290379a46af500d66151d9d2cf9a78e89858b017a7471d45ca5c89a5c9c",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/apply-probe/assets/xposed_init",
+      "group": "historical_probes",
+      "bytes": 33,
+      "sha256": "a4fdc2058f63535b913a7d7e67fdc57ec51f01b19cd8988f58d999f0c03461b2",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/apply-probe/build.py",
+      "group": "historical_probes",
+      "bytes": 2227,
+      "sha256": "4d5017a0a9394f477de7cc06fbacd822fa49c072cf596fe4a50f9ea2fac6739d",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/apply-probe/src/local/boox/notesapply/ApplyMain.java",
+      "group": "historical_probes",
+      "bytes": 25758,
+      "sha256": "422e72a4fd687bd2dab32fcf27c80339f9521b9ffd4b1989134cd5ac109c64df",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/apply-probe/src/local/boox/notesapply/ImportMaps.java",
+      "group": "historical_probes",
+      "bytes": 4842,
+      "sha256": "70966052c351ccfbb63a210fcfab7b033d4d573c20f3116abf22baad98d558f7",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/.gitignore",
+      "group": "legacy_documentation_review_required",
+      "bytes": 158,
+      "sha256": "964261af20dab3b1f40ef4e70dcaeb5994a37c98b67da236b205475d5cd954cd",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/INTEGRATION.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 22080,
+      "sha256": "6f5beaa57fe058b12d27e5067430fe6d8ebb6b84ae3fe1ae397f78a31e5871e7",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/LIFECYCLE-HANDOFF.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 2876,
+      "sha256": "d422c800405cefc647137ac6bb4748b407fc6a6052be07db1cce1292694eec29",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/NATIVE-CREATION-ACCEPTANCE.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 1637,
+      "sha256": "3fae8d7447a0ec4ce1b930e4f3dafff5de3900a017c20c8daa491d37a5ea2817",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/NESTED-METADATA-HANDOFF.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 3437,
+      "sha256": "80c35b4a9fd3ae7936eb7ad25410ac70d64189bb3f371a0b9d4b8f1ae0dd051e",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/PORTABLE-BUILD.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 7778,
+      "sha256": "e117c8553e10246746b1e94939fe7dba01ad8fcec477fb8e4a3a5b4c3445208f",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/PORTABLE-RUNTIME-HANDOFF.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 4616,
+      "sha256": "efee4affab28d62350edb14295d1374f69ed8f35ed9e6fa9546764eddbae859a",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/PROBE-CLI.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 6911,
+      "sha256": "8f6092325f4964424b68bb7ee95205c703e966fd4073010b293de1a93b97b159",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/README.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 36331,
+      "sha256": "9a5ddbe750cea9a732fe7833122d6c13a1149da24d9088f84f612f28a9b7f1ac",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Resources/note_editor.py",
+      "group": "notes_macos",
+      "bytes": 15915,
+      "sha256": "8d85673c5007720c74e63690f011872b0c27f5a22c29b986e42f701860583d1a",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Resources/note_library.py",
+      "group": "notes_macos",
+      "bytes": 7157,
+      "sha256": "df6383bd57d9c0bad4f70511966b79c0d65106c37fc8f352922adff8a8979cbe",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Resources/note_reader.py",
+      "group": "notes_macos",
+      "bytes": 19730,
+      "sha256": "b613c9ec001e44f4e8c6dfe0957d3520474b8b4ace34f9a34f517e6ad13bf2bf",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/SYNTHETIC-TESTS.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 6563,
+      "sha256": "58ac607fc820c1f3a95dcbeb99f07a9f86d0a2c69c1d79d2e82682e0f706c9de",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/App.swift",
+      "group": "notes_macos",
+      "bytes": 30867,
+      "sha256": "14251b387feb31af39996b9112338a14ada174b07123205c16987f4f0d4b5718",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/AutomaticLibrary.swift",
+      "group": "notes_macos",
+      "bytes": 6780,
+      "sha256": "b84c766b2c2d085ac0124f323e3dee5817f624cd6d1327caa446fac743453a15",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/Drive.swift",
+      "group": "notes_macos",
+      "bytes": 15194,
+      "sha256": "1f53b9dc1c26e1d6ff60e9acf38666edf3f37e7d5eaf3fc8d826ae3b3da41ea7",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/Editor.swift",
+      "group": "notes_macos",
+      "bytes": 18907,
+      "sha256": "37713044f8eab015d77484b975b160fe469cdd24c42170e937665079daecb3f6",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/EditorController.swift",
+      "group": "notes_macos",
+      "bytes": 15024,
+      "sha256": "103925eec4e20a92d644008fcaf8a9240cdccf7da9c9eb0af4f944360d3e0c18",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/FolderManagement.swift",
+      "group": "notes_macos",
+      "bytes": 14494,
+      "sha256": "a897970e5bf87bb446417f6e8de15dee8fb97acfe9aa08b92ffc16bb605c33e1",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/FolderRecord.swift",
+      "group": "notes_macos",
+      "bytes": 3433,
+      "sha256": "bb5aa6d98065fb4ee2b30fa580a955a86313e85388af293c7587373abcaf5cc0",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/HTTP.swift",
+      "group": "notes_macos",
+      "bytes": 4488,
+      "sha256": "d307c37bdc05cd4ea4c95560ef17fba2cc586a7e58269bb7f23125af02bdb315",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/LocalStore.swift",
+      "group": "notes_macos",
+      "bytes": 7383,
+      "sha256": "4a8e22de4a1c60adbd36a33cfb7fb7b6c5f12c09512c476a79fc2c8d813d2858",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/Models.swift",
+      "group": "notes_macos",
+      "bytes": 10327,
+      "sha256": "2fe2045162f6b286c86e2feae5aff0df4cf3c7cd661b3c41d046d310f68edcb2",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/NotebookManagement.swift",
+      "group": "notes_macos",
+      "bytes": 18175,
+      "sha256": "f6740fd2dc098c4c8927754d231e5afe9b0ee3cd1d5d33cb8827fd39fc94e9ee",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/OAuth.swift",
+      "group": "notes_macos",
+      "bytes": 16654,
+      "sha256": "035c51e80cf4859a5e26a000f904c1ae3de8f5a7fc9ce59925fc693085e3ec8f",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/ProbeCLI.swift",
+      "group": "notes_macos",
+      "bytes": 22760,
+      "sha256": "c7b5e8060eee18610842fc671e5deebcd5d66abf6e52867d7d51c165a185986d",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/ReaderModel.swift",
+      "group": "notes_macos",
+      "bytes": 28697,
+      "sha256": "613933a7be43683b6268684043581497efd7c98f5370ec43832bd6bd058b4e9e",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/Revision.swift",
+      "group": "notes_macos",
+      "bytes": 5211,
+      "sha256": "d2a3945bf15c9655a59a7348af7e1f5ebc7dfd1b50a428eed229195d5d9368fb",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Sources/VerifiedObjectCache.swift",
+      "group": "notes_macos",
+      "bytes": 4446,
+      "sha256": "f0aa6d327fdbce695ddc8a0561f021b0be2875ac2c161af9aee2f7a703f92da1",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/AutomaticTests.swift",
+      "group": "notes_macos",
+      "bytes": 17057,
+      "sha256": "5bdd454c81c432c905b089736d44a5874fddd5aa77add1b6752d3ac1aa9ced04",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/CoreTests.swift",
+      "group": "notes_macos",
+      "bytes": 19111,
+      "sha256": "bcf91fa3b569d1213bd5e39d98485530f2a64eccd1182b6b7f2b0187903a70fa",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/EditorTests.swift",
+      "group": "notes_macos",
+      "bytes": 17442,
+      "sha256": "8b5987e61a0c5096bb78cccb3a5487ccd88db0783ddfa60665b8da8958bbe658",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/FolderTests.swift",
+      "group": "notes_macos",
+      "bytes": 14730,
+      "sha256": "be477a609b56ba7cee19f62850cc14be2090a6c9c920cdbd1926c30ed1de883b",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/NotebookTests.swift",
+      "group": "notes_macos",
+      "bytes": 18440,
+      "sha256": "68a5a4046fd1d6a9a2fb5d46dc25a6b5abfa00179f5acfea4e82b9f5f3e1ab08",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/PortableConfigTests.swift",
+      "group": "notes_macos",
+      "bytes": 14287,
+      "sha256": "4297460c979ea55cf918b51ec7da605807b255ba7cfe3e5ad5f4f35725b88285",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/ProbeTests.swift",
+      "group": "notes_macos",
+      "bytes": 17109,
+      "sha256": "c56cea5e315ca3c76f9d71c2d0098cb70288b11996d3bf703b86246acc295b1b",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/generate_native_apply_fixtures.py",
+      "group": "notes_macos",
+      "bytes": 5637,
+      "sha256": "d29fbb96e63937658c62194042720ed2a209a210cccb4138670b125049d4d771",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/native-apply-manifest.json",
+      "group": "notes_macos",
+      "bytes": 1690,
+      "sha256": "35980013e61a48053b0b72f2dd2a3a30f47c35d66c625d504ff9d0f0e22c6886",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/package_resources.py",
+      "group": "notes_macos",
+      "bytes": 4321,
+      "sha256": "059b7b80c769be15d567be96196afc00c281c3f1746e485191480c1b0463dfd4",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/private_corpus.py",
+      "group": "notes_macos",
+      "bytes": 6537,
+      "sha256": "d41756012532b362ad30c14dc30d316434dc9c9966aedbac3c813b5074462c8e",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/protocol-vectors.json",
+      "group": "notes_macos",
+      "bytes": 918,
+      "sha256": "a69c6b1e9df5808c2b6a4b59725628594d514c1826d890684485438232d6417c",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/synthetic-manifest.json",
+      "group": "notes_macos",
+      "bytes": 910,
+      "sha256": "1a08ca27f295a7cb4c8544e73ccf08d617fda313b715bb5201a118d6be432352",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/synthetic_fixtures.py",
+      "group": "notes_macos",
+      "bytes": 11421,
+      "sha256": "857aaa7cdeb4eac3c095b5bbb5f71de67bab2afcdd7cc5a89b47c914a43b6ee8",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/test_editor.py",
+      "group": "notes_macos",
+      "bytes": 13484,
+      "sha256": "cf351d055055d3690472d3640cd370ec69597fd90fe5f3de5fb227f5dd5fdc71",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/test_library.py",
+      "group": "notes_macos",
+      "bytes": 8547,
+      "sha256": "210f1c7ed5d41ba766e2fee8969c94874a5e4d83853a26b339d5c323de2f7c63",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/test_native_apply_fixtures.py",
+      "group": "notes_macos",
+      "bytes": 4926,
+      "sha256": "3a6acca7f913b7af374e9a4c204883cb38333e9dbecba31e5d80de9ef8b23a46",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/test_nested_metadata.py",
+      "group": "notes_macos",
+      "bytes": 11336,
+      "sha256": "6a286bf5ea2a66faffc23813e5d33b148c25366d1c165bc9b01deb1e992f5675",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/test_packaging.py",
+      "group": "notes_macos",
+      "bytes": 5919,
+      "sha256": "6f080c7675178e9666aec19dd5c3ce1b846052f0c10811ebea2b702a22e75e65",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/test_reader.py",
+      "group": "notes_macos",
+      "bytes": 21844,
+      "sha256": "f35e71ff7e50f1fbe5bf90e70ee074f264a55315d6aa75f8b78f0717ba5e0db8",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/Tests/test_synthetic.py",
+      "group": "notes_macos",
+      "bytes": 4346,
+      "sha256": "ffeb6166392871f088236c292d3e1aed65fde5894bd0f9ccf670725cdd95b82f",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/build.sh",
+      "group": "notes_macos",
+      "bytes": 3693,
+      "sha256": "a71bab87db5a4c5b6763eb19176b45c79fea7a43fd5cf3293f9daec2eedf6f2c",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/macos/test.sh",
+      "group": "notes_macos",
+      "bytes": 2456,
+      "sha256": "acd3599d76a51f6e49ab4863d4242e70be78aef127bb0e6569ddb731313bddbf",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/probe/AndroidManifest.xml",
+      "group": "historical_probes",
+      "bytes": 588,
+      "sha256": "f318763b2389941bbaf4bee4074afc35847fe807b4f496b6792943ed6c4e4e08",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/probe/assets/xposed_init",
+      "group": "historical_probes",
+      "bytes": 34,
+      "sha256": "bdce4b7c1b371019c26ccbec2c185e7389be379dcd00fd68982bc54e5a6ea866",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/probe/build.py",
+      "group": "historical_probes",
+      "bytes": 2221,
+      "sha256": "123cd07fde86fe9b50cc345d921845d4ca43f4db3971c2a388a7d57beef5a4f9",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/probe/src/local/boox/notesprobe/ImportProbe.java",
+      "group": "historical_probes",
+      "bytes": 3189,
+      "sha256": "c7045e10b260c6ed0a4e9101890e79f2c48917d266f16e64a02f72ab8c20f40a",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/prototype/adb_apply.py",
+      "group": "prototype_and_validation",
+      "bytes": 3218,
+      "sha256": "a0d272f58102494fcd727e2456b4f8fd19dbc5e0382b926470fae48a36f9fcf4",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/prototype/native_fixture.py",
+      "group": "prototype_and_validation",
+      "bytes": 10234,
+      "sha256": "c27696a848111679c6e68bccee10295a24352aa3f27e18c2e064831c1190dd7b",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/prototype/prepare_apply_fixture.py",
+      "group": "prototype_and_validation",
+      "bytes": 8276,
+      "sha256": "85c9c506299ab804d41f53caede883539a01833572315593036a281d00f964c5",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/prototype/stylus_fixture.py",
+      "group": "prototype_and_validation",
+      "bytes": 2133,
+      "sha256": "ac795b1c96055d0a02356284c42a6d96ed576fbc50f66e83030c378540efa4c8",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/prototype/sync_protocol.py",
+      "group": "prototype_and_validation",
+      "bytes": 6368,
+      "sha256": "d52c19a215c418e16475546ac7c2ff1e8e341d551b6b565d8a7266cafc652de8",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/prototype/test_device_apply.py",
+      "group": "prototype_and_validation",
+      "bytes": 6319,
+      "sha256": "c1cb4d0103d4e32212862d4b62170aa4f844bd97cfd83e12da3ac2ad7c1782de",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/prototype/test_native_fixture.py",
+      "group": "prototype_and_validation",
+      "bytes": 5938,
+      "sha256": "6320eb00eae735f9c4a5d5c0450d9f9fbafd7f698d21206cc97091a17b6f9df8",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/prototype/test_prepare_apply.py",
+      "group": "prototype_and_validation",
+      "bytes": 4809,
+      "sha256": "3d63db844923accf079892abfde7f25fa9fee1b4bd9d410bbdf82ffc5513d199",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/prototype/test_sync_protocol.py",
+      "group": "prototype_and_validation",
+      "bytes": 6273,
+      "sha256": "37b7fef12a0435fd903f78d31d010dfa34b8c53ec9f8b7df0b633309b4b60564",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/prototype/verify_apply_fixture.py",
+      "group": "prototype_and_validation",
+      "bytes": 3421,
+      "sha256": "7ee08a9696ea5b5446b97b8aa6cc551b2d29f96a9d90b52d63f0f000a38e06cd",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/tests/NativeArchiveCheck.java",
+      "group": "prototype_and_validation",
+      "bytes": 1770,
+      "sha256": "1525958753d2c258da99611c0caf2709c885300bb7eb018bef9559eb99426836",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/tests/generate_build_fixtures.py",
+      "group": "prototype_and_validation",
+      "bytes": 3273,
+      "sha256": "2a5b866f4b8f7f48aec880989281626145df7b58cdd39d88f6ff4f1a5cc854da",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/tests/preflight_native_corpus.py",
+      "group": "prototype_and_validation",
+      "bytes": 2027,
+      "sha256": "a26031bbc87b58ce48a2dd93cec9b81cf606cfa4811ff1ae2aa7e6d680523523",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/tests/protocol-vectors.json",
+      "group": "prototype_and_validation",
+      "bytes": 918,
+      "sha256": "a69c6b1e9df5808c2b6a4b59725628594d514c1826d890684485438232d6417c",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/tests/publish_metadata_fixture.py",
+      "group": "prototype_and_validation",
+      "bytes": 5321,
+      "sha256": "bc23fc581d316b78e36bb8418d01135225bbc6d8dcfdbf8beecd7510202d591f",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/tests/publish_native_fixture.py",
+      "group": "prototype_and_validation",
+      "bytes": 6599,
+      "sha256": "a06ffdb56b14b8a81ce24a63cdf8c1df37cacf235c117bc310ea998eb5bdab91",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/tests/validate_native_fault.py",
+      "group": "prototype_and_validation",
+      "bytes": 8397,
+      "sha256": "bff9c4b5e0fb770811f70759df188ffbd0d1bdf6b4a9bda30f3528e443a6e0eb",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/tests/verify_metadata_fixture.py",
+      "group": "prototype_and_validation",
+      "bytes": 5059,
+      "sha256": "e9ba6d6626f10976b279f82af8fb86d9be5a92b95ab63b2aee118bc6659fbbf7",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/tests/verify_native_fixture.py",
+      "group": "prototype_and_validation",
+      "bytes": 3367,
+      "sha256": "c5c4728c9e560b0b03f9bd3549a8e886001f47b02895a467b764b2fd234dccd8",
+      "publication_review_required": true
+    },
+    {
+      "path": "notes-drive/tests/verify_preservation.py",
+      "group": "prototype_and_validation",
+      "bytes": 3563,
+      "sha256": "d25f789e3c5ecbfe6c57c9d7a91aaf0966324191a98ba573f3231845f3aae815",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/AndroidManifest.xml",
+      "group": "ai_android",
+      "bytes": 1362,
+      "sha256": "b615ee684b5437afdad3300aa5599a5cacaddbb4d7877cbb0155beb5a478edf9",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/NEOREADER-VALIDATION.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 7618,
+      "sha256": "c9d56eecf49a06fcfc1f2c5a03de9095dce25f46875a388f38c1ee0b9d99cec0",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/OAUTH-PLAN.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 9682,
+      "sha256": "d141291fc9072572780ac35c4420408b11c523f4c4cc737cc192877f461a199f",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/OAUTH-VALIDATION.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 8921,
+      "sha256": "244aaece8a8f7f489d05d06d917fc31577e6046c14162b1f87a05632337174e8",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/STATUS.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 6103,
+      "sha256": "b1617e443b7e564183961d03f2bd0593d79399f765cf240a33df5f8904eb165d",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/VALIDATION.md",
+      "group": "legacy_documentation_review_required",
+      "bytes": 8831,
+      "sha256": "73157b5a87c381e81e7c6df17210c7def9821961a2dbede22a6c1f480c7f3eb0",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/assets/xposed_init",
+      "group": "ai_android",
+      "bytes": 29,
+      "sha256": "3f5d195bcb8f75ee291005d121466814541229a9efe63e3cb6fe68283179d4e8",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/build.py",
+      "group": "ai_android",
+      "bytes": 1925,
+      "sha256": "111af4e5394a5dcd91aa13b962c66bd6146f4368e82ed059b53f781e4eb29f19",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/src/local/boox/openai/AssistantProvider.java",
+      "group": "ai_android",
+      "bytes": 20546,
+      "sha256": "624ac4549a45c7f78feea645328b77f6cc50e494149e33b22aaaa7e4f3035a0b",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/src/local/boox/openai/CodexOAuth.java",
+      "group": "ai_android",
+      "bytes": 8442,
+      "sha256": "14839a41c1fd1c3a66a37e5d82af753f620d52aa6160f06dc8830dc76ffc9aff",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/src/local/boox/openai/CodexResponsesClient.java",
+      "group": "ai_android",
+      "bytes": 11000,
+      "sha256": "81ac4580f08b7be68154d565a40686a1dda77a678050d7d5649eafe1bbc519c0",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/src/local/boox/openai/ConnectionSettings.java",
+      "group": "ai_android",
+      "bytes": 4738,
+      "sha256": "fcaefce9145add6b5bedec8d7278481774f82d8838aaa799110ad98610c75379",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/src/local/boox/openai/DisclaimerViews.java",
+      "group": "ai_android",
+      "bytes": 2088,
+      "sha256": "8611ae575c6b11f13f9414fc9a32ecad899600f4192c3ded77b7c988eb5d0c0a",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/src/local/boox/openai/KeyVault.java",
+      "group": "ai_android",
+      "bytes": 2755,
+      "sha256": "3a918c4033610cd21dcd41928ce095d1904cc92cde41c45b7d86708ea9bbac1d",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/src/local/boox/openai/LoginCoordinator.java",
+      "group": "ai_android",
+      "bytes": 4546,
+      "sha256": "6d9a1c924c83f2dd723b227b57a7cc0d83851e42c1a4d55d6afa7d2588aad9f8",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/src/local/boox/openai/NativeHook.java",
+      "group": "ai_android",
+      "bytes": 13562,
+      "sha256": "e4fc7cd70ea28e4d9a7f677a39b9e70928d2f39cac6ecc12ebcd29cbebcf9d99",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/src/local/boox/openai/OAuthVault.java",
+      "group": "ai_android",
+      "bytes": 9463,
+      "sha256": "4962e617edff71b19c1078e8ffb18967f5d1a8f50345ad3a4365411acde241a0",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/src/local/boox/openai/OpenAIHttp.java",
+      "group": "ai_android",
+      "bytes": 3989,
+      "sha256": "6be485124c6e8f44696eec28853c6fd698e1c45079791057fccfda18c2436e39",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/src/local/boox/openai/ReaderConversations.java",
+      "group": "ai_android",
+      "bytes": 1119,
+      "sha256": "8cc629717dcf35ac6004d0fc6c5786c5b60ea8226ffd043454e98d2e54360c2a",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/src/local/boox/openai/ReplyClient.java",
+      "group": "ai_android",
+      "bytes": 187,
+      "sha256": "7e2fc784603768464d4c8a34c367b315498674b4c2df830c8dbc7f33a0ba573c",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/src/local/boox/openai/ResponsesClient.java",
+      "group": "ai_android",
+      "bytes": 6144,
+      "sha256": "d3a754f1e96a9ddbcbb45f9323446a04ff1d567d7c3da360a0c641e872c5296b",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/src/local/boox/openai/SetupActivity.java",
+      "group": "ai_android",
+      "bytes": 17250,
+      "sha256": "9c3d8d29a4f9fc2a805be1ce986ec624a11472f24bd51e7205d04cdee2bc0566",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/stubs/de/robv/android/xposed/IXposedHookLoadPackage.java",
+      "group": "ai_android",
+      "bytes": 193,
+      "sha256": "975701f5cf607311d0866415f26c15d61ebe986193a8328fdf71bb803e0fa67a",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/stubs/de/robv/android/xposed/XC_MethodHook.java",
+      "group": "ai_android",
+      "bytes": 558,
+      "sha256": "649b51fdabc3b333788718bd09392edf75fdfedf7aa44f5da8f65e5b48b298df",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/stubs/de/robv/android/xposed/XposedBridge.java",
+      "group": "ai_android",
+      "bytes": 290,
+      "sha256": "d06cf3ac689d8bea1c08a8d928f1de800cc9a15507bb2b02382dc2efbc49c020",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/stubs/de/robv/android/xposed/callbacks/XC_LoadPackage.java",
+      "group": "ai_android",
+      "bytes": 239,
+      "sha256": "078cdef4881c0d77ff48110447937708e1a4fb3f641ca9aa925dd1247065d520",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/tests/AndroidManifest.xml",
+      "group": "ai_android",
+      "bytes": 651,
+      "sha256": "46358186d4d4de305b396910aaa3a72ea3762f9277147c03fea9542dfdf9b6de",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/tests/OAuthValidationRunner.java",
+      "group": "ai_android",
+      "bytes": 28144,
+      "sha256": "597dfb80ce3a7dfa5aa161ab08860b1e866e33f27292d0d6e4a20bee10c79bcf",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/tests/UiValidationRunner.java",
+      "group": "ai_android",
+      "bytes": 2497,
+      "sha256": "1ee8c109741f26dc0c9941b06cc9bfe26a7143f001a3390c93611362ff118fc3",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/tests/ValidationRunner.java",
+      "group": "ai_android",
+      "bytes": 18740,
+      "sha256": "801633dd20f8dfc4e5f8994a9e7bd113ab83979ff8a9e73e156ad558b1105268",
+      "publication_review_required": true
+    },
+    {
+      "path": "openai-adapter/tests/build.py",
+      "group": "ai_android",
+      "bytes": 1845,
+      "sha256": "d81c31e7ad3e439037022f78619f8345afefaf60ed81069d263f7bdc55a99bdd",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/android_build_env.py",
+      "group": "host_tools",
+      "bytes": 1920,
+      "sha256": "696ded4b24be1779380d0e6a912f4b953d3837e5c74ce0d924a02a7571d96957",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/bootstrap_dependencies.py",
+      "group": "host_tools",
+      "bytes": 12760,
+      "sha256": "6d75021de3f83a2fc58c585b4948d53aab3387e9b2a30b8a4c290a5a9a11bc39",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/boox_doctor.py",
+      "group": "host_tools",
+      "bytes": 12910,
+      "sha256": "9811764fd9479fd94b78e370df6ef13d2b446b1fbdacf1e30e7a9e999cb9760e",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/boox_setup.py",
+      "group": "host_tools",
+      "bytes": 26195,
+      "sha256": "d7aed886f3a25f179a59e315c2615d343ab3dd0ac4fe855ae181d48320ec55ea",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/boox_ui.py",
+      "group": "host_tools",
+      "bytes": 2288,
+      "sha256": "8538600d12edaba2e82fbd62bbafe51d92541d151b2d9ddc6ce67e5c7c5c4e66",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/build_ams_fix.py",
+      "group": "host_tools",
+      "bytes": 6812,
+      "sha256": "b4f43028d0af013e028ea44ff9a717508f44883e15b9850435b286bb30e1f8ab",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/install_notes_drive.py",
+      "group": "host_tools",
+      "bytes": 3878,
+      "sha256": "517281e0cfce63f543d4c7d49cc54d28acf51395238ad657008be5aecd09b035",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/package_source.py",
+      "group": "host_tools",
+      "bytes": 15381,
+      "sha256": "d5c6f17a260330ff2ab6218564344fda6a5965dfe1bf04ef4a65da991f614e35",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/prepare_magisk_stage.py",
+      "group": "host_tools",
+      "bytes": 13850,
+      "sha256": "a8c31c166c49acc090aba8a583ff383d10db201d0c542925f35acfb9f5717143",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/repair_adb_tar.py",
+      "group": "host_tools",
+      "bytes": 2952,
+      "sha256": "afbdf54da8ad8eb3bc7b171757a2e5db25de91a8843b1ce5a26d7e62d69a3f4c",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/run_edl.py",
+      "group": "host_tools",
+      "bytes": 332,
+      "sha256": "d13d0e396856f864677d35c5f621e62384dd2125df9eb2d0a77904ac258e0554",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/test_bootstrap_dependencies.py",
+      "group": "host_tools",
+      "bytes": 7103,
+      "sha256": "856ebeb397d96643dfc43b219b3521a2642e5073284f8e90a1277bb23089a7a9",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/test_boox_doctor.py",
+      "group": "host_tools",
+      "bytes": 9019,
+      "sha256": "1a6c0efcb7f1058cb718d85024d4ffd7affba2753af65455e955cbeafbc85a59",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/test_boox_setup.py",
+      "group": "host_tools",
+      "bytes": 26997,
+      "sha256": "b982b8318cb88cd32ff6d77f081d138e8dc4ff044aa5816003fd219f102d58a6",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/test_boox_ui.py",
+      "group": "host_tools",
+      "bytes": 1145,
+      "sha256": "156ae593a656a9b4b871b83c9d2074e014d76290f117b94c3e3d002210ccec12",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/test_package_source.py",
+      "group": "host_tools",
+      "bytes": 11915,
+      "sha256": "c55ef154bcc5a2e1109d9d2230fff5f197e862e4dfbb0884906faa88addc2a98",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/test_prepare_magisk_stage.py",
+      "group": "host_tools",
+      "bytes": 15798,
+      "sha256": "c7fce3e3a33014305e29f8f7ca6df7cd5d919b2a28c8b5fdad045ccad5e28c8b",
+      "publication_review_required": true
+    },
+    {
+      "path": "tools/test_repair_adb_tar.py",
+      "group": "host_tools",
+      "bytes": 1218,
+      "sha256": "ff18218eaa5e03f70afcc5a073d7d5f39b40e05d573dd8437374a289e056ab4c",
+      "publication_review_required": true
+    }
+  ]
+}

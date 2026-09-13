@@ -1,0 +1,55 @@
+{
+  "added_shape_id": "f520fc30-0b34-516c-a7a2-da7c29a54ad5",
+  "document_id": "40fcad0aefc7592aa757e22fb871d446",
+  "erased_shape_id": "d1fa2026-61cf-5df8-bd05-f96bb87b0729",
+  "files": {
+    "add-plan.json": {
+      "bytes": 678,
+      "sha256": "77e461ce6bc9293f711653b90fee5b8fcce28463ebe2114f385fb140e89aed78"
+    },
+    "erase-plan.json": {
+      "bytes": 408,
+      "sha256": "179ba3dbfbd618819ea69ad791b1285deb80eb93a24dfd92002e3d79c6bbef7a"
+    },
+    "history-add-normalized.note": {
+      "bytes": 8556,
+      "page_count": 1,
+      "raw_shapes": 6,
+      "sha256": "999c44592c8d9bef906d729faea5ebe17690d87b97cb634e38aa0a0fc0f95c6f",
+      "stored_samples": 158,
+      "tombstones": 0,
+      "visible_pens": 6
+    },
+    "history-add.note": {
+      "bytes": 8568,
+      "page_count": 1,
+      "raw_shapes": 6,
+      "sha256": "f0b41b1a2d4956ae760284e9772d867a9855f484bf50454317bf855e0f3feda8",
+      "stored_samples": 158,
+      "tombstones": 0,
+      "visible_pens": 6
+    },
+    "history-erase.note": {
+      "bytes": 8570,
+      "page_count": 1,
+      "raw_shapes": 6,
+      "sha256": "24505daf755464f32a4f67b26dae05556da54cd827ac8dda1333bc98684b30d3",
+      "stored_samples": 158,
+      "tombstones": 1,
+      "visible_pens": 5
+    },
+    "history-five-pen.note": {
+      "bytes": 7606,
+      "page_count": 1,
+      "raw_shapes": 5,
+      "sha256": "e9753bf576d83ee263ef4f4906951d6fc17648c78a12fca099e90990fb86c437",
+      "stored_samples": 154,
+      "tombstones": 0,
+      "visible_pens": 5
+    }
+  },
+  "normalization": "Omit explicit zero field 6 from active shape records only",
+  "page_id": "9a80f7e349c75a43af147b575f4bfeb5",
+  "schema": 1,
+  "synthetic_only": true
+}

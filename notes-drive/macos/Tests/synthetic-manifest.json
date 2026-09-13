@@ -1,0 +1,27 @@
+{
+  "chunked-20-page.note": {
+    "bytes": 1410930,
+    "sha256": "525fe0017df359f93488b34512f7c398357ee679cbb40ebfb3d26cfc47ef4f4b",
+    "title": "Synthetic chunked twenty-page fixture"
+  },
+  "history-five-pen.note": {
+    "bytes": 7606,
+    "sha256": "e9753bf576d83ee263ef4f4906951d6fc17648c78a12fca099e90990fb86c437",
+    "title": "Synthetic five-pen history fixture"
+  },
+  "proto3-reexport.note": {
+    "bytes": 8164,
+    "sha256": "072fe93880a51ea6be0c637c6f2cb91956d6462e116573ecd1db5ec09b44f74c",
+    "title": "Synthetic five-pen history fixture"
+  },
+  "two-page-variant.note": {
+    "bytes": 12113,
+    "sha256": "8690023e718bdf5f8f61456a66d33e6939a86be3768dcd921d47d7de37aee724",
+    "title": "Synthetic two-page variant"
+  },
+  "two-page.note": {
+    "bytes": 12113,
+    "sha256": "8bfae218c43404b6c60bf0d29ff1c38b16303d285fcfe03fce47a2588410f150",
+    "title": "Synthetic two-page fixture"
+  }
+}

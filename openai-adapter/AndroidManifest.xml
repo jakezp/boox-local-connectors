@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="local.boox.openai" android:versionCode="9" android:versionName="0.9">
+ <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="35"/>
+ <uses-permission android:name="android.permission.INTERNET"/>
+ <queries><package android:name="com.onyx.aiassistant"/><package android:name="com.onyx.kreader"/></queries>
+ <application android:label="BOOX OpenAI Setup" android:theme="@android:style/Theme.Material.Light.NoActionBar" android:allowBackup="false" android:usesCleartextTraffic="false" android:supportsRtl="true" android:forceQueryable="true">
+  <meta-data android:name="xposedmodule" android:value="true"/>
+  <meta-data android:name="xposeddescription" android:value="OpenAI adapter for BOOX Assistant and NeoReader"/>
+  <meta-data android:name="xposedminversion" android:value="82"/>
+  <provider android:name=".AssistantProvider" android:authorities="local.boox.openai.bridge" android:exported="true"/>
+  <activity android:name=".SetupActivity" android:exported="true" android:launchMode="singleTask" android:configChanges="orientation|screenSize" android:windowSoftInputMode="adjustResize">
+   <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
+  </activity>
+ </application>
+</manifest>

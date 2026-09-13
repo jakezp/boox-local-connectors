@@ -1,0 +1,341 @@
+{
+  "schema": 1,
+  "checkpoint_date": "2026-09-12",
+  "basis": "Offline local artifact inspection, saved release/repository metadata and historical handover, plus parent-verified pinned loader and subsequent four-default-archive fresh network bootstrap. No URLs were freshly downloaded by this sidecar. Acquisition success is distinct from the pending actual fresh-clone build.",
+  "parent_network_bootstrap": {
+    "date": "2026-09-13",
+    "status": "dependencies_materialized_not_executed",
+    "artifacts": ["platform_tools", "android_build_tools", "android_platform", "gradle"],
+    "exact_sha256_verified": true,
+    "extraction_completed": true,
+    "private_evidence_filename": "clean-dependencies-bootstrap.json",
+    "basis": "Parent-reported fresh network run with reviewed plan; no private evidence contents read by sidecar.",
+    "fresh_clone_build_completed": false
+  },
+  "artifacts": [
+    {
+      "name": "platform_tools",
+      "version": "37.0.1",
+      "local_archive": "tools/platform-tools.zip",
+      "bytes": 16110554,
+      "sha256": "ee39ad5967e95c2a07f04dbcbde96b1a0c916ba376096db5d2f498b7727a5d1d",
+      "source_url": "https://dl.google.com/android/repository/platform-tools_r37.0.1-darwin.zip",
+      "required_layout": "tools/platform-tools",
+      "bootstrap": {
+        "zip_layouts": [
+          {"archive_prefix": "platform-tools/", "destination": "tools/platform-tools"}
+        ]
+      },
+      "evidence": "Saved android-repository.xml archive URL/size; installed source.properties"
+    },
+    {
+      "name": "android_build_tools",
+      "version": "35.0.0",
+      "local_archive": "tools/build-tools.zip",
+      "bytes": 76857898,
+      "sha256": "530cdbd1ec315e1477624d7ed2f0f2962108d69f36eddba5894cef9ea2cedb48",
+      "source_url": "https://dl.google.com/android/repository/build-tools_r35_macosx.zip",
+      "required_layout": "tools/android-sdk/android-15 AND tools/android-sdk/build-tools/35.0.0",
+      "bootstrap": {
+        "zip_layouts": [
+          {"archive_prefix": "android-15/", "destination": "tools/android-sdk/android-15"},
+          {"archive_prefix": "android-15/", "destination": "tools/android-sdk/build-tools/35.0.0"}
+        ]
+      },
+      "evidence": "Saved android-repository.xml; historical flat extraction and normal Gradle layout both needed"
+    },
+    {
+      "name": "android_platform",
+      "version": "35 revision 2 extension 13",
+      "local_archive": "tools/android-platform.zip",
+      "bytes": 64273788,
+      "sha256": "0988cacad01b38a18a47bac14a0695f246bc76c1b06c0eeb8eb0dc825ab0c8e0",
+      "source_url": "https://dl.google.com/android/repository/platform-35_r02.zip",
+      "required_layout": "tools/android-sdk/android-35 AND tools/android-sdk/platforms/android-35",
+      "bootstrap": {
+        "zip_layouts": [
+          {"archive_prefix": "android-35/", "destination": "tools/android-sdk/android-35"},
+          {"archive_prefix": "android-35/", "destination": "tools/android-sdk/platforms/android-35"}
+        ]
+      },
+      "evidence": "Saved android-repository.xml archive URL/size; installed source.properties"
+    },
+    {
+      "name": "gradle",
+      "version": "8.11.1",
+      "local_archive": "tools/gradle-8.11.1-bin.zip",
+      "bytes": 136920070,
+      "sha256": "f397b287023acdba1e9f6fc5ea72d22dd63669d59ed4a289a29b1a76eee151c6",
+      "source_url": "https://services.gradle.org/distributions/gradle-8.11.1-bin.zip",
+      "required_layout": "tools/gradle-8.11.1",
+      "bootstrap": {
+        "zip_layouts": [
+          {"archive_prefix": "gradle-8.11.1/", "destination": "tools/gradle-8.11.1"}
+        ]
+      },
+      "evidence": "Local named archive; upstream versioned distribution URL supplied for reproduction, not a retained download receipt"
+    },
+    {
+      "name": "vector",
+      "version": "v2.2 / 3080 / API 102",
+      "local_archive": "tools/vector.zip",
+      "bytes": 9316843,
+      "sha256": "9ee8323575d615f7b3f1076ff60b2a63a49390ef11881b52632311a37f6f79cc",
+      "source_url": "https://github.com/JingMatrix/Vector/releases/download/v2.2/Vector-v2.2-3080-Release.zip",
+      "required_layout": "tools/vector.zip",
+      "bootstrap": {"zip_layouts": []},
+      "evidence": "Saved vector-release.json includes matching upstream sha256 digest"
+    },
+    {
+      "name": "jadx",
+      "version": "1.5.6",
+      "local_archive": "tools/jadx.zip",
+      "bytes": 72646741,
+      "sha256": "545ea2be9c242511bc145755cf4bda2485ade42966e096f8b4d3da2a230e8974",
+      "source_url": "https://github.com/skylot/jadx/releases/download/v1.5.6/jadx-1.5.6.zip",
+      "required_layout": "tools/jadx",
+      "bootstrap": {
+        "zip_layouts": [
+          {"archive_prefix": "", "destination": "tools/jadx"}
+        ]
+      },
+      "evidence": "Saved jadx-release.json includes matching upstream sha256 digest"
+    },
+    {
+      "name": "edl_loader",
+      "version": "exact binary pinned to bkerler/Loaders commit 2fe9ee42e2135c8db5005cb542472eda16d81473",
+      "local_archive": "tools/noteair4c-loader.bin",
+      "bytes": 759504,
+      "sha256": "1eadbcd4c5e64d7f7ae6b13f51f548148d53c7163fe960e50840e03daa742e73",
+      "source_url": "https://raw.githubusercontent.com/bkerler/Loaders/2fe9ee42e2135c8db5005cb542472eda16d81473/lenovo_motorola/0000000000000000_bdaf51b59ba21d8a_fhprg.bin",
+      "required_layout": "tools/noteair4c-loader.bin",
+      "bootstrap": {"zip_layouts": []},
+      "evidence": "Parent verified the pinned raw download and exact local SHA-256; notes-drive/research/incoming/loader-provenance.json. This establishes a reproducible source for the identical binary, not the original historical checkout commit.",
+      "source_repository": "bkerler/Loaders",
+      "source_commit": "2fe9ee42e2135c8db5005cb542472eda16d81473",
+      "source_tree_sha1": "f5b233f1e74221fdb07bfe56edb56a1ef53a4ff5",
+      "source_path": "lenovo_motorola/0000000000000000_bdaf51b59ba21d8a_fhprg.bin",
+      "git_blob_sha1": "c34319cc5f5ccbed1d5e7ee261d0ef3b148e14ca",
+      "pinned_download_sha256_verified": true,
+      "pinned_download_verified_by": "parent",
+      "historical_download_commit_established": false
+    },
+    {
+      "name": "ams_overlay",
+      "version": "1.0 firmware 4.2-rel_04282",
+      "local_archive": "patch/boox-ams-fix-noteair4c-4.2.zip",
+      "bytes": 7580498,
+      "sha256": "ecf3fca2d211952e5ceb46c691f648282ddae5b61b73bbc9275b0a07dc96b95e",
+      "source_url": null,
+      "required_layout": "patch/boox-ams-fix-noteair4c-4.2.zip",
+      "evidence": "Locally built by tools/build_ams_fix.py; firmware-derived, not distributable authored source"
+    }
+  ],
+  "source_checkouts": [
+    {
+      "name": "bkerler EDL",
+      "source_url": "https://github.com/bkerler/edl.git",
+      "observed_commit": "2f8e89a848afaaef68997fcbcb5b178d958d497b",
+      "path": "tools/edl",
+      "working_tree_clean_verified": false,
+      "gap": "Commit alone does not certify captured tree; gpt branch has no effective payload writes. Full Python lock remains missing. The exact-binary loader acquisition pin is recorded separately in artifacts."
+    }
+  ],
+  "direct_dependencies": [
+    {
+      "name": "JDK",
+      "version": "17.0.16 (currently installed Oracle runtime17.0.16+12-LTS-247)",
+      "source_url": null,
+      "sha256": null,
+      "gap": "Original archive URL/hash and fresh acquisition not established. Parent Notes/OpenAI/instrumentation/probe builders and native-corpus preflight now use android_build_env.py with JAVA_HOME/discovery. Frozen doctor host observations remain historical."
+    },
+    {
+      "name": "Android Gradle Plugin",
+      "version": "8.9.2",
+      "source_url": "https://dl.google.com/dl/android/maven2/",
+      "sha256": null
+    },
+    {
+      "name": "com.google.android.gms:play-services-auth",
+      "version": "22.0.0",
+      "source_url": "https://dl.google.com/dl/android/maven2/",
+      "sha256": null
+    },
+    {
+      "name": "junit:junit",
+      "version": "4.13.2",
+      "source_url": "https://repo.maven.apache.org/maven2/",
+      "sha256": null
+    },
+    {
+      "name": "org.json:json",
+      "version": "20240303",
+      "source_url": "https://repo.maven.apache.org/maven2/",
+      "sha256": null
+    },
+    {
+      "name": "Python EDL runtime",
+      "version": "3.12.11",
+      "source_url": null,
+      "sha256": null,
+      "gap": "Current pyusb1.3.1, libusb-package1.0.30.0, loguru0.7.3 and androguard4.1.4 observed; complete transitive/wheel acquisition lock missing."
+    },
+    {
+      "name": "androguard",
+      "version": "4.1.4",
+      "source_url": "https://pypi.org/project/androguard/4.1.4/",
+      "sha256": null,
+      "gap": "Installed metadata confirms4.1.4; no retained wheel archive hash/full transitive lock."
+    },
+    {
+      "name": "Apple developer tools/Swift",
+      "version": "Current Xcode26.4.1 / Swift6.3.1; source language mode5",
+      "source_url": null,
+      "sha256": null,
+      "gap": "Original historical compiler version and distributable acquisition pin unestablished; Apple Silicon macOS13 target remains."
+    }
+  ],
+  "historical_input_requirements": [
+    {
+      "name": "Magisk installed APK",
+      "version": "30.2",
+      "source_url": null,
+      "sha256": "123093f51eeb1aa459ac188a22ac3e775e8243293d48df2ceda9ca9dad22d2d6",
+      "gap": "Acquired from existing device; do not silently substitute a release download. Later30.7 upgrade provenance missing."
+    },
+    {
+      "name": "Original services.jar",
+      "version": "NoteAir4C 4.2-rel_04282",
+      "source_url": null,
+      "sha256": "fd45574a43099f3e1abc0bca6a88db3d018d6f183c41d7e0a46f16801ae5b2e6",
+      "gap": "Matching-device original is a private input, not a generic source asset. Builder now accepts --source/--output and enforces this exact original hash."
+    },
+    {
+      "name": "Native fixture Target-after.note",
+      "version": "historical disposable fixture",
+      "source_url": null,
+      "sha256": "50ac19fd0b9a7dc806ea46157f6d053ee49cb7cf84d046938eb0140e7ba92ebc",
+      "gap": "Historical Android/Mac builder input; parent/Mac owners are replacing mandatory fixture dependencies with synthetic generation. Keep native exports private and verify a fresh source-only build after replacement."
+    }
+  ],
+  "historical_reference_urls": [
+    "https://github.com/jdkruzr/BooxPalma2RootGuide",
+    "https://github.com/dynamicfire/boox-ams-fix",
+    "https://github.com/bkerler/Loaders",
+    "https://topjohnwu.github.io/Magisk/install.html",
+    "https://developers.openai.com/api/reference/python/resources/responses/methods/create",
+    "https://learn.chatgpt.com/docs/auth"
+  ],
+  "installer_followup_date": "2026-09-13",
+  "current_host_observations": {
+    "observed_date": "2026-09-13",
+    "provenance": "Read-only installed release metadata, version commands and local Gradle cache. These observations do not establish original download receipts or historical compiler versions.",
+    "jdk": {
+      "implementor": "Oracle Corporation",
+      "java_version": "17.0.16",
+      "runtime_version": "17.0.16+12-LTS-247",
+      "architecture": "aarch64",
+      "evidence": "Installed JDK release file",
+      "archive_sha256": null,
+      "archive_source_url": null
+    },
+    "apple_developer_tools": {
+      "xcode": "26.4.1",
+      "xcode_build": "17E202",
+      "swift": "6.3.1",
+      "swift_build": "swiftlang-6.3.1.1.2",
+      "clang_build": "clang-2100.0.123.102",
+      "evidence": "xcodebuild -version and xcrun swiftc --version",
+      "archive_sha256": null,
+      "archive_source_url": null
+    },
+    "edl_python": {
+      "version": "3.12.11",
+      "packages": [
+        {
+          "name": "androguard",
+          "version": "4.1.4",
+          "archive_sha256": null,
+          "evidence": "Installed distribution METADATA"
+        },
+        {
+          "name": "libusb-package",
+          "version": "1.0.30.0",
+          "archive_sha256": null,
+          "evidence": "Installed distribution METADATA"
+        },
+        {
+          "name": "loguru",
+          "version": "0.7.3",
+          "archive_sha256": null,
+          "evidence": "Installed distribution METADATA"
+        },
+        {
+          "name": "pyusb",
+          "version": "1.3.1",
+          "archive_sha256": null,
+          "evidence": "Installed distribution METADATA"
+        }
+      ]
+    }
+  },
+  "cached_direct_artifacts": [
+    {
+      "coordinate": "com.android.tools.build:gradle:8.9.2",
+      "filename": "gradle-8.9.2.pom",
+      "sha256": "97719184aefa93d3c5e8296c39860532227b8801a34c73376c0d9d0db7aa5580",
+      "bytes": 12001,
+      "evidence": "Local Gradle cache, not fresh remote digest verification"
+    },
+    {
+      "coordinate": "com.android.tools.build:gradle:8.9.2",
+      "filename": "gradle-8.9.2.jar",
+      "sha256": "6c313d24d07ac393cfc7db5d63c5029e7d20b278781c42b2d22adf9bcc7dba30",
+      "bytes": 13022049,
+      "evidence": "Local Gradle cache, not fresh remote digest verification"
+    },
+    {
+      "coordinate": "com.google.android.gms:play-services-auth:22.0.0",
+      "filename": "play-services-auth-22.0.0.aar",
+      "sha256": "0897c1ad398cae3f7a743a24d66373cc7440e63d11e7429ed9a17a77a61c96dc",
+      "bytes": 195356,
+      "evidence": "Local Gradle cache, not fresh remote digest verification"
+    },
+    {
+      "coordinate": "com.google.android.gms:play-services-auth:22.0.0",
+      "filename": "play-services-auth-22.0.0.pom",
+      "sha256": "c845afe37988b22a89bee1808279503c3eec52a1f044f275d2aa9021e0f2c4ae",
+      "bytes": 3332,
+      "evidence": "Local Gradle cache, not fresh remote digest verification"
+    },
+    {
+      "coordinate": "junit:junit:4.13.2",
+      "filename": "junit-4.13.2.pom",
+      "sha256": "569b6977ee4603c965c1c46c3058fa6e969291b0160eb6964dd092cd89eadd94",
+      "bytes": 27018,
+      "evidence": "Local Gradle cache, not fresh remote digest verification"
+    },
+    {
+      "coordinate": "junit:junit:4.13.2",
+      "filename": "junit-4.13.2.jar",
+      "sha256": "8e495b634469d64fb8acfa3495a065cbacc8a0fff55ce1e31007be4c16dc57d3",
+      "bytes": 384581,
+      "evidence": "Local Gradle cache, not fresh remote digest verification"
+    },
+    {
+      "coordinate": "org.json:json:20240303",
+      "filename": "json-20240303.pom",
+      "sha256": "994baf5d89bf4caa5ce968e4c4eab135c8f9783ecf4d2b7b0e9d1c8a4ddf1e4f",
+      "bytes": 7696,
+      "evidence": "Local Gradle cache, not fresh remote digest verification"
+    },
+    {
+      "coordinate": "org.json:json:20240303",
+      "filename": "json-20240303.jar",
+      "sha256": "3cf6cd6892e32e2b4c1c39e0f52f5248a2f5b37646fdfbb79a66b46b618414ed",
+      "bytes": 78332,
+      "evidence": "Local Gradle cache, not fresh remote digest verification"
+    }
+  ],
+  "provenance_followup_date": "2026-09-13"
+}

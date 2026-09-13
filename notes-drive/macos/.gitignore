@@ -1,0 +1,10 @@
+/build/
+/config/*.json
+/evidence/*.png
+/evidence/test-store/
+/evidence/tests
+/evidence/
+/Resources/__pycache__/
+/Tests/__pycache__/
+*.local.json
+/.test-runs/

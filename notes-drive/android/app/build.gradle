@@ -1,0 +1,47 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'local.boox.notesdrive'
+    compileSdk 35
+    buildFeatures {
+        buildConfig true
+    }
+    defaultConfig {
+        applicationId 'local.boox.notesdrive'
+        minSdk 28
+        targetSdk 35
+        versionCode 4
+        versionName '0.4'
+        buildConfigField 'String', 'HOOK_BUILD', '"' + providers.gradleProperty('hookBuild').getOrElse('development') + '"'
+    }
+    signingConfigs {
+        local {
+            storeFile file('../local-signing.p12')
+            storePassword 'local-build-only'
+            keyAlias 'notesdrive'
+            keyPassword 'local-build-only'
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.local
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+    compileOnly project(':xposed-stubs')
+    implementation 'com.google.android.gms:play-services-auth:22.0.0'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.json:json:20240303'
+}

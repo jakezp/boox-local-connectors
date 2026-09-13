@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="local.boox.notesprobe" android:versionCode="1" android:versionName="0.1">
+  <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="35"/>
+  <application android:label="BOOX Notes Import Probe" android:allowBackup="false">
+    <meta-data android:name="xposedmodule" android:value="true"/>
+    <meta-data android:name="xposeddescription" android:value="Temporary fixture-only native import validation"/>
+    <meta-data android:name="xposedminversion" android:value="82"/>
+  </application>
+</manifest>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <queries><package android:name="com.onyx.android.note"/></queries>
+    <application android:name=".DriveSession" android:label="BOOX Notes Drive"
+        android:allowBackup="false" android:usesCleartextTraffic="false"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar">
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
+        <meta-data android:name="xposedmodule" android:value="true"/>
+        <meta-data android:name="xposeddescription" android:value="Native Notes save snapshots for Google Drive"/>
+        <meta-data android:name="xposedminversion" android:value="82"/>
+        <provider android:name=".NotesBridge" android:authorities="local.boox.notesdrive.native"
+            android:exported="true"/>
+        <service android:name=".AutoSyncJob" android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true"/>
+        <activity android:name=".SetupActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

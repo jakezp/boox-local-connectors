@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "model": "NoteAir4C",
+  "firmware": "2026-04-28_17-50_4.2-rel_04282_555977efe",
+  "device_serial_sha256": "<SHA256_OF_EXACT_ADB_SERIAL_WITHOUT_NEWLINE>",
+  "created_at": "<CURRENT_CHECKPOINT_ISO8601_WITH_TIMEZONE>",
+  "attestations": {
+    "editors_closed": false,
+    "restore_procedure_reviewed": false,
+    "signing_keys_preserved": false,
+    "keystore_limit_understood": false
+  },
+  "files": [
+    {
+      "role": "vector_state",
+      "path": "vector-state.tar",
+      "bytes": 0,
+      "sha256": "<SHA256>"
+    },
+    {
+      "role": "notes_native",
+      "path": "notes-native.tar",
+      "bytes": 0,
+      "sha256": "<SHA256>"
+    },
+    {
+      "role": "notesdrive_state",
+      "path": "notesdrive-state.tar",
+      "bytes": 0,
+      "sha256": "<SHA256>"
+    },
+    {
+      "role": "notesdrive_apk",
+      "path": "notesdrive-installed.apk",
+      "bytes": 0,
+      "sha256": "<SHA256>"
+    }
+  ]
+}
