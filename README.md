@@ -1,7 +1,6 @@
 # BOOX AI use OpenAI and Google Drive Cloud Sync
 
-Use your own AI connection inside BOOX's native reading apps, and synchronize
-editable notebooks through Google Drive between a BOOX tablet and a Mac.
+Use your own OpenAI API or ChatGPT/Codex subscription instead of the default BOOX AI model in the native reading apps, and set up a replacement Google Drive sync inside the Native Notes app as an alternative to the ONYX Cloud sync.
 
 The project provides three apps:
 
